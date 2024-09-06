@@ -1,3 +1,4 @@
+import { getUserByUser } from "@/queries";
 import NextAuth from "next-auth"
 import CredentialsProvider from "next-auth/providers/credentials"
 
@@ -13,18 +14,24 @@ const handler = NextAuth({
                 password: { label: "Password", type: "password" }
             },
             async authorize(credentials) {
-                console.log(credentials);
+                // console.log(credentials);
                 if(!credentials){
                     return null;
                 }
 
-                if(credentials.username === "test" && credentials.password === "123"){
-                    return {
-                        id: "1",
-                        name: "Teste",
-                        email: "test@example.com",
-                    }
+                const login:any = await getUserByUser(credentials.username, credentials.password);
+
+                if(!login[0]){
+                    return null;
                 }
+              
+                if(credentials.username === login[0].user && credentials.password === login[0].password){
+                    return {
+                        id: login[0].id,
+                        name: login[0].name,
+                        email: login[0].email,
+                    }
+                } 
 
                 return null;
             }
