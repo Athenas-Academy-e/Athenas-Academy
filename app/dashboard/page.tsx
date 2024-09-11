@@ -1,19 +1,16 @@
-import LogoutButton from "@/components/LogoutButton";
-import { getUserByUser } from "@/queries";
+import Navbar from "@/components/navbar";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 
 export default async function dashboard() {
     const Session = await getServerSession();
-    
+    console.log(Session)
     if(!Session){
         redirect('/');
     }
     return (
         <div>
-            <div>Olá, {Session?.user?.name}</div>
-            <div>Dashboard</div>
-            <LogoutButton/>
+            <Navbar sessionData={Session}/>
         </div>
     )
 }
