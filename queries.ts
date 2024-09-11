@@ -14,7 +14,9 @@ async function createUserTable() {
     CREATE TABLE IF NOT EXISTS users (
       id INT AUTO_INCREMENT PRIMARY KEY,
       name VARCHAR(255) NOT NULL,
-      email VARCHAR(255) NOT NULL UNIQUE
+      user VARCHAR(255) NOT NULL UNIQUE,
+      password VARCHAR(255) NOT NULL UNIQUE,
+      email VARCHAR(255) NOT NULL UNIQUE,
     )
   `;
   (await connection).query(query);
