@@ -30,6 +30,7 @@ const handler = NextAuth({
                         id: login[0].id,
                         name: login[0].name,
                         email: login[0].email,
+                        image: login[0].image
                     }
                 } 
 
