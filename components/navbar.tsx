@@ -1,15 +1,21 @@
+'use client'
 import { database } from "@/database";
 import LogoutButton from "./LogoutButton";
 import Image from "next/image";
+import Settings from "./settings";
+import Profile from "./Profile";
+import Link from "next/link";
 
 export default function NavBar(sessionData: any) {
+  
+
   return (
-    <div className="navbar bg-base-100">
+    <div className="navbar bg-slate-950">
       <div className="flex-1">
         {database.settings.map(data => (
           <div key={data.Companytitle} className="flex">
-            <Image src={data.logo} alt={data.alt} width={200} height={10}/>
-            <span></span>
+            <Link href={'/dashboard'}><Image src={data.logo} alt={data.alt} width={200} height={10}/></Link>
+            <span className="text-white">{}</span>
           </div>
         ))}
       </div>
@@ -25,13 +31,8 @@ export default function NavBar(sessionData: any) {
           <ul
             tabIndex={0}
             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
-            <li>
-              <a className="justify-between">
-                Profile
-                <span className="badge">New</span>
-              </a>
-            </li>
-            <li><a>Settings</a></li>
+            <li><Profile/></li>
+            <li><Settings/></li>
             <li><LogoutButton/></li>
           </ul>
         </div>
