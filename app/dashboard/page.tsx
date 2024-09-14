@@ -11,8 +11,8 @@ export default async function dashboard() {
     }
     return (
         <div>
-            <Navbar sessionData={Session.user}/>
-            <Sidebar/>
+            {/* <Navbar sessionData={Session.user}/> */}
+            <Sidebar sessionData={Session.user}/>
         </div>
     )
 }

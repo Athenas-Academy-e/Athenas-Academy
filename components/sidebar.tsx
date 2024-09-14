@@ -20,6 +20,12 @@ import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
 import { NextPage } from 'next';
+import { database } from "@/database";
+import LogoutButton from "./LogoutButton";
+import Image from "next/image";
+import Settings from "./settings";
+import Profile from "./Profile";
+import Link from "next/link";
 
 const drawerWidth = 240;
 
@@ -85,7 +91,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
   }),
 );
 
-const SideBar: NextPage = () => {
+const SideBar: NextPage = (sessionData: any) => {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
 
@@ -99,21 +105,57 @@ const SideBar: NextPage = () => {
 
   return (
     <Box sx={{ display: 'flex' }}>
-      <CssBaseline />
-      <AppBar position="fixed" open={open}>
+      {/* <CssBaseline /> */}
+      <AppBar position="fixed" open={open} color='transparent'>
         <Toolbar>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            onClick={handleDrawerOpen}
-            edge="start"
-            sx={[{ marginRight: 5 }, open && { display: 'none' }]}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" noWrap component="div">
+          <div className="navbar bg-red-900">
+          {/* <div className="navbar bg-slate-950"> */}
+            <div className="flex-1">
+              {database.settings.map(data => (
+                <div key={data.Companytitle} className="flex gap-4 items-center">
+                  <div>
+                    <IconButton
+                      color="inherit"
+                      aria-label="open drawer"
+                      onClick={handleDrawerOpen}
+                      edge="start"
+                      sx={[{ marginRight: 5 }, open && { display: 'none' }]}
+                    >
+                      <MenuIcon />
+                    </IconButton>
+                  </div>
+                  <div>
+                    <Link href={'/dashboard'}><Image src={data.logo} alt={data.alt} width={200} height={10} /></Link>
+                  </div>
+                  <div className="flex flex-col justify-end text-sm">
+                    <span className="text-white">Olá <span className="uppercase">{sessionData.sessionData.name}</span>,</span>
+                    <span className="text-white capitalize">Seja bem vindo ão seu ambiente de estudo virtual.</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div className="flex-none gap-4">
+              <div className="dropdown dropdown-end">
+                <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
+                  <div className="w-10 rounded-full">
+                    <Image src={sessionData.sessionData.image} alt={'Teste'} width={200} height={200} />
+                  </div>
+                </div>
+                <ul
+                  tabIndex={0}
+                  className="menu menu-sm dropdown-content bg-slate-950 rounded-box z-[1] mt-3 w-52 p-2 shadow">
+                  <li><Profile /></li>
+                  <li><Settings /></li>
+                  <li><LogoutButton /></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+
+          {/* <Typography variant="h6" noWrap component="div">
             Mini variant drawer
-          </Typography>
+          </Typography> */}
         </Toolbar>
       </AppBar>
       <Drawer variant="permanent" open={open}>
