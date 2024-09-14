@@ -8,7 +8,7 @@ export default async function ProfilePage() {
         redirect('/');
     }
     return (<>
-    <Navbar/>
+    <Navbar sessionData={Session.user}/>
     Page Settings
     </>)
 }

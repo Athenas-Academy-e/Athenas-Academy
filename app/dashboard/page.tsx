@@ -1,4 +1,5 @@
 import Navbar from "@/components/navbar";
+import Sidebar from "@/components/sidebar";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 
@@ -10,7 +11,8 @@ export default async function dashboard() {
     }
     return (
         <div>
-            <Navbar sessionData={Session}/>
+            <Navbar sessionData={Session.user}/>
+            <Sidebar/>
         </div>
     )
 }
