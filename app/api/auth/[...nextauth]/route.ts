@@ -21,7 +21,6 @@ const handler = NextAuth({
                 const login:any = await getUserByUser(credentials.username, credentials.password);
 
                 if(!login[0]){
-                    console.log(login[0])
                     return null;
                 }
               
