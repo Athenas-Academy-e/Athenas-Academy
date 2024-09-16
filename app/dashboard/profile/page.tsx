@@ -1,4 +1,4 @@
-import Navbar from "@/components/navbar";
+import Header from "@/components/Header";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 
@@ -8,7 +8,8 @@ export default async function ProfilePage() {
         redirect('/');
     }
     return (<>
-    <Navbar sessionData={Session.user}/>
-    Page Profile
+        <Header sessionData={Session?.user}>
+            Page Profile
+        </Header>
     </>)
 }
