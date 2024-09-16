@@ -1,3 +1,4 @@
+import { faHouse } from '@fortawesome/free-solid-svg-icons/faHouse';
 export const database = {
     settings: [{
         logo: '/logo-light.png',
@@ -5,6 +6,13 @@ export const database = {
         url: 'https://athenasacademy.com.br/',
         color: '#007FE0',
         Companytitle: 'Athenas Academy',
-        subtitle: 'Academia de Educação e profisionalização',
-    }]
+        subtitle: 'Academia de Educação e profissionalização',
+    }],
+    pages: [
+        { id:0, name: 'Pagina Principal', url: '/dashboard', icon: faHouse },
+        { id:1, name: 'Financeiro', url: '/dashboard', icon: faHouse },
+        { id:2, name: 'Pagina Principal', url: '/dashboard', icon: faHouse },
+        { id:3, name: 'Pagina Principal', url: '/dashboard', icon: faHouse },
+        { id:4, name: 'Pagina Principal', url: '/dashboard', icon: faHouse },
+    ]
 }

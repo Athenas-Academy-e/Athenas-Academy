@@ -14,14 +14,15 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
 import { database } from '@/database';
 import Link from 'next/link';
 import Image from "next/image";
 import Profile from './Profile';
 import Settings from './settings';
 import LogoutButton from './LogoutButton';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
+
 
 interface SidebarProps {
     sessionData: any;
@@ -167,13 +168,13 @@ export default function Header({ sessionData, children }: SidebarProps) {
             >
                 <div className='bg-slate-950 h-screen relative'>
                     <List className='text-white'>
-                        {['Inbox', 'Starred', 'Send email', 'Drafts', 'All mail', 'Trash', 'Spam'].map((text, index) => (
-                            <ListItem key={text}>
+                        {database.pages.map((text, index) => (
+                            <ListItem key={text.id}>
                                 <ListItemButton>
                                     <ListItemIcon className='text-white'>
-                                        {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                                        <FontAwesomeIcon icon={text.icon as IconDefinition} />
                                     </ListItemIcon>
-                                    <ListItemText primary={text} />
+                                    <ListItemText primary={text.name} />
                                 </ListItemButton>
                             </ListItem>
                         ))}
