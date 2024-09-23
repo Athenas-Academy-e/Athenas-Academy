@@ -28,11 +28,18 @@ async function addUser(user: User) {
   return result;
 }
 
-async function getUserByUser(user: string, password: string) {
-  const query = 'SELECT * FROM users WHERE user = ? and password = ?';
-  const [rows] = await (await connection).execute(query, [user, password]);
+async function getUserByUser(user: string, codigo_escola: string, type: string) {
+  const query = 'SELECT * FROM `alunos` WHERE matricula = ? and codigo_escola = ?';
+  const [rows] = await (await connection).execute(query, [user, codigo_escola]);
   return rows;
 }
 
+async function getAlunoByCurso(id: string, codigo_escola: string) {
+  const query = 'SELECT * FROM alunos_cursos ac  LEFT JOIN alunos al ON al.id_aluno = ac.id_aluno AND al.codigo_escola = ac.codigo_escola  LEFT JOIN pacotes p ON ac.id_pacote = p.id_pacote AND ac.codigo_escola = p.codigo_escola WHERE al.id_aluno = ?    AND al.codigo_escola = ? ';
+  const [rows] = await (await connection).execute(query, [id, codigo_escola]);
+  return rows;  
+}
 
-export { createUserTable, addUser, getUserByUser };
+
+
+export { createUserTable, addUser, getUserByUser, getAlunoByCurso };

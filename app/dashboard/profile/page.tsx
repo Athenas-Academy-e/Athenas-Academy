@@ -9,7 +9,7 @@ export default async function ProfilePage() {
     }
     return (<>
         <Header sessionData={Session?.user}>
-            Page Profile
+            getAlunoByCurso
         </Header>
     </>)
 }
