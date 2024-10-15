@@ -1,4 +1,4 @@
-import { faHouse } from '@fortawesome/free-solid-svg-icons/faHouse';
+import { faHouse, faMoneyBill } from '@fortawesome/free-solid-svg-icons';
 export const database = {
     settings: [{
         logo: '/logo-light.png',
@@ -10,7 +10,7 @@ export const database = {
     }],
     pages: [
         { id:0, name: 'Pagina Principal', url: '/dashboard', icon: faHouse },
-        { id:1, name: 'Financeiro', url: '/dashboard', icon: faHouse },
+        { id:1, name: 'Financeiro', url: '/dashboard/finance', icon: faMoneyBill },
         { id:2, name: 'Pagina Principal', url: '/dashboard', icon: faHouse },
         { id:3, name: 'Pagina Principal', url: '/dashboard', icon: faHouse },
         { id:4, name: 'Pagina Principal', url: '/dashboard', icon: faHouse },

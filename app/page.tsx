@@ -1,6 +1,6 @@
 import { database } from "@/database";
 import Image from "next/image";
-import LoginForm from "@/components/LoginForms";
+import LoginForm from "@/app/(auth)/login/LoginForms";
 
 export default function Home() {
   return (

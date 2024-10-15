@@ -1,25 +1,9 @@
 'use client'
-import { signIn } from 'next-auth/react';
-import { useSearchParams } from 'next/navigation';
-
-export default function LoginForm() {
-    const searchParams = useSearchParams();
-    const error = searchParams.get('error');
-
-    async function Login(e: React.FormEvent<HTMLFormElement>) {
-        e.preventDefault();
-        const formData = new FormData(e.currentTarget);
-        const data = {
-            username: formData.get('username'),
-            password: formData.get('password'),
-        }
-        signIn("credentials", {
-            ...data,
-            callbackUrl: '/dashboard',
-        })
-    }
+import login from './_actions/login';
+export default function LoginForm(error:any) {
+    
     return (
-        <form onSubmit={Login} className="space-y-6">
+        <form action={login} className="space-y-6">
             <div>
                 <label htmlFor="email" className="block text-sm font-medium leading-6 text-white">
                     Usuário
@@ -66,7 +50,7 @@ export default function LoginForm() {
                 >
                     Entrar
                 </button>
-                {error && <p className="text-white font-bold text-center text-md bg-red-700 rounded-b-md transition-all duration-150">Usuário ou senha inválidos</p>}
+                {/* {error && <p className="text-white font-bold text-center text-md bg-red-700 rounded-b-md transition-all duration-150">Usuário ou senha inválidos</p>} */}
             </div>
         </form>
     )
