@@ -37,9 +37,15 @@ async function getUserByUser(user: string, codigo_escola: string, type: string) 
 async function getAlunoByCurso(id: string, codigo_escola: string) {
   const query = 'SELECT * FROM alunos_cursos ac  LEFT JOIN alunos al ON al.id_aluno = ac.id_aluno AND al.codigo_escola = ac.codigo_escola  LEFT JOIN pacotes p ON ac.id_pacote = p.id_pacote AND ac.codigo_escola = p.codigo_escola WHERE al.id_aluno = ? AND al.codigo_escola = ? ';
   const [rows] = await (await connection).execute(query, [id, codigo_escola]);
-  return rows;  
+  return rows;
+}
+
+async function getParcelas(id: string, codigo_escola: string, matricula: string) {
+  const query = 'SELECT * FROM `caixa` WHERE documento = ? and codigo_escola = ? and id_aluno_curso= ?';
+  const [rows] = await (await connection).execute(query, [matricula, codigo_escola, id]);
+  return rows;
 }
 
 
 
-export { createUserTable, addUser, getUserByUser, getAlunoByCurso };
+export { createUserTable, addUser, getUserByUser, getAlunoByCurso, getParcelas };
