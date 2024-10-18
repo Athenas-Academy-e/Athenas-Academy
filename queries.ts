@@ -40,12 +40,17 @@ async function getAlunoByCurso(id: string, codigo_escola: string) {
   return rows;
 }
 
-async function getParcelas(id: string, codigo_escola: string, matricula: string) {
-  const query = 'SELECT * FROM `caixa` WHERE documento = ? and codigo_escola = ? and id_aluno_curso= ?';
-  const [rows] = await (await connection).execute(query, [matricula, codigo_escola, id]);
+async function getParcelas(id: string, codigo_escola: string, id_aluno: string) {
+  const query = 'SELECT * FROM `caixa` WHERE id_aluno = ? and codigo_escola = ? and id_aluno_curso= ? and (id_cartao is null or id_cartao = "") and cheque_transfere = "N" order by vencimento asc';
+  const [rows] = await (await connection).execute(query, [id_aluno, codigo_escola, id]);
+  return rows;
+}
+async function getDadosPj(codigo_escola: string) {
+  const query = 'SELECT * FROM `dados_pj` WHERE codigo_escola = ?';
+  const [rows] = await (await connection).execute(query, [codigo_escola]);
   return rows;
 }
 
 
 
-export { createUserTable, addUser, getUserByUser, getAlunoByCurso, getParcelas };
+export { createUserTable, addUser, getUserByUser, getAlunoByCurso, getParcelas, getDadosPj };

@@ -93,7 +93,7 @@ export default function Header({ sessionData, children }: SidebarProps) {
     };
 
     return (
-        <Box sx={{ display: 'flex', height: '100vh' }}>
+        <Box sx={{ display: 'flex' }}>
             <AppBar position="fixed" open={open} className='bg-slate-950'>
                 <Toolbar className='flex justify-between py-1'>
                     <div className='flex'>

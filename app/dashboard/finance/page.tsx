@@ -16,14 +16,14 @@ export default async function Finance() {
   const data = Object.values(dataCurso)
 
   const dataFinancePromises = data.map(async (value) => {
-    const dataFinance = await getParcelas(value.id_aluno_curso, codigo_escola, value.matricula)
+    const dataFinance = await getParcelas(value.id_aluno_curso, codigo_escola, value.id_aluno)
     return { ...value, dataFinance }
   })
 
   const dataFinanceResults = await Promise.all(dataFinancePromises)
   return (
     <Header sessionData={session.user}>
-      <div className="text-white flex flex-col gap-4 flex-wrap transition-all">
+      <div className="text-white flex flex-col gap-4 flex-wrap transition-all ">
         {dataFinanceResults.map((pacotes) => (
           <div key={pacotes.id_aluno_curso} className="overflow-x-auto">
             <div key={pacotes.id_pacote}>
@@ -31,21 +31,21 @@ export default async function Finance() {
               <table className="table">
                 <thead className="text-white font-bold">
                   <tr>
-                    <th>Historico</th>
+                    <th>Parcelas</th>
                     <th>Vencimento</th>
                     <th>Valor</th>
                     <th>Situação</th>
                     <th>Opção</th>
                   </tr>
                 </thead>
-                <tbody key={'tbody'}>
-                  {pacotes.dataFinance.map((parcela:any) => (
+                <tbody>
+                  {pacotes.dataFinance.map((parcela: any) => (
                     <tr key={parcela.numero_lancamento} className="hover cursor-pointer">
                       <td>{parcela.historico}</td>
                       <td>{new Date(parcela.vencimento).toLocaleDateString()}</td>
                       <td>{parcela.valor}</td>
-                      <td>{parcela.quitado==='S' ? "Quitada" : "Aberta" }</td>
-                      <td><Link href={`/finance/pagar/${parcela.numero_lancamento}`}>Pagar</Link></td>
+                      <td>{parcela.quitado === 'S' ? "Quitada" : "Aberta"}</td>
+                      <td><Link href={`/dashboard/finance/pay?${new URLSearchParams({ nl: parcela.numero_lancamento, idac: parcela.id_aluno_curso })}`}>Pagar</Link></td>
                     </tr>
                   ))}
                 </tbody>
