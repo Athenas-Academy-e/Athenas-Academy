@@ -45,7 +45,7 @@ export default async function Finance() {
                       <td>{new Date(parcela.vencimento).toLocaleDateString()}</td>
                       <td>{parcela.valor}</td>
                       <td>{parcela.quitado === 'S' ? "Quitada" : "Aberta"}</td>
-                      <td><Link href={`/dashboard/finance/pay?${new URLSearchParams({ nl: parcela.numero_lancamento, idac: parcela.id_aluno_curso })}`}>Pagar</Link></td>
+                      <td><Link href={`/dashboard/finance?${new URLSearchParams({ nl: parcela.numero_lancamento, idac: parcela.id_aluno_curso })}`}>Pagar</Link></td>
                     </tr>
                   ))}
                 </tbody>
