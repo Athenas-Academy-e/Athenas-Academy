@@ -1,11 +1,13 @@
 import { auth } from "@/auth";
 import Header from "@/components/Header";
 import { getAlunoByCurso, getParcelas } from "@/queries";
-import Link from "next/link";
 import { redirect } from "next/navigation";
+import ModalA from "./components/Modal";
+
 
 
 export default async function Finance() {
+
   const session = await auth()
   if (!session) {
     redirect('/')
@@ -21,40 +23,43 @@ export default async function Finance() {
   })
 
   const dataFinanceResults = await Promise.all(dataFinancePromises)
+
   return (
     <Header sessionData={session.user}>
-      <div className="text-white flex flex-col gap-4 flex-wrap transition-all ">
-        {dataFinanceResults.map((pacotes) => (
-          <div key={pacotes.id_aluno_curso} className="overflow-x-auto">
-            <div key={pacotes.id_pacote}>
-              <h1>Você está visualizando as parcelas do curso: {pacotes.nome}</h1>
-              <table className="table">
-                <thead className="text-white font-bold">
-                  <tr>
-                    <th>Parcelas</th>
-                    <th>Vencimento</th>
-                    <th>Valor</th>
-                    <th>Situação</th>
-                    <th>Opção</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {pacotes.dataFinance.map((parcela: any) => (
-                    <tr key={parcela.numero_lancamento} className="hover cursor-pointer">
-                      <td>{parcela.historico}</td>
-                      <td>{new Date(parcela.vencimento).toLocaleDateString()}</td>
-                      <td>{parcela.valor}</td>
-                      <td>{parcela.quitado === 'S' ? "Quitada" : "Aberta"}</td>
-                      <td><Link href={`/dashboard/finance?${new URLSearchParams({ nl: parcela.numero_lancamento, idac: parcela.id_aluno_curso })}`}>Pagar</Link></td>
+      
+      {dataFinanceResults.map((pacotes) => (
+        <div key={pacotes.id_aluno_curso} className="flex w-full flex-col">
+          <div key={pacotes.id_aluno_curso} className="text-white flex flex-col gap-4 flex-wrap transition-all ">
+            <div key={pacotes.id_aluno_curso} className="overflow-x-auto">
+              <div key={pacotes.id_pacote}>
+                <h1>Você está visualizando as parcelas do curso: {pacotes.nome}</h1>
+                <table className="table">
+                  <thead className="text-white font-bold">
+                    <tr>
+                      <th>Parcelas</th>
+                      <th>Vencimento</th>
+                      <th>Valor</th>
+                      <th>Situação</th>
+                      <th>Opção</th>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
+                  </thead>
+                  <tbody>
+                    {pacotes.dataFinance.map((parcela: any) => (
+                      <tr key={parcela.numero_lancamento} className="hover cursor-pointer">
+                        <td>{parcela.historico}</td>
+                        <td>{new Date(parcela.vencimento).toLocaleDateString()}</td>
+                        <td>R$ {parcela.valor}</td>
+                        <td>{parcela.quitado === 'S' ? "Quitada" : "Aberta"}</td>
+                        <td><ModalA data={parcela} numero_lancamento={parcela.numero_lancamento} idac={parcela.id_aluno_curso}></ModalA></td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
             </div>
-
           </div>
-        ))}
-      </div>
+        </div>
+      ))}
     </Header>
   );
 }
