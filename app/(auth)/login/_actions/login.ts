@@ -10,19 +10,26 @@ export default async function login(formData: FormData) {
     username: string;
     password: string;
   };
-
-  try {
-    await signIn('credentials', {
+  async function sendData(){
+    const result = await signIn('credentials', {
       username,
       password,
-    });
+      redirect: false,
+    })
+    return result
+  }
+  try {
+    const resulta = await sendData()
+    console.log(resulta)
+    if(resulta){
+      redirect('/dashboard')
+    }
   } catch (e) {
     if (e instanceof AuthError) {
       if (e.type === 'CredentialsSignin') {
-        throw new Error('Credentials erradas')
+        redirect(`/?${new URLSearchParams({msg: e.type})}`)
       }
     }
   }
-
-  redirect('/dashboard');
+  
 }

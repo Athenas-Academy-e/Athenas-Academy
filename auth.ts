@@ -17,6 +17,7 @@ export const {
       password: {}
     },
     async authorize(credentials) {
+      console.log(credentials)
       if (!credentials) {
         return null
       }
@@ -44,14 +45,12 @@ export const {
   })],
   callbacks: {
     jwt({token, user}){
-      if(user){
-        token.id = user.id
-      }
+      if(user) {token.id = user.id}
       return token
     },
     session({session, token}){
       session.user.id = token.id
       return session
     }
-  }
+  },
 });
