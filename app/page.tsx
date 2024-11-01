@@ -1,22 +1,5 @@
-import { database } from "@/database";
-import Image from "next/image";
-import LoginForm from "@/app/(auth)/login/LoginForms";
+import LoginPage from "./login/page";
 
 export default function Home() {
-  return (
-    <>
-      <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8 h-screen">
-        <div className="sm:mx-auto sm:w-full sm:max-w-sm my-6">
-          {database.settings.map(settings => (
-            <div className="mx-auto h-10 w-50" key={settings.Companytitle}>
-              <Image src={settings.logo} width={300} height={286} alt={settings.alt} className="mx-auto" />
-            </div>
-          ))}
-        </div>
-        <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-          <LoginForm />
-        </div>
-      </div>
-    </>
-  );
+  return LoginPage()
 }

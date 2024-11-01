@@ -1,6 +1,6 @@
 'use server';
 
-import { signIn } from '@/auth';
+import { auth, signIn } from '@/auth';
 import { AuthError } from 'next-auth';
 import { redirect } from 'next/navigation';
 
@@ -10,26 +10,31 @@ export default async function login(formData: FormData) {
     username: string;
     password: string;
   };
-  async function sendData(){
+  const session = await auth()
+  if (session) {
+    redirect('/dashboard')
+  }
+  async function sendData() {
     const result = await signIn('credentials', {
       username,
       password,
-      redirect: false,
+      redirect: true,
+      redirectTo:'/dashboard'
     })
     return result
   }
   try {
     const resulta = await sendData()
     console.log(resulta)
-    if(resulta){
-      redirect('/dashboard')
-    }
+    // if (resulta) {
+    //   redirect('/dashboard')
+    // }
   } catch (e) {
     if (e instanceof AuthError) {
       if (e.type === 'CredentialsSignin') {
-        redirect(`/?${new URLSearchParams({msg: e.type})}`)
+        redirect(`/?${new URLSearchParams({ msg: e.type })}`)
       }
     }
   }
-  
+
 }

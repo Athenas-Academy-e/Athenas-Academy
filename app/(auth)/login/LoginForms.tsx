@@ -7,22 +7,25 @@ import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { useSearchParams } from 'next/navigation';
 import { Alert } from '@mui/material';
 
-export default function LoginForm() {
+export default function LoginForm(empresa: any) {
     const [isVisible, setIsVisible] = useState(false);
     const toggleVisibility = () => setIsVisible(!isVisible);
     const searchParams = useSearchParams();
     const mensagem = searchParams.get('msg');
-    // const formRef = useRef<HTMLFormElement>(null);
-
+    const formRef = useRef<HTMLFormElement>(null);
     // const handleSubmit = async (e: React.FormEvent) => {
     //     e.preventDefault()
     //     if (formRef.current) {
     //         formRef.current.reset();
     //     }
     // };
-
-    return (
+    const dadosempresa = Object.values(empresa)
+    return (    
         <form action={login} className="space-y-6">
+            <div>
+                <div className="mt-2">
+                </div>
+            </div>
             <div>
                 <div className="mt-2">
                     <Input type='text' name='username' id='username' required autoComplete='username' label='Usuário' />
@@ -52,11 +55,11 @@ export default function LoginForm() {
                 >
                     Entrar
                 </button>
-                {mensagem === 'CredentialsSignin'?  (
+                {mensagem === 'CredentialsSignin' ? (
                     <Alert severity='error'>
                         Seu usuário ou senha estão incorretos.
                     </Alert>
-                ): false}
+                ) : false}
             </div>
         </form>
     )

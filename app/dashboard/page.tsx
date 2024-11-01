@@ -9,14 +9,11 @@ export default async function Dashboard() {
     const session = await auth()
     if (!session) {
         redirect('/')
-        return null
     }
     const codigo_escola = String(process.env.CODIGO_ESCOLA)
     const dataCurso = await getAlunoByCurso(String(session.user?.id), codigo_escola)
     const data = Object.values(dataCurso)
-    // data.forEach((value) => {
-    //     console.log(value)
-    // })
+    console.log(data)
     return (
         <Header sessionData={session.user}>
             <div className="text-white flex gap-4 flex-wrap transition-all">

@@ -51,6 +51,12 @@ async function getDadosPj(codigo_escola: string) {
   return rows;
 }
 
+async function getEmpresa() {
+  const query = 'SELECT * FROM `empresas`';
+  const [rows] = await (await connection).execute(query);
+  return rows;
+}
 
 
-export { createUserTable, addUser, getUserByUser, getAlunoByCurso, getParcelas, getDadosPj };
+
+export { createUserTable, addUser, getUserByUser, getAlunoByCurso, getParcelas, getDadosPj, getEmpresa };

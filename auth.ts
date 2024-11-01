@@ -51,6 +51,9 @@ export const {
     session({session, token}){
       session.user.id = token.id
       return session
-    }
+    },
+     redirect() {
+      return '/dashboard'
+    },
   },
 });
