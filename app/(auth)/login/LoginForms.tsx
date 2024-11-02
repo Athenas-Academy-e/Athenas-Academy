@@ -1,5 +1,5 @@
 'use client'
-import { Input } from '@nextui-org/react';
+import { Input, Select, SelectItem } from '@nextui-org/react';
 import login from './_actions/login';
 import { useState, useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -19,11 +19,16 @@ export default function LoginForm(empresa: any) {
     //         formRef.current.reset();
     //     }
     // };
-    const dadosempresa = Object.values(empresa)
+    const dadosempresa = Object(empresa)
     return (    
         <form action={login} className="space-y-6">
             <div>
                 <div className="mt-2">
+                    <Select label='Selecione o codígo da sua escola'>
+                        {dadosempresa.empresa.map((item:any)=> (
+                            <SelectItem key={item.codigo} value={item.codigo} textValue={`${item.cidade} - ${item.bairro}`}>{item.cidade} - {item.bairro}</SelectItem>
+                        ))}
+                    </Select>
                 </div>
             </div>
             <div>

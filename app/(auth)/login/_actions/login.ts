@@ -6,6 +6,7 @@ import { redirect } from 'next/navigation';
 
 export default async function login(formData: FormData) {
   const entries = Array.from(formData.entries());
+  console.log(entries)
   const { username, password } = Object.fromEntries(entries) as {
     username: string;
     password: string;
@@ -25,10 +26,6 @@ export default async function login(formData: FormData) {
   }
   try {
     const resulta = await sendData()
-    console.log(resulta)
-    // if (resulta) {
-    //   redirect('/dashboard')
-    // }
   } catch (e) {
     if (e instanceof AuthError) {
       if (e.type === 'CredentialsSignin') {

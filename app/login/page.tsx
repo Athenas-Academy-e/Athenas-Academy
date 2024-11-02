@@ -5,7 +5,7 @@ import { getEmpresa } from "@/queries";
 
 export default async function LoginPage() {
   const empresa = await getEmpresa()
-  const dadosempresa = Object.values(empresa)
+  
  
   return (
   <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8 h-screen">
@@ -17,7 +17,7 @@ export default async function LoginPage() {
       ))}
     </div>
     <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-      <LoginForm empresa={dadosempresa}/>
+      <LoginForm empresa={empresa}/>
     </div>
   </div>
   )
