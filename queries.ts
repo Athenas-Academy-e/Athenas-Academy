@@ -28,7 +28,7 @@ async function addUser(user: User) {
   return result;
 }
 
-async function getUserByUser(user: string, codigo_escola: string, type: string) {
+async function getUserByUser(user: string, codigo_escola: string) {
   const query = 'SELECT * FROM `alunos` WHERE matricula = ? and codigo_escola = ?';
   const [rows] = await (await connection).execute(query, [user, codigo_escola]);
   return rows;
