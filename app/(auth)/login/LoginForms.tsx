@@ -10,9 +10,13 @@ import { Alert } from '@mui/material';
 export default function LoginForm(empresa: any) {
     const [isVisible, setIsVisible] = useState(false);
     const toggleVisibility = () => setIsVisible(!isVisible);
+    const [selectedSchoolCode, setSelectedSchoolCode] = useState('');
     const searchParams = useSearchParams();
     const mensagem = searchParams.get('msg');
     const formRef = useRef<HTMLFormElement>(null);
+    const handleSelectChange = (value: string) => {
+        setSelectedSchoolCode(value);
+    };
     // const handleSubmit = async (e: React.FormEvent) => {
     //     e.preventDefault()
     //     if (formRef.current) {
@@ -24,7 +28,7 @@ export default function LoginForm(empresa: any) {
         <form action={login} className="space-y-6">
             <div>
                 <div className="mt-2">
-                    <Select label='Selecione o codígo da sua escola'>
+                    <Select label='Selecione o codígo da sua escola' onChange={handleSelectChange}>
                         {dadosempresa.empresa.map((item:any)=> (
                             <SelectItem key={item.codigo} value={item.codigo} textValue={`${item.cidade} - ${item.bairro}`}>{item.cidade} - {item.bairro}</SelectItem>
                         ))}
