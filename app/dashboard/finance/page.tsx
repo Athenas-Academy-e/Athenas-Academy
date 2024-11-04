@@ -3,6 +3,7 @@ import Header from "@/components/Header";
 import { getAlunoByCurso, getParcelas } from "@/queries";
 import { redirect } from "next/navigation";
 import ModalA from "./components/Modal";
+import { cookies } from "next/headers";
 
 
 
@@ -13,7 +14,9 @@ export default async function Finance() {
     redirect('/')
     return null
   }
-  const codigo_escola = String(process.env.CODIGO_ESCOLA)
+  const cookieStore = await cookies()
+  const escola = cookieStore.get('escola')
+  const codigo_escola = String(escola?.value)
   const dataCurso = await getAlunoByCurso(String(session.user?.id), codigo_escola)
   const data = Object.values(dataCurso)
 
@@ -26,7 +29,7 @@ export default async function Finance() {
 
   return (
     <Header sessionData={session.user}>
-      
+
       {dataFinanceResults.map((pacotes) => (
         <div key={pacotes.id_aluno_curso} className="flex w-full flex-col">
           <div key={pacotes.id_aluno_curso} className="text-white flex flex-col gap-4 flex-wrap transition-all ">

@@ -1,13 +1,14 @@
 import NextAuth from 'next-auth';
 import Credentials from 'next-auth/providers/credentials';
 import { getUserByUser } from './queries';
+import { cookies } from 'next/headers';
 
 export const {
   handlers: { GET, POST },
   auth,
   signIn
 } = NextAuth({
-  pages:{
+  pages: {
     signIn: '/',
     error: '/'
   },
@@ -21,8 +22,9 @@ export const {
       if (!credentials) {
         return null
       }
-
-      const codigo_escola = String(process.env.CODIGO_ESCOLA);
+      const cookieStore = await cookies()
+      const escola = cookieStore.get('escola')
+      const codigo_escola = String(escola?.value);
       const type = 'AL';
 
       const login: any = await getUserByUser(String(credentials.username), codigo_escola, type)
@@ -44,15 +46,15 @@ export const {
     }
   })],
   callbacks: {
-    jwt({token, user}){
-      if(user) {token.id = user.id}
+    jwt({ token, user }) {
+      if (user) { token.id = user.id }
       return token
     },
-    session({session, token}){
+    session({ session, token }) {
       session.user.id = token.id
       return session
     },
-     redirect() {
+    redirect() {
       return '/dashboard'
     },
   },

@@ -2,15 +2,19 @@
 
 import { auth, signIn } from '@/auth';
 import { AuthError } from 'next-auth';
+import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 
 export default async function login(formData: FormData) {
   const entries = Array.from(formData.entries());
-  console.log(entries)
-  const { username, password } = Object.fromEntries(entries) as {
+  const { username, password, codigo_escola } = Object.fromEntries(entries) as {
     username: string;
     password: string;
+    codigo_escola: string;
   };
+  const cookieStore = await cookies()
+  cookieStore.set('escola', codigo_escola, {maxAge: 86400})
+
   const session = await auth()
   if (session) {
     redirect('/dashboard')
@@ -20,7 +24,7 @@ export default async function login(formData: FormData) {
       username,
       password,
       redirect: true,
-      redirectTo:'/dashboard'
+      redirectTo: '/dashboard'
     })
     return result
   }

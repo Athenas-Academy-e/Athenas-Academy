@@ -1,7 +1,10 @@
+import { cookies } from "next/headers";
 import { getDadosPj } from "./queries";
 
 async function getBoletos(lanc: string, format: string) {
-  const dadosPj: any = await getDadosPj(String(process.env.CODIGO_ESCOLA))
+  const cookieStore = await cookies()
+  const escola = cookieStore.get('escola')
+  const dadosPj: any = await getDadosPj(String(escola?.value))
   const apiUrlPjBank = String(process.env.API_PJBANK) + `recebimentos/${dadosPj[0].credencial}/transacoes/lotes`
 
   const response = await fetch(apiUrlPjBank, {
