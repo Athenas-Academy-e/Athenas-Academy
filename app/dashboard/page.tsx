@@ -9,14 +9,13 @@ import { redirect } from "next/navigation";
 export default async function Dashboard() {
     const session = await auth()
     if (!session) {
-        redirect('/')
+        redirect('/login')
     }
     const cookieStore = await cookies()
     const escola = cookieStore.get('escola')
     const codigo_escola = String(escola?.value)
     const dataCurso = await getAlunoByCurso(String(session.user?.id), codigo_escola)
     const data = Object.values(dataCurso)
-    // console.log(data)
     return (
         <Header sessionData={session.user}>
             <div className="text-white flex gap-4 flex-wrap transition-all">
