@@ -124,7 +124,7 @@ export default function Header({ sessionData, children }: SidebarProps) {
                             <MenuIcon />
                         </IconButton>
                         {database.settings.map(data => (
-                            <div key={data.Companytitle} className="flex gap-4 items-center">
+                            <div key={data.Companytitle} className="flex gap-4 items-center desktop:text-sm laptop:text-small tablet:text-[0.7em] smartphone:text-[0.6em]">
                                 <div>
                                     <Link href={'/dashboard'}><Image src={data.logo} alt={data.alt} width={200} height={10} /></Link>
                                 </div>
