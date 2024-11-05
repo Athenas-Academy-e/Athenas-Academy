@@ -8,9 +8,11 @@
         "fontawesome",
         "fortawesome",
         "PJBANK",
+        "responsavel",
         "Signin",
         "situacao",
         "tailwindcss",
-        "transacoes"
+        "transacoes",
+        "webp"
     ]
 }

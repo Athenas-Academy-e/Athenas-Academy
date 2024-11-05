@@ -94,7 +94,7 @@ export default function Header({ sessionData, children }: SidebarProps) {
 
     return (
         <Box sx={{ display: 'flex' }}>
-            <AppBar position="fixed" open={open} className='bg-slate-950'>
+            <AppBar position="fixed" open={open} color='transparent' className='bg-slate-950'>
                 <Toolbar className='flex justify-between py-1'>
                     <div className='flex'>
                         <IconButton
@@ -128,7 +128,7 @@ export default function Header({ sessionData, children }: SidebarProps) {
                                 <div>
                                     <Link href={'/dashboard'}><Image src={data.logo} alt={data.alt} width={200} height={10} /></Link>
                                 </div>
-                                <div className="flex flex-col justify-end text-sm">
+                                <div className="flex flex-col justify-end ">
                                     <span className="text-white">Olá <span className="uppercase">{sessionData.name}</span>,</span>
                                     <span className="text-white capitalize">Seja bem vindo ao seu ambiente de estudo virtual.</span>
                                 </div>
