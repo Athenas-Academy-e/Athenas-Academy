@@ -39,6 +39,11 @@ async function getAlunoByCurso(id: string, codigo_escola: string) {
   const [rows] = await (await connection).execute(query, [id, codigo_escola]);
   return rows;
 }
+async function getPacoteByAluno(id: string, codigo_escola: string) {
+  const query = `SELECT ac.situacao, p.nome, p.id_pacote, p.codigo_escola as pacoteCod, ac.codigo_escola FROM alunos_cursos ac left join pacotes p on(p.id_pacote = ac.id_pacote and p.codigo_escola= ?) WHERE ac.codigo_escola = ? and ac.id_aluno = ?`;
+  const [rows] = await (await connection).execute(query,[codigo_escola, codigo_escola, id]);
+  return rows;
+}
 
 async function getParcelas(id: string, codigo_escola: string, id_aluno: string) {
   const query = 'SELECT * FROM `caixa` WHERE id_aluno = ? and codigo_escola = ? and id_aluno_curso= ? and (id_cartao is null or id_cartao = "") and cheque_transfere = "N" order by vencimento asc';
@@ -59,4 +64,4 @@ async function getEmpresa() {
 
 
 
-export { createUserTable, addUser, getUserByUser, getAlunoByCurso, getParcelas, getDadosPj, getEmpresa };
+export { createUserTable, addUser, getUserByUser, getAlunoByCurso, getParcelas, getDadosPj, getEmpresa, getPacoteByAluno };
