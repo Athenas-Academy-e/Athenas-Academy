@@ -3,6 +3,7 @@ import Header from "@/components/Header";
 import { getAlunoByCurso, getUserByUser } from "@/queries";
 import { cookies } from "next/headers";
 import ProfilePage from "./_actions/profilePage";
+import { redirect } from "next/navigation";
 
 
 export default async function Profile() {
@@ -13,6 +14,9 @@ export default async function Profile() {
     const dataCurso = await getAlunoByCurso(String(session?.user?.id), codigo_escola)
     const data = Object.values(dataCurso)
     const dados = await getUserByUser(String(data[0].matricula), codigo_escola)
+    if (!session) {
+        redirect('/login')
+      }
     return (
         <Header sessionData={session?.user}>
         {ProfilePage(dados)}

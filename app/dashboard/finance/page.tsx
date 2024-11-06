@@ -11,8 +11,7 @@ export default async function Finance() {
 
   const session = await auth()
   if (!session) {
-    redirect('/')
-    return null
+    redirect('/login')
   }
   const cookieStore = await cookies()
   const escola = cookieStore.get('escola')
