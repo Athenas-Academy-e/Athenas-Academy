@@ -18,7 +18,6 @@ export const {
       password: {}
     },
     async authorize(credentials) {
-      console.log(credentials)
       if (!credentials) {
         return null
       }
@@ -27,8 +26,8 @@ export const {
       const codigo_escola = String(escola?.value);
       const type = 'AL';
 
-      const login: any = await getUserByUser(String(credentials.username), codigo_escola, type)
-
+      const login: any = await getUserByUser(String(credentials.username), codigo_escola)
+      
       if (!login || !login[0]) {
         return null
       }
@@ -51,8 +50,9 @@ export const {
       return token
     },
     session({ session, token }) {
-      session.user.id = token.id
-      return session
+      const tokenId = token as { id: string }; // Type assertion
+      session.user.id = tokenId.id;
+      return session;
     },
     redirect() {
       return '/dashboard'
