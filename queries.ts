@@ -41,11 +41,32 @@ async function getAlunoByCurso(id: string, codigo_escola: string) {
 }
 async function getPacoteByAluno(id: string, codigo_escola: string) {
   const query = `SELECT ac.situacao, p.nome, p.id_pacote, p.codigo_escola as pacoteCod, ac.codigo_escola FROM alunos_cursos ac left join pacotes p on(p.id_pacote = ac.id_pacote and p.codigo_escola= ?) WHERE ac.codigo_escola = ? and ac.id_aluno = ?`;
-  const [rows] = await (await connection).execute(query,[codigo_escola, codigo_escola, id]);
+  const [rows] = await (await connection).execute(query, [codigo_escola, codigo_escola, id]);
   return rows;
 }
 
 async function getParcelas(id: string, codigo_escola: string, id_aluno: string) {
+  const query = 'SELECT * FROM `caixa` WHERE id_aluno = ? and codigo_escola = ? and id_aluno_curso= ? and (id_cartao is null or id_cartao = "") and cheque_transfere = "N" order by vencimento asc';
+  const [rows] = await (await connection).execute(query, [id_aluno, codigo_escola, id]);
+  return rows;
+}
+async function getFrequenciaAula(codigo_escola: string, id_aluno: string) {
+  const query = 'select count(id_presenca) as aula from presenca where id_aluno_curso= ? and codigo_escola = ?';
+  const [rows] = await (await connection).execute(query, [id_aluno, codigo_escola]);
+  return rows;
+}
+async function getFrequenciaPresenca(type: string, codigo_escola: string, id_aluno: string) {
+  const query = 'select count(id_presenca) as presencas from presenca where id_aluno_curso= ? and codigo_escola = ? and presenca = ? ';
+  const [rows] = await (await connection).execute(query, [id_aluno, codigo_escola, type]);
+  return rows;
+}
+
+async function getFrequenciaReposicao(codigo_escola: string, id_aluno: string) {
+  const query = 'select count(id_presenca) as reposicao from presenca where id_aluno_curso= ? and codigo_escola = ? and aula_tipo = "Reposição"';
+  const [rows] = await (await connection).execute(query, [id_aluno, codigo_escola]);
+  return rows;
+}
+async function getFrequencia(id: string, codigo_escola: string, id_aluno: string) {
   const query = 'SELECT * FROM `caixa` WHERE id_aluno = ? and codigo_escola = ? and id_aluno_curso= ? and (id_cartao is null or id_cartao = "") and cheque_transfere = "N" order by vencimento asc';
   const [rows] = await (await connection).execute(query, [id_aluno, codigo_escola, id]);
   return rows;
@@ -64,4 +85,4 @@ async function getEmpresa() {
 
 
 
-export { createUserTable, addUser, getUserByUser, getAlunoByCurso, getParcelas, getDadosPj, getEmpresa, getPacoteByAluno };
+export { createUserTable, addUser, getUserByUser, getAlunoByCurso, getParcelas, getDadosPj, getEmpresa, getPacoteByAluno, getFrequenciaAula, getFrequenciaPresenca, getFrequenciaReposicao, getFrequencia };

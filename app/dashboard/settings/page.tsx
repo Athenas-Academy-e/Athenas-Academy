@@ -10,7 +10,9 @@ export default async function Settings() {
       }
     return (<>
     <Header sessionData={session?.user}>
-        
+        <div className="flex">
+
+        </div>
     </Header>
     </>)
 }

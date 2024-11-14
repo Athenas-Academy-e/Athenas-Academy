@@ -4,6 +4,7 @@ import { getAlunoByCurso } from "@/queries";
 import { cookies } from "next/headers";
 import Link from "next/link";
 import { redirect } from "next/navigation";
+import ButtonCardCourse from "./_components/ButtonCardCourse";
 
 
 export default async function Dashboard() {
@@ -26,7 +27,9 @@ export default async function Dashboard() {
                                 <div className="card-body">
                                     <h2 className="card-title">{pacotes.nome}</h2>
                                     <div className="card-actions justify-end">
-                                        <button className="btn btn-primary">Ver Mais</button>
+                                        <h1>{pacotes.id_aluno_curso}</h1>
+                                        <h1>{pacotes.id_aluno}</h1>
+                                        <ButtonCardCourse id_aluno_curso={pacotes.id_aluno_curso} id_aluno={pacotes.id_aluno}/>
                                     </div>
                                 </div>
                             </div>
