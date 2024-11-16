@@ -1,5 +1,5 @@
 import { auth } from "@/auth"
-import { getAlunoByCurso, getFrequenciaAula } from "@/queries"
+import {  getFrequenciaAula } from "@/queries"
 import { cookies } from "next/headers"
 import { redirect } from "next/navigation"
 
@@ -11,9 +11,12 @@ export default async function frequency() {
   }
   const cookieStore = await cookies()
   const escola = cookieStore.get('escola')
-  const codigo_escola = String(escola?.value)
-  const dataCurso = await getAlunoByCurso(String(session.user?.id), codigo_escola)
-  const data = Object.values(dataCurso)
+  const id_aluno = cookieStore.get('ia')
+  const id_aluno_curso = cookieStore.get('iacurso')
+  const frequencia = await getFrequenciaAula(String(escola?.value), String(id_aluno_curso?.value))
+  console.log(frequencia)
+  // const dataCurso = await getAlunoByCurso(String(session.user?.id), codigo_escola)
+  // const data = Object.values(dataCurso)
   // console.log(data)
  
 }

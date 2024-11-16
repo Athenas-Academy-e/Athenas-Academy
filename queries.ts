@@ -50,9 +50,9 @@ async function getParcelas(id: string, codigo_escola: string, id_aluno: string) 
   const [rows] = await (await connection).execute(query, [id_aluno, codigo_escola, id]);
   return rows;
 }
-async function getFrequenciaAula(codigo_escola: string, id_aluno: string) {
+async function getFrequenciaAula(codigo_escola: string, id_aluno_aluno: string) {
   const query = 'select count(id_presenca) as aula from presenca where id_aluno_curso= ? and codigo_escola = ?';
-  const [rows] = await (await connection).execute(query, [id_aluno, codigo_escola]);
+  const [rows] = await (await connection).execute(query, [id_aluno_aluno, codigo_escola]);
   return rows;
 }
 async function getFrequenciaPresenca(type: string, codigo_escola: string, id_aluno: string) {

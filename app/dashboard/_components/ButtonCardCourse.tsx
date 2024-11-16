@@ -5,7 +5,6 @@ interface PacotesProps{
   id_aluno:string,
 }
 export default function ButtonCardCourse({id_aluno_curso, id_aluno}:PacotesProps) {
-  
   function setCookie(name: string, value: string) {
     document.cookie = `${name}=${value}; Session; path=/`;
     // document.cookie = `${name}=${value}; ${expires}; path=/`;
