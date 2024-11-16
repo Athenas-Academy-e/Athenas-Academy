@@ -9,8 +9,8 @@ export const {
   signIn
 } = NextAuth({
   pages: {
-    signIn: '/',
-    error: '/'
+    signIn: '/login',
+    error: '/login'
   },
   providers: [Credentials({
     credentials: {
@@ -50,7 +50,7 @@ export const {
       return token
     },
     session({ session, token }) {
-      const tokenId = token as { id: string }; // Type assertion
+      const tokenId = token as { id: string }; 
       session.user.id = tokenId.id;
       return session;
     },

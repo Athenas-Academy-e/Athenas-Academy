@@ -13,7 +13,7 @@ export default async function login(formData: FormData) {
     codigo_escola: string;
   };
   const cookieStore = await cookies()
-  cookieStore.set('escola', codigo_escola, {maxAge: 86400})
+  cookieStore.set('escola', codigo_escola)
 
   const session = await auth()
   if (session) {
@@ -33,7 +33,7 @@ export default async function login(formData: FormData) {
   } catch (e) {
     if (e instanceof AuthError) {
       if (e.type === 'CredentialsSignin') {
-        redirect(`/?${new URLSearchParams({ msg: e.type })}`)
+        redirect(`/login?${new URLSearchParams({ msg: e.type })}`)
       }
     }
   }
