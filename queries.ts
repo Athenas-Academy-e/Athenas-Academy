@@ -39,6 +39,11 @@ async function getAlunoByCurso(id: string, codigo_escola: string) {
   const [rows] = await (await connection).execute(query, [id, codigo_escola]);
   return rows;
 }
+async function getAlunoBycurso(id_aluno: string, codigo_escola: string, id_curso:string) {
+  const query = 'SELECT * FROM alunos_cursos ac  LEFT JOIN alunos al ON al.id_aluno = ac.id_aluno AND al.codigo_escola = ac.codigo_escola  LEFT JOIN pacotes p ON ac.id_pacote = p.id_pacote AND ac.codigo_escola = p.codigo_escola WHERE al.id_aluno = ? AND al.codigo_escola = ? AND ac.id_aluno_curso= ?';
+  const [rows] = await (await connection).execute(query, [id_aluno, codigo_escola, id_curso]);
+  return rows;
+}
 async function getPacoteByAluno(id: string, codigo_escola: string) {
   const query = `SELECT ac.situacao, p.nome, p.id_pacote, p.codigo_escola as pacoteCod, ac.codigo_escola FROM alunos_cursos ac left join pacotes p on(p.id_pacote = ac.id_pacote and p.codigo_escola= ?) WHERE ac.codigo_escola = ? and ac.id_aluno = ?`;
   const [rows] = await (await connection).execute(query, [codigo_escola, codigo_escola, id]);
@@ -85,4 +90,4 @@ async function getEmpresa() {
 
 
 
-export { createUserTable, addUser, getUserByUser, getAlunoByCurso, getParcelas, getDadosPj, getEmpresa, getPacoteByAluno, getFrequenciaAula, getFrequenciaPresenca, getFrequenciaReposicao, getFrequencia };
+export { createUserTable, addUser, getUserByUser, getAlunoByCurso, getParcelas, getDadosPj, getEmpresa, getPacoteByAluno, getFrequenciaAula, getFrequenciaPresenca, getFrequenciaReposicao, getFrequencia,getAlunoBycurso };
