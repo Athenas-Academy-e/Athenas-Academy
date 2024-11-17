@@ -1,13 +1,13 @@
 import { auth } from "@/auth";
+import Header from "@/components/Header";
 import { getAlunoByCurso } from "@/queries";
 import { cookies } from "next/headers";
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import ButtonCardCourse from "./_components/ButtonCardCourse";
-import DrawerIcon from "@/components/Drawer";
+import ButtonCardCourse from "../_components/ButtonCardCourse";
 
 
-export default async function Dashboard() {
+export default async function Panel() {
     const session = await auth()
     if (!session) {
         redirect('/login')
@@ -18,11 +18,11 @@ export default async function Dashboard() {
     const dataCurso = await getAlunoByCurso(String(session.user?.id), codigo_escola)
     const data = Object.values(dataCurso)
     return (
-        <DrawerIcon sessionData={session.user}>
+        <Header sessionData={session.user}>
             <div className="text-white flex gap-4 flex-wrap transition-all">
                 {data.map((pacotes) => (
                     <div key={pacotes.id_aluno_curso} className="grid grid-cols-1">
-                        <Link href={'/dashboard/panel'}>
+                        <Link href={'#'}>
                             <div className="card bg-base-100 w-96 shadow-xl" key={pacotes.id_pacote}>
                                 <div className="card-body">
                                     <h2 className="card-title">{pacotes.nome}</h2>
@@ -37,6 +37,6 @@ export default async function Dashboard() {
                     </div>
                 ))}
             </div>
-        </DrawerIcon>
+        </Header>
     );
 }
