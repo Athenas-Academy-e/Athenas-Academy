@@ -3,8 +3,10 @@
 interface PacotesProps{
   id_aluno_curso:string,
   id_aluno:string,
+  nome?:string,
+  id_pacote?:string
 }
-export default function ButtonCardCourse({id_aluno_curso, id_aluno}:PacotesProps) {
+export default function ButtonCardCourse({id_aluno_curso, id_aluno, nome, id_pacote}:PacotesProps) {
   function setCookie(name: string, value: string) {
     document.cookie = `${name}=${value}; Session; path=/`;
     // document.cookie = `${name}=${value}; ${expires}; path=/`;
@@ -19,7 +21,8 @@ export default function ButtonCardCourse({id_aluno_curso, id_aluno}:PacotesProps
     console.log(values); 
     
   }
+  
   return (
-  <button className="btn btn-primary" onClick={()=>handleButton({id_aluno_curso,id_aluno})}>Ver Mais</button>
-)
+    <button className="btn btn-primary" onClick={()=>handleButton({id_aluno_curso,id_aluno})}>Ver Mais</button>
+  )
 }

@@ -5,6 +5,7 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import ButtonCardCourse from "./_components/ButtonCardCourse";
 import DrawerIcon from "@/components/Drawer";
+import Panel from "./panel/page";
 
 
 export default async function Dashboard() {
@@ -22,14 +23,14 @@ export default async function Dashboard() {
             <div className="text-white flex gap-4 flex-wrap transition-all">
                 {data.map((pacotes) => (
                     <div key={pacotes.id_aluno_curso} className="grid grid-cols-1">
-                        <Link href={'/dashboard/panel'}>
+                        <Link href={`/dashboard/panel`}>
                             <div className="card bg-base-100 w-96 shadow-xl" key={pacotes.id_pacote}>
                                 <div className="card-body">
                                     <h2 className="card-title">{pacotes.nome}</h2>
                                     <div className="card-actions justify-end">
                                         <h1>{pacotes.id_aluno_curso}</h1>
                                         <h1>{pacotes.id_aluno}</h1>
-                                        <ButtonCardCourse id_aluno_curso={pacotes.id_aluno_curso} id_aluno={pacotes.id_aluno}/>
+                                        <ButtonCardCourse id_aluno_curso={pacotes.id_aluno_curso} id_aluno={pacotes.id_aluno} nome={pacotes.nome} id_pacote={pacotes.id_pacote}/>
                                     </div>
                                 </div>
                             </div>
