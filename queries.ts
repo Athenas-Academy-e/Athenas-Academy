@@ -56,12 +56,18 @@ async function getParcelas(id: string, codigo_escola: string, id_aluno: string) 
   return rows;
 }
 async function getFrequenciaAula(codigo_escola: string, id_aluno_aluno: string) {
-  const query = 'select count(id_presenca) as aula from presenca where id_aluno_curso= ? and codigo_escola = ?';
+  const query = 'select count(id_presenca) as totalaula from presenca where id_aluno_curso= ? and codigo_escola = ?';
   const [rows] = await (await connection).execute(query, [id_aluno_aluno, codigo_escola]);
   return rows;
 }
 async function getFrequenciaPresenca(type: string, codigo_escola: string, id_aluno: string) {
-  const query = 'select count(id_presenca) as presencas from presenca where id_aluno_curso= ? and codigo_escola = ? and presenca = ? ';
+  const query = 'select count(id_presenca) as presenca from presenca where id_aluno_curso= ? and codigo_escola = ? and presenca = ? ';
+  const [rows] = await (await connection).execute(query, [id_aluno, codigo_escola, type]);
+  return rows;
+}
+
+async function getFrequenciaFaltas(type: string, codigo_escola: string, id_aluno: string) {
+  const query = 'select count(id_presenca) as faltas from presenca where id_aluno_curso= ? and codigo_escola = ? and presenca = ? ';
   const [rows] = await (await connection).execute(query, [id_aluno, codigo_escola, type]);
   return rows;
 }
@@ -71,9 +77,9 @@ async function getFrequenciaReposicao(codigo_escola: string, id_aluno: string) {
   const [rows] = await (await connection).execute(query, [id_aluno, codigo_escola]);
   return rows;
 }
-async function getFrequencia(id: string, codigo_escola: string, id_aluno: string) {
-  const query = 'SELECT * FROM `caixa` WHERE id_aluno = ? and codigo_escola = ? and id_aluno_curso= ? and (id_cartao is null or id_cartao = "") and cheque_transfere = "N" order by vencimento asc';
-  const [rows] = await (await connection).execute(query, [id_aluno, codigo_escola, id]);
+async function getFrequencia(codigo_escola: string, id_aluno: string) {
+  const query = 'SELECT p.id_presenca, p.data, hf.descricao, p.horario_presenca, pr.nome, p.aula_tipo, p.presenca, p.reposta, p.falta_antecipada FROM presenca p LEFT JOIN horarios_funcionamento hf ON ( p.id_horario = hf.id_horarios_funcionamento AND hf.codigo_escola = p.codigo_escola )LEFT JOIN alunos pr ON ( p.id_aluno = pr.id_aluno AND pr.codigo_escola = p.codigo_escola ) WHERE p.id_aluno_curso = ? AND ((p.aula_tipo IN ("Normal","Flexível")) OR (p.reposicao = "S")) AND p.codigo_escola = ? ORDER BY p.data DESC';
+  const [rows] = await (await connection).execute(query, [id_aluno, codigo_escola]);
   return rows;
 }
 async function getDadosPj(codigo_escola: string) {
@@ -90,4 +96,4 @@ async function getEmpresa() {
 
 
 
-export { createUserTable, addUser, getUserByUser, getAlunoByCurso, getParcelas, getDadosPj, getEmpresa, getPacoteByAluno, getFrequenciaAula, getFrequenciaPresenca, getFrequenciaReposicao, getFrequencia,getAlunoBycurso };
+export { createUserTable, addUser, getUserByUser, getAlunoByCurso, getParcelas, getDadosPj, getEmpresa, getPacoteByAluno, getFrequenciaAula, getFrequenciaPresenca, getFrequenciaReposicao, getFrequencia, getAlunoBycurso, getFrequenciaFaltas };

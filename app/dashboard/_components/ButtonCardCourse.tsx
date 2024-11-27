@@ -30,8 +30,6 @@ export default function ButtonCardCourse({ id_aluno_curso, id_aluno, nome, id_pa
       <div className="card-body" onClick={() => handleClick()}>
         <h2 className="card-title">{nome}</h2>
         <div className="card-actions justify-end">
-          {/* <h1>{id_aluno_curso}</h1>
-          <h1>{id_aluno}</h1> */}
           <button className="btn btn-primary" onClick={() => handleButton({ id_aluno_curso, id_aluno })}>Ver Mais</button>
         </div>
       </div>

@@ -1,6 +1,6 @@
 import { auth } from "@/auth";
 import Header from "@/components/Header";
-import { getAlunoBycurso, getAlunoByCurso, getParcelas } from "@/queries";
+import { getAlunoBycurso,  getParcelas } from "@/queries";
 import { redirect } from "next/navigation";
 import ModalA from "./components/Modal";
 import { cookies } from "next/headers";
@@ -24,18 +24,18 @@ export default async function Finance() {
     const dataFinance = await getParcelas(id_aluno_curso, codigo_escola, value.id_aluno)
     return { ...value, dataFinance }
   })
-
+  
   const dataFinanceResults = await Promise.all(dataFinancePromises)
   return (
     <Header sessionData={session.user}>
       {dataFinanceResults.map((pacotes) => (
         <div key={pacotes.id_aluno_curso} className="flex w-full flex-col">
-          <div key={pacotes.id_aluno_curso} className="text-white flex flex-col gap-4 flex-wrap transition-all ">
+          <div key={pacotes.id_aluno_curso} className="text-black flex flex-col gap-4 flex-wrap transition-all ">
             <div key={pacotes.id_aluno_curso} className="overflow-x-auto">
               <div key={pacotes.id_pacote}>
                 <h1>Você está visualizando as parcelas do curso: {pacotes.nome}</h1>
-                <table className="table">
-                  <thead className="text-white font-bold">
+                <table className="table bg-white rounded-md text-black">
+                  <thead className="text-black font-bold">
                     <tr>
                       <th>Parcelas</th>
                       <th>Vencimento</th>
@@ -45,8 +45,11 @@ export default async function Finance() {
                     </tr>
                   </thead>
                   <tbody>
+                    <tr className={`${dataFinanceResults[0].dataFinance[0]? 'hidden': 'table-row'}`}>
+                      <td className={`${dataFinanceResults[0].dataFinance[0]? 'hidden': 'table-cell'} text-center`} colSpan={5}>Você não possui nenhuma parcelas</td>
+                    </tr>
                     {pacotes.dataFinance.map((parcela: any) => (
-                      <tr key={parcela.numero_lancamento} className="hover cursor-pointer">
+                      <tr key={parcela.numero_lancamento} className=" text-black cursor-pointer">
                         <td>{parcela.historico}</td>
                         <td>{new Date(parcela.vencimento).toLocaleDateString()}</td>
                         <td>R$ {parcela.valor}</td>

@@ -21,22 +21,11 @@ export default async function Panel() {
     const data = Object.values(dataCurso)
     return (
         <Header sessionData={session.user}>
-            <div className="text-white flex gap-4 flex-wrap transition-all">
+            <div className="text-black flex gap-4 flex-wrap transition-all">
                 {data.map((pacotes) => (
                     <div key={pacotes.id_aluno_curso} className="grid grid-cols-1">
-                        <h1 key={pacotes.id_aluno_curso}>{pacotes.nome}</h1>
-                        <Link href={'#'}>
-                            <div className="card bg-base-100 w-96 shadow-xl" key={pacotes.id_pacote}>
-                                <div className="card-body">
-                                    <h2 className="card-title">{pacotes.nome}</h2>
-                                    <div className="card-actions justify-end">
-                                        <h1>{pacotes.id_aluno_curso}</h1>
-                                        <h1>{pacotes.id_aluno}</h1>
-                                        <ButtonCardCourse id_aluno_curso={pacotes.id_aluno_curso} id_aluno={pacotes.id_aluno}/>
-                                    </div>
-                                </div>
-                            </div>
-                        </Link>
+                        <h1 key={pacotes.id_pacote}>Você esta visualizando as informações do curso de: <span>{pacotes.nome}</span></h1>
+                        
                     </div>
                 ))}
             </div>
