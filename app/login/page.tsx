@@ -14,7 +14,7 @@ export default async function LoginPage() {
   }
  
   return (
-  <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8 h-screen">
+  <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8 h-screen bg-black">
     <div className="sm:mx-auto sm:w-full sm:max-w-sm my-6">
       {database.settings.map(settings => (
         <div className="mx-auto h-10 w-50" key={settings.Companytitle}>

@@ -27,7 +27,7 @@ export default function LoginForm(empresa: any) {
                 <div className="mt-2">
                     <Select label='Selecione a sua escola' name='codigo_escola' id='codigo_escola' required>
                         {dadosempresa.empresa.map((item:any)=> (
-                            <SelectItem key={item.codigo} value={item.codigo} textValue={`${item.cidade} - ${item.bairro}`}>{item.cidade} - {item.bairro}</SelectItem>
+                            <SelectItem className='text-black' key={item.codigo} value={item.codigo} textValue={`${item.cidade} - ${item.bairro}`}>{item.cidade} - {item.bairro}</SelectItem>
                         ))}
                     </Select>
                 </div>
