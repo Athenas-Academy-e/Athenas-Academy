@@ -55,6 +55,11 @@ async function getParcelas(id: string, codigo_escola: string, id_aluno: string) 
   const [rows] = await (await connection).execute(query, [id_aluno, codigo_escola, id]);
   return rows;
 }
+async function getNotas(id_modulo: string, codigo_escola: string, id_aluno: string, id_aluno_aluno:string) {
+  const query = 'select pr.nome as prova_nome, pr.media, coalesce(pa.nota, paw.nota) as nota, coalesce(pa.data, paw.data) as data, pr.id_prova, coalesce(pa.id_aluno, paw.id_aluno) as id_aluno, e.media_min, pa.id_prova_aluno, paw.id_prova_aluno as id_prova_aluno_web from provas pr left join provas_alunos pa on(pr.id_prova = pa.id_prova and pa.id_aluno_curso = ? and pa.codigo_escola = pr.codigo_escola) left join provas_alunos_web paw on(pr.id_prova = paw.id_prova and paw.id_aluno_curso = ? and paw.codigo_escola = pr.codigo_escola) left join empresas e on(pr.codigo_escola = e.codigo) where pr.id_modulo = ? and pr.codigo_escola = ? order by pr.media, pr.id_prova;';
+  const [rows] = await (await connection).execute(query, [id_aluno, codigo_escola, id_modulo, id_aluno_aluno]);
+  return rows;
+}
 async function getFrequenciaAula(codigo_escola: string, id_aluno_aluno: string) {
   const query = 'select count(id_presenca) as totalaula from presenca where id_aluno_curso= ? and codigo_escola = ?';
   const [rows] = await (await connection).execute(query, [id_aluno_aluno, codigo_escola]);
@@ -82,6 +87,11 @@ async function getFrequencia(codigo_escola: string, id_aluno: string) {
   const [rows] = await (await connection).execute(query, [id_aluno, codigo_escola]);
   return rows;
 }
+async function getModulo(codigo_escola: string, id_aluno_curso: string) {
+  const query = 'SELECT * FROM aluno_modulos am INNER JOIN modulos md ON (am.id_modulo = md.id_modulo AND am.codigo_escola = md.codigo_escola) WHERE am.id_aluno_curso =? AND am.codigo_escola =? ORDER BY am.sequencia, am.situacao asc';
+  const [rows] = await (await connection).execute(query, [id_aluno_curso, codigo_escola]);
+  return rows;
+}
 async function getDadosPj(codigo_escola: string) {
   const query = 'SELECT * FROM `dados_pj` WHERE codigo_escola = ?';
   const [rows] = await (await connection).execute(query, [codigo_escola]);
@@ -96,4 +106,4 @@ async function getEmpresa() {
 
 
 
-export { createUserTable, addUser, getUserByUser, getAlunoByCurso, getParcelas, getDadosPj, getEmpresa, getPacoteByAluno, getFrequenciaAula, getFrequenciaPresenca, getFrequenciaReposicao, getFrequencia, getAlunoBycurso, getFrequenciaFaltas };
+export { createUserTable, addUser, getUserByUser, getAlunoByCurso, getParcelas, getDadosPj, getEmpresa, getPacoteByAluno, getFrequenciaAula, getFrequenciaPresenca, getFrequenciaReposicao, getFrequencia, getAlunoBycurso, getFrequenciaFaltas, getModulo };

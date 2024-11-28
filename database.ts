@@ -12,7 +12,7 @@ export const database = {
         { id:0, name: 'Pagina Principal', url: '/dashboard', icon: faHouse },
         { id:1, name: 'Financeiro', url: '/dashboard/finance', icon: faMoneyBill },
         { id:2, name: 'Frequência', url: '/dashboard/frequency', icon: faGraduationCap },
-        { id:3, name: 'Pagina Principal', url: '/dashboard', icon: faHouse },
+        { id:3, name: 'Notas', url: '/dashboard/notas', icon: faHouse },
         { id:4, name: 'Pagina Principal', url: '/dashboard', icon: faHouse },
     ]
 }
