@@ -39,7 +39,7 @@ async function getAlunoByCurso(id: string, codigo_escola: string) {
   const [rows] = await (await connection).execute(query, [id, codigo_escola]);
   return rows;
 }
-async function getAlunoBycurso(id_aluno: string, codigo_escola: string, id_curso:string) {
+async function getAlunoBycurso(id_aluno: string, codigo_escola: string, id_curso: string) {
   const query = 'SELECT * FROM alunos_cursos ac  LEFT JOIN alunos al ON al.id_aluno = ac.id_aluno AND al.codigo_escola = ac.codigo_escola  LEFT JOIN pacotes p ON ac.id_pacote = p.id_pacote AND ac.codigo_escola = p.codigo_escola WHERE al.id_aluno = ? AND al.codigo_escola = ? AND ac.id_aluno_curso= ?';
   const [rows] = await (await connection).execute(query, [id_aluno, codigo_escola, id_curso]);
   return rows;
@@ -55,9 +55,9 @@ async function getParcelas(id: string, codigo_escola: string, id_aluno: string) 
   const [rows] = await (await connection).execute(query, [id_aluno, codigo_escola, id]);
   return rows;
 }
-async function getNotas(id_modulo: string, codigo_escola: string, id_aluno: string, id_aluno_aluno:string) {
-  const query = 'select pr.nome as prova_nome, pr.media, coalesce(pa.nota, paw.nota) as nota, coalesce(pa.data, paw.data) as data, pr.id_prova, coalesce(pa.id_aluno, paw.id_aluno) as id_aluno, e.media_min, pa.id_prova_aluno, paw.id_prova_aluno as id_prova_aluno_web from provas pr left join provas_alunos pa on(pr.id_prova = pa.id_prova and pa.id_aluno_curso = ? and pa.codigo_escola = pr.codigo_escola) left join provas_alunos_web paw on(pr.id_prova = paw.id_prova and paw.id_aluno_curso = ? and paw.codigo_escola = pr.codigo_escola) left join empresas e on(pr.codigo_escola = e.codigo) where pr.id_modulo = ? and pr.codigo_escola = ? order by pr.media, pr.id_prova;';
-  const [rows] = await (await connection).execute(query, [id_aluno, codigo_escola, id_modulo, id_aluno_aluno]);
+async function getNotas(id_modulo: string, codigo_escola: string, id_aluno_curso: string) {
+  const query = 'SELECT pr.nome AS prova_nome, pr.media, COALESCE(pa.nota, paw.nota) AS nota,COALESCE(pa.data, paw.data) AS data,pr.id_prova, COALESCE(pa.id_aluno, paw.id_aluno) AS id_aluno, e.media_min, pa.id_prova_aluno, paw.id_prova_aluno AS id_prova_aluno_web FROM provas pr LEFT JOIN provas_alunos pa ON pr.id_prova = pa.id_prova AND pa.id_aluno_curso = ?      AND pa.codigo_escola = pr.codigo_escola LEFT JOIN provas_alunos_web paw ON pr.id_prova = paw.id_prova AND paw.id_aluno_curso = ? AND paw.codigo_escola = pr.codigo_escola LEFT JOIN empresas e ON pr.codigo_escola = e.codigo WHERE pr.id_modulo = ? AND pr.codigo_escola = ? ORDER BY pr.media, pr.id_prova';
+  const [rows] = await (await connection).execute(query, [id_aluno_curso, id_aluno_curso, id_modulo, codigo_escola]);
   return rows;
 }
 async function getFrequenciaAula(codigo_escola: string, id_aluno_aluno: string) {
@@ -106,4 +106,4 @@ async function getEmpresa() {
 
 
 
-export { createUserTable, addUser, getUserByUser, getAlunoByCurso, getParcelas, getDadosPj, getEmpresa, getPacoteByAluno, getFrequenciaAula, getFrequenciaPresenca, getFrequenciaReposicao, getFrequencia, getAlunoBycurso, getFrequenciaFaltas, getModulo };
+export { createUserTable, addUser, getUserByUser, getAlunoByCurso, getParcelas, getDadosPj, getEmpresa, getPacoteByAluno, getFrequenciaAula, getFrequenciaPresenca, getFrequenciaReposicao, getFrequencia, getAlunoBycurso, getFrequenciaFaltas, getModulo, getNotas };

@@ -1,10 +1,8 @@
 import { auth } from "@/auth";
 import Header from "@/components/Header";
-import { getAlunoBycurso, getAlunoByCurso } from "@/queries";
+import { getAlunoBycurso } from "@/queries";
 import { cookies } from "next/headers";
-import Link from "next/link";
 import { redirect } from "next/navigation";
-import ButtonCardCourse from "../_components/ButtonCardCourse";
 
 
 export default async function Panel() {
