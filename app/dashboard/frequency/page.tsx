@@ -67,7 +67,7 @@ export default async function frequency() {
                   <td>{new Date(value.data).toLocaleDateString()}</td>
                   <td>{value.descricao}</td>
                   <td>{value.aula_tipo}</td>
-                  <td>{value.presenca}</td>
+                  <td>{value.presenca === 'P' ? 'Presente': 'Ausente'}</td>
                 </tr>
               ))}
             </tbody>
