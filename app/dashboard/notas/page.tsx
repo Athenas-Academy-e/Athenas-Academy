@@ -1,8 +1,6 @@
 import { auth } from "@/auth";
 import { redirect } from "next/navigation";
-import GetNotas from "./_components/getmodulos";
 import Header from "@/components/Header";
-import { Button, Card, CardBody } from "@nextui-org/react";
 import CardsNota from "./_components/cards";
 import GetModulos from "./_components/getmodulos";
 

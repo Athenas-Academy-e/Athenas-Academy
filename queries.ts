@@ -56,7 +56,7 @@ async function getParcelas(id: string, codigo_escola: string, id_aluno: string) 
   return rows;
 }
 async function getNotas(id_modulo: string, codigo_escola: string, id_aluno_curso: string) {
-  const query = 'SELECT pr.nome AS prova_nome, pr.media, COALESCE(pa.nota, paw.nota) AS nota,COALESCE(pa.data, paw.data) AS data,pr.id_prova, COALESCE(pa.id_aluno, paw.id_aluno) AS id_aluno, e.media_min, pa.id_prova_aluno, paw.id_prova_aluno AS id_prova_aluno_web FROM provas pr LEFT JOIN provas_alunos pa ON pr.id_prova = pa.id_prova AND pa.id_aluno_curso = ?      AND pa.codigo_escola = pr.codigo_escola LEFT JOIN provas_alunos_web paw ON pr.id_prova = paw.id_prova AND paw.id_aluno_curso = ? AND paw.codigo_escola = pr.codigo_escola LEFT JOIN empresas e ON pr.codigo_escola = e.codigo WHERE pr.id_modulo = ? AND pr.codigo_escola = ? ORDER BY pr.media, pr.id_prova';
+  const query = 'SELECT pr.nome AS prova_nome, pr.media, COALESCE(pa.nota, paw.nota) AS nota,COALESCE(pa.data, paw.data) AS data,pr.id_prova, COALESCE(pa.id_aluno, paw.id_aluno) AS id_aluno, e.media_min, pa.id_prova_aluno, paw.id_prova_aluno AS id_prova_aluno_web FROM provas pr LEFT JOIN provas_alunos pa ON pr.id_prova = pa.id_prova AND pa.id_aluno_curso = ? AND pa.codigo_escola = pr.codigo_escola LEFT JOIN provas_alunos_web paw ON pr.id_prova = paw.id_prova AND paw.id_aluno_curso = ? AND paw.codigo_escola = pr.codigo_escola LEFT JOIN empresas e ON pr.codigo_escola = e.codigo WHERE pr.id_modulo = ? AND pr.codigo_escola = ? ORDER BY pr.media, pr.id_prova';
   const [rows] = await (await connection).execute(query, [id_aluno_curso, id_aluno_curso, id_modulo, codigo_escola]);
   return rows;
 }

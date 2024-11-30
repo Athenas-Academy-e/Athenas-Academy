@@ -12,12 +12,12 @@ export default function ModalNotas(modulo: any) {
     setLoading(false)
     onOpen()
   }
-  // console.log(provas)
+  console.log(provas)
 
   return (
     <>
       <Button onClick={() => handleClick(modulo.modulo)} className=" my-1 w-24">{loading ? <Spinner size="sm" /> : "Ver Notas"}</Button>
-      <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
+      <Modal isOpen={isOpen} onOpenChange={onOpenChange} scrollBehavior="inside">
         <ModalContent>
           {(onclose) => (
             <>
@@ -33,12 +33,12 @@ export default function ModalNotas(modulo: any) {
                       <th>Situação</th>
                     </tr>
                   </thead>
-                  <tbody className="table-column-group">
+                  <tbody className="text-black text-center">
                     {provas.map((prova:any)=>(
                       <tr key={prova.id_prova} className="table-row">
                         <td className="table-cell">{prova.prova_nome}</td>
                         <td className="table-cell">{prova.nota}</td>
-                        <td className="table-cell">{prova.nota >= 70.00 && prova.nota != null ? 'Aprovado': 'Reprovado'}</td>
+                        <td className="table-cell">{prova.nota === null ? 'Não Realizada': prova.nota >= 70 ? 'Aprovado': 'Reprovado'}</td>
                       </tr>
                     ))}
                   </tbody>
