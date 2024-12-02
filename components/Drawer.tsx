@@ -126,7 +126,7 @@ export default function DrawerIcon({ sessionData, children }: SidebarProps) {
                         {database.settings.map(data => (
                             <div key={data.Companytitle} className="flex gap-4 items-center desktop:text-sm laptop:text-small tablet:text-[0.7em] smartphone:text-[0.6em]">
                                 <div>
-                                    <Link href={'/dashboard'}><Image src={data.logo} alt={data.alt} width={200} height={10} /></Link>
+                                    <Link href={'/dashboard'}><Image src={data.logolight} alt={data.alt} width={200} height={10} /></Link>
                                 </div>
                                 <div className="flex flex-col justify-end ">
                                     <span className="text-white">Olá <span className="uppercase">{sessionData.name}</span>,</span>

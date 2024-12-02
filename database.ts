@@ -1,7 +1,9 @@
 import { faGraduationCap, faHouse, faMoneyBill } from '@fortawesome/free-solid-svg-icons';
+import { light } from '@mui/material/styles/createPalette';
 export const database = {
     settings: [{
-        logo: '/logo-light.png',
+        logo: '/logo-dark.png',
+        logolight: '/logo-light.png',
         alt: 'Athenas Academy Logo',
         url: 'https://athenasacademy.com.br/',
         color: '#007FE0',

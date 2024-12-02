@@ -39,7 +39,7 @@ export default function LoginForm(empresa: any) {
             </div>
 
             <div>
-                <div className="mt-2">
+                <div className="mt-2 ">
                     <Input type={isVisible ? "text" : "password"} name='password' id='password' required autoComplete='password' label='Senha' endContent={
                         <button className="focus:outline-none" type="button" onClick={toggleVisibility} aria-label="toggle password visibility">
                             {isVisible ? (<FontAwesomeIcon icon={faEyeSlash} className="text-2xl text-default-400 pointer-events-none" />) : (<FontAwesomeIcon icon={faEye} className="text-2xl text-default-400 pointer-events-none" />)}
@@ -48,7 +48,7 @@ export default function LoginForm(empresa: any) {
                 </div>
                 <div className="flex items-center justify-end mt-2">
                     <div className="text-sm">
-                        <a href="#" className="font-semibold text-white hover:text-[#eba93b]">
+                        <a href="#" className="font-semibold text-black hover:text-[#eba93b]">
                             Esqueceu a sua senha?
                         </a>
                     </div>
