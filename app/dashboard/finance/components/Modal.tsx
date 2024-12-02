@@ -18,7 +18,6 @@ export default function ModalA({ data, numero_lancamento, idac }: ModalAProps) {
   }
   const result = resultData();
   const [isError, setError] = useState()
-  // console.log(result?.data)
   async function HandlerClickBoleto(format: string, value: any) {
     if (value.data) {
       const nl = value.data.numero_lancamento

@@ -12,7 +12,6 @@ export default function ModalNotas(modulo: any) {
     setLoading(false)
     onOpen()
   }
-  console.log(provas)
 
   return (
     <>
@@ -38,7 +37,7 @@ export default function ModalNotas(modulo: any) {
                       <tr key={prova.id_prova} className="table-row">
                         <td className="table-cell">{prova.prova_nome}</td>
                         <td className="table-cell">{prova.nota}</td>
-                        <td className="table-cell">{prova.nota === null ? 'Não Realizada': prova.nota >= 70 ? 'Aprovado': 'Reprovado'}</td>
+                        <td className="table-cell">{prova.nota === null ? 'Não Realizada': Number(prova.nota) >= 70 || Number(prova.nota) >= Number(prova.media_min) ? 'Aprovado': 'Reprovado'}</td>
                       </tr>
                     ))}
                   </tbody>
