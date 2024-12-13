@@ -94,7 +94,7 @@ export default function Header({ sessionData, children }: SidebarProps) {
 
     return (
         <Box sx={{ display: 'flex' }}>
-            <AppBar position="fixed" open={open} color='transparent' className='bg-slate-950'>
+            <AppBar position="fixed" open={open} sx={{background:'#020617'}}>
                 <Toolbar className='flex justify-between py-1'>
                     <div className='flex'>
                         <IconButton
