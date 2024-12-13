@@ -1,7 +1,6 @@
 import { auth } from "@/auth";
 import { getAlunoByCurso } from "@/queries";
 import { cookies } from "next/headers";
-import Link from "next/link";
 import { redirect } from "next/navigation";
 import ButtonCardCourse from "./_components/ButtonCardCourse";
 import DrawerIcon from "@/components/Drawer";

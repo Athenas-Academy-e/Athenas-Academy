@@ -7,11 +7,13 @@ import Visualizador from "../../visualizador/page";
 
 export default function ModalMaterial(modulo: any) {
   const [materias, setMaterias] = useState<any>([]);
+  const [modulos, setModulo] = useState<string>()
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   async function handleClick(idm: string) {
     const result = await GetMateriais(idm)
     setMaterias(result.materias)
     onOpen()
+    setModulo(idm)
   }
   function tituloLow(tit:string){
     const titulo = tit.toLowerCase()
@@ -39,7 +41,7 @@ export default function ModalMaterial(modulo: any) {
                   <tr key={value.id_material} className="table-row ">
                     <td className="table-cell capitalize">{tituloLow(String(value.titulo))}</td>
                     <td className="table-cell">{new Date(value.data).toLocaleDateString()}</td>
-                    <td className="table-cell"><Visualizador params={value}/></td>
+                    <td className="table-cell"><Visualizador arquivo={value} modulo={modulo.modulo}/></td>
                   </tr>
                 ))}
               </tbody>

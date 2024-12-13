@@ -97,6 +97,11 @@ async function getMaterial(codigo_escola: string, id_modulo: string) {
   const [rows] = await (await connection).execute(query, [codigo_escola ,id_modulo, codigo_escola]);
   return rows;
 }
+async function getMaterialById(codigo_escola: string, id_modulo: string, id_material: string) {
+  const query = 'select m.id_material, m.titulo, m.arquivo, m.data, md.descricao, m.tipo from modulo_material m left join modulos md on(md.id_modulo = m.id_modulo and md.codigo_escola = ?) where m.id_modulo = ? and m.codigo_escola = ? and m.id_material= ? order by m.titulo asc;';
+  const [rows] = await (await connection).execute(query, [codigo_escola ,id_modulo, codigo_escola, id_material]);
+  return rows;
+}
 async function getDadosPj(codigo_escola: string) {
   const query = 'SELECT * FROM `dados_pj` WHERE codigo_escola = ?';
   const [rows] = await (await connection).execute(query, [codigo_escola]);
@@ -111,4 +116,4 @@ async function getEmpresa() {
 
 
 
-export { createUserTable, addUser, getUserByUser, getAlunoByCurso, getParcelas, getDadosPj, getEmpresa, getPacoteByAluno, getFrequenciaAula, getFrequenciaPresenca, getFrequenciaReposicao, getFrequencia, getAlunoBycurso, getFrequenciaFaltas, getModulo, getNotas, getMaterial };
+export { createUserTable, addUser, getUserByUser, getAlunoByCurso, getParcelas, getDadosPj, getEmpresa, getPacoteByAluno, getFrequenciaAula, getFrequenciaPresenca, getFrequenciaReposicao, getFrequencia, getAlunoBycurso, getFrequenciaFaltas, getModulo, getNotas, getMaterial, getMaterialById };
