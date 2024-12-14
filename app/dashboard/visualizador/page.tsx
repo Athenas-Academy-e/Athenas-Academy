@@ -13,7 +13,7 @@ export default function Visualizador(data: any) {
         break;
       }
       case 'V': {
-        console.log('video')
+        router.push(`visualizador/video?arquivo=${filePath}&modulo=${modulo}`)
         break;
       }
       case 'L':{

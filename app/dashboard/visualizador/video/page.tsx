@@ -1,20 +1,21 @@
 "use client";
 
 import { useRouter, useSearchParams } from "next/navigation";
-import PDFViewer from "./_components/VideoViewer";
-import Getpdf from "./_components/getVideo";
+import VideoViewer from "./_components/VideoViewer";
 import { useEffect, useState } from "react";
+import Getvideo from "./_components/getVideo";
+
 
 interface ArquivoData {
   arquivo: string;
 }
 
-export default function PDFViewerPage() {
+export default function VideoViewerPage() {
   const searchParams = useSearchParams();
   const searchA = searchParams.get("arquivo");
   const searchM = searchParams.get("modulo");
   const router = useRouter();
-  const [pdf, setPdf] = useState<ArquivoData | null>(null);
+  const [video, setVideo] = useState<ArquivoData | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
@@ -28,14 +29,14 @@ export default function PDFViewerPage() {
       }
 
       try {
-        const arquivoData = await Getpdf(searchA, searchM);
+        const arquivoData = await Getvideo(searchA, searchM);
         if (!arquivoData) {
-          throw new Error("No data returned from Getpdf.");
+          throw new Error("No data returned from GetVideo.");
         }
-        setPdf(arquivoData);
+        setVideo(arquivoData);
       } catch (err) {
-        console.error("Failed to fetch PDF:", err);
-        setError("Failed to load PDF. Please try again later.");
+        console.error("Failed to fetch Video:", err);
+        setError("Failed to load Video. Please try again later.");
       } finally {
         setIsLoading(false);
       }
@@ -45,22 +46,20 @@ export default function PDFViewerPage() {
   }, [searchA, searchM, router]);
 
   if (isLoading) {
-    return <div>Loading PDF...</div>;
+    return <div>Loading Video...</div>;
   }
 
   if (error) {
     console.error(error)
-    return <div>Error Ao Abrir o PDF</div>
+    return <div>Error Ao Abrir o Video</div>
   }
 
-  if (!pdf) {
-    return <div>No PDF available to display.</div>;
+  if (!video) {
+    return <div>No Video available to display.</div>;
   }
-  const urlArquivo = pdf.arquivo.split(' ')[1]
-  const url = `/proxy/material/${urlArquivo || pdf.arquivo}`;
   return (
     <div>
-      <PDFViewer fileUrl={url} />
+      <VideoViewer fileUrl={video.arquivo} />
       {/* <p>https://www.npmjs.com/package/react-player</p> */}
     </div>
   )
