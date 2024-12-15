@@ -57,10 +57,11 @@ export default function VideoViewerPage() {
   if (!video) {
     return <div>No Video available to display.</div>;
   }
+  const videoUrl = video.arquivo.split('/')[2]
+  
   return (
     <div>
-      <VideoViewer fileUrl={video.arquivo} />
-      {/* <p>https://www.npmjs.com/package/react-player</p> */}
+      <VideoViewer fileUrl={videoUrl==='www.youtube.com'? video.arquivo : `/proxy/material/${video.arquivo}`} />
     </div>
   )
 }
