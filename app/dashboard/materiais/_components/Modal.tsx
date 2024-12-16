@@ -7,13 +7,11 @@ import Visualizador from "../../visualizador/page";
 
 export default function ModalMaterial(modulo: any) {
   const [materias, setMaterias] = useState<any>([]);
-  const [modulos, setModulo] = useState<string>()
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   async function handleClick(idm: string) {
     const result = await GetMateriais(idm)
     setMaterias(result.materias)
     onOpen()
-    setModulo(idm)
   }
   function tituloLow(tit:string){
     const titulo = tit.toLowerCase()

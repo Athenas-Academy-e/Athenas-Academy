@@ -1,5 +1,5 @@
 'use client'
-import { Card, CardBody, CardFooter } from "@nextui-org/react";
+import { Button, Card, CardBody, CardFooter } from "@nextui-org/react";
 import GetMateriais from "./getmaterial";
 import { useEffect, useState } from "react";
 import ModalMaterial from "./Modal";
@@ -30,7 +30,7 @@ export default function CardsMaterial(modulos: any) {
           <div>{materiaisData[modulo.id_modulo]?.quantidade || 0} Itens</div>
         </CardBody>
         <CardFooter className="flex justify-center">
-          <ModalMaterial modulo={modulo.id_modulo}></ModalMaterial>
+          {materiaisData[modulo.id_modulo]?.quantidade == 0 ? <Button disabled={true} className="disabled:opacity-75 cursor-pointer">Não Possui Material</Button> : <ModalMaterial modulo={modulo.id_modulo}></ModalMaterial>}
         </CardFooter>
       </Card>
     ))}
