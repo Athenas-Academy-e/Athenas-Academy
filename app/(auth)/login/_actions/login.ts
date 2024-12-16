@@ -12,30 +12,44 @@ export default async function login(formData: FormData) {
     password: string;
     codigo_escola: string;
   };
+  
+  // Armazenando o código da escola no cookie
   const cookieStore = await cookies()
-  cookieStore.set('escola', codigo_escola)
+  cookieStore.set('escola', codigo_escola);
 
-  const session = await auth()
-  if (session) {
-    redirect('/dashboard')
-  }
-  async function sendData() {
-    const result = await signIn('credentials', {
-      username,
-      password,
-      redirect: true,
-      redirectTo: '/dashboard'
-    })
-    return result
-  }
-  try {
-    const resulta = await sendData()
-  } catch (e) {
-    if (e instanceof AuthError) {
-      if (e.type === 'CredentialsSignin') {
-        redirect(`/login?${new URLSearchParams({ msg: e.type })}`)
+  // Função para realizar a consulta de login
+  const sendData = async () => {
+    try {
+      const result = await signIn('credentials', {
+        username,
+        password,
+        redirect: false,  // Mudado para false para evitar redirecionamento automático
+      });
+
+      // Verificando se a autenticação foi bem-sucedida
+      if (result?.error) {
+        // Se houver erro na autenticação, redireciona com mensagem de erro
+        redirect(`/login?${new URLSearchParams({ msg: result.error })}`);
       }
+      // Caso a autenticação tenha sido bem-sucedida, redireciona para o dashboard
+      return { status: 200, message: 'Login bem-sucedido' };
+    } catch (e) {
+      // Captura e lida com erros de autenticação específicos
+      if (e instanceof AuthError) {
+        if (e.type === 'CredentialsSignin') {
+          redirect(`/login?${new URLSearchParams({ msg: e.type })}`);
+        }
+      }
+
+      // Caso outro erro ocorra
+      return { status: 419, message: 'Erro inesperado durante o login.' };
     }
   }
 
+  // Executa a consulta e retorna o status
+  const status = await sendData();
+  if(status.status == 200){
+    redirect('/dashboard')
+  }
+  return status; // Retorna o status da consulta
 }
