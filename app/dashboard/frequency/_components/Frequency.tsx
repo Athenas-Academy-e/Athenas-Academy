@@ -11,12 +11,15 @@ export default async function FrequencyData() {
   const presenca = await getFrequenciaPresenca('P', String(escola?.value), String(id_aluno_curso?.value))
   const faltas = await getFrequenciaFaltas('F', String(escola?.value), String(id_aluno_curso?.value))
   const reposicao = await getFrequenciaReposicao(String(escola?.value), String(id_aluno_curso?.value))
-
+  const totalaulas = Object.entries(totalaula);
+  const presencas = Object.entries(presenca);
+  const falta = Object.entries(faltas);
+  const reposicaos = Object.entries(reposicao);
   // Calculando a porcentagem de presença
-  const totalAulas:number = totalaula[0]?.totalaula || 0
-  const totalFaltas:number = faltas[0]?.faltas || 0
-  const totalReposicao:number = reposicao[0]?.reposicao || 0
-  const totalPresenca:number = presenca[0]?.presenca || 0
+  const totalAulas:number = totalaulas[0][1].totalaula || 0
+  const totalFaltas:number = falta[0][1].faltas || 0
+  const totalReposicao:number = reposicaos[0][1].reposicao || 0
+  const totalPresenca:number = presencas[0][1].presenca || 0
 
   const percentualPresenca = totalAulas > 0
     ? ((totalAulas - totalFaltas - totalReposicao) * 100) / totalAulas
