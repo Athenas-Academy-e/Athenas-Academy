@@ -147,7 +147,7 @@ export default function DrawerIcon({ sessionData, children }: SidebarProps) {
                                 tabIndex={0}
                                 className="menu menu-sm dropdown-content bg-slate-950 rounded-box z-[1] mt-3 w-52 p-2 shadow">
                                 <li><Profile /></li>
-                                <li><Settings /></li>
+                                {/* <li><Settings /></li> */}
                                 <li><LogoutButton /></li>
                             </ul>
                         </div>
