@@ -20,7 +20,7 @@ export default function CardsMaterial(modulos: any) {
         fetchMateriais(modulo.id_modulo);
       }
     });
-  }, [modulos]);
+  }, []);
 
   return (<div className="flex gap-2 flex-wrap">
     {modulos.modulos.map((modulo: any) => (
