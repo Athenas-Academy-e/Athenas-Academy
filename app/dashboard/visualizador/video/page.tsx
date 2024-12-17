@@ -5,16 +5,18 @@ import VideoViewer from "./_components/VideoViewer";
 import { Suspense, useEffect, useState } from "react";
 import Getvideo from "./_components/getVideo";
 
-
 interface ArquivoData {
   arquivo: string;
 }
 
 export default function VideoViewerPage() {
-  <Suspense fallback={<div>Loading...</div>}>
-    <VideoViewerContent />
-  </Suspense>
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <VideoViewerContent />
+    </Suspense>
+  );
 }
+
 function VideoViewerContent() {
   const searchParams = useSearchParams();
   const searchA = searchParams.get("arquivo");
@@ -25,7 +27,7 @@ function VideoViewerContent() {
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    const handleFetchPdf = async () => {
+    const handleFetchVideo = async () => {
       if (!searchA || !searchM) {
         console.warn("Missing 'arquivo' or 'modulo' parameter.");
         setError("Missing required parameters.");
@@ -36,18 +38,18 @@ function VideoViewerContent() {
       try {
         const arquivoData:any = await Getvideo(searchA, searchM);
         if (!arquivoData) {
-          throw new Error("No data returned from GetVideo.");
+          throw new Error("No data returned from Getvideo.");
         }
         setVideo(arquivoData);
       } catch (err) {
         console.error("Failed to fetch Video:", err);
-        setError("Failed to load Video. Please try again later.");
+        setError("Failed to load video. Please try again later.");
       } finally {
         setIsLoading(false);
       }
     };
 
-    handleFetchPdf();
+    handleFetchVideo();
   }, [searchA, searchM, router]);
 
   if (isLoading) {
@@ -55,18 +57,20 @@ function VideoViewerContent() {
   }
 
   if (error) {
-    console.error(error)
-    return <div>Error Ao Abrir o Video</div>
+    console.error(error);
+    return <div>Error loading the video. {error}</div>;
   }
 
   if (!video) {
-    return <div>No Video available to display.</div>;
+    return <div>No video available to display.</div>;
   }
-  const videoUrl = video.arquivo.split('/')[2]
+
+  const videoUrl = video.arquivo.split('/')[2];
 
   return (
     <div>
+      {/* Ensure VideoViewer is correctly handling the video URL */}
       <VideoViewer fileUrl={videoUrl === 'www.youtube.com' ? video.arquivo : `/proxy/material/${video.arquivo}`} />
     </div>
-  )
+  );
 }

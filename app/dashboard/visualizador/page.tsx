@@ -7,11 +7,12 @@ export default function Visualizador(data: any) {
   function handleClick(filePath: string, modulo: string, type: string) {
     const tipoSplit = data.arquivo.arquivo;
     const tipo = type || tipoSplit.split(' ')[0];
+    const fileExtension = tipoSplit.split('.').pop()?.toLowerCase();
     switch (tipo) {
       case 'F': {
-        if (tipoSplit.split('.')[1] === 'pdf') {
+        if (fileExtension === 'pdf') {
           router.push(`visualizador/pdf?arquivo=${filePath}&modulo=${modulo}`)
-        } if (tipoSplit.split('.')[1] === 'pptx') {
+        } else if (fileExtension === 'pptx') {
           console.log('não e um pdf')
         } else (
           router.push(`visualizador/link?arquivo=${filePath}&modulo=${modulo}`)
