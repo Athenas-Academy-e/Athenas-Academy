@@ -3,13 +3,20 @@
 import { useRouter, useSearchParams } from "next/navigation";
 import PDFViewer from "./_components/PDFViewer";
 import Getpdf from "./_components/getPdf";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 
 interface ArquivoData {
   arquivo: string;
 }
 
 export default function PDFViewerPage() {
+  return(
+    <Suspense fallback={<div>Loading...</div>}>
+      <PDFViewerContent/>
+    </Suspense>
+  )
+}
+function PDFViewerContent() {
   const searchParams = useSearchParams();
   const searchA = searchParams.get("arquivo");
   const searchM = searchParams.get("modulo");

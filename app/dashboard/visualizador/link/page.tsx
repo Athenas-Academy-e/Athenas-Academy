@@ -1,14 +1,23 @@
-'use client';
+'use client'
+import { Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import Getlink from './_components/getLink';
 import { Button } from '@nextui-org/react';
 
 interface ArquivoData {
-  arquivo: string;
+  arquivo:string,
 }
 
 export default function LinkViewerPage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <LinkViewerContent />
+    </Suspense>
+  );
+}
+
+function LinkViewerContent() {
   const searchParams = useSearchParams();
   const searchA = searchParams.get('arquivo');
   const searchM = searchParams.get('modulo');
@@ -74,7 +83,7 @@ export default function LinkViewerPage() {
 
       return () => clearInterval(interval);
     } else {
-      router.push(redirect)
+      router.push(redirect);
     }
   }, [countdown, router, redirect]);
 
@@ -106,7 +115,7 @@ export default function LinkViewerPage() {
         <h1 className="text-6xl font-semibold text-primary mb-4">{countdown}</h1>
         <h1>Seu processo está sendo finalizado...</h1>
         {countdown === 0 && (
-          <div className='flex flex-col gap-1'>
+          <div className="flex flex-col gap-1">
             <Button color="primary" className="mt-4" onPress={handleRedirect}>
               Redirecionar
             </Button>

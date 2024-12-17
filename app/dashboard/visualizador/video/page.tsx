@@ -2,7 +2,7 @@
 
 import { useRouter, useSearchParams } from "next/navigation";
 import VideoViewer from "./_components/VideoViewer";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import Getvideo from "./_components/getVideo";
 
 
@@ -11,6 +11,11 @@ interface ArquivoData {
 }
 
 export default function VideoViewerPage() {
+  <Suspense fallback={<div>Loading...</div>}>
+    <VideoViewerContent />
+  </Suspense>
+}
+function VideoViewerContent() {
   const searchParams = useSearchParams();
   const searchA = searchParams.get("arquivo");
   const searchM = searchParams.get("modulo");
@@ -58,10 +63,10 @@ export default function VideoViewerPage() {
     return <div>No Video available to display.</div>;
   }
   const videoUrl = video.arquivo.split('/')[2]
-  
+
   return (
     <div>
-      <VideoViewer fileUrl={videoUrl==='www.youtube.com'? video.arquivo : `/proxy/material/${video.arquivo}`} />
+      <VideoViewer fileUrl={videoUrl === 'www.youtube.com' ? video.arquivo : `/proxy/material/${video.arquivo}`} />
     </div>
   )
 }
