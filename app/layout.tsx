@@ -7,6 +7,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Área do Aluno",
+  robots: "index, follow",
 };
 
 export default function RootLayout({

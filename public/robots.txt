@@ -1,0 +1,13 @@
+# *
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /visualizador/
+Disallow: /api/
+Disallow: /dashboard/
+
+# Host
+Host: https://areaaluno.athenasacademy.com.br
+
+# Sitemaps
+Sitemap: https://areaaluno.athenasacademy.com.br/sitemap.xml
