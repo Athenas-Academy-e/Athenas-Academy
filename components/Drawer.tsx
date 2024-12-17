@@ -174,7 +174,7 @@ export default function DrawerIcon({ sessionData, children }: SidebarProps) {
                                 <Link href={text.url}>
                                     <ListItemButton>
                                         <ListItemIcon className='text-white'>
-                                            <FontAwesomeIcon icon={text.icon as IconDefinition} />
+                                            <FontAwesomeIcon icon={text.icon as IconDefinition} className='text-white'/>
                                         </ListItemIcon>
                                         <ListItemText primary={text.name} />
                                     </ListItemButton>
