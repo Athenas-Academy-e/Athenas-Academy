@@ -1,7 +1,10 @@
 import { auth } from "@/auth";
 import Header from "@/components/Header";
+import { database } from "@/database";
 import { getAlunoBycurso } from "@/queries";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { cookies } from "next/headers";
+import Link from "next/link";
 import { redirect } from "next/navigation";
 
 
@@ -19,13 +22,26 @@ export default async function Panel() {
     const data = Object.values(dataCurso)
     return (
         <Header sessionData={session.user}>
-            <div className="text-black flex gap-4 flex-wrap transition-all">
-                {data.map((pacotes:any) => (
+            <div className="text-black flex flex-col gap-4 flex-wrap transition-all">
+                {data.map((pacotes: any) => (
                     <div key={pacotes.id_aluno_curso} className="grid grid-cols-1">
                         <h1 key={pacotes.id_pacote}>Você esta visualizando as informações do curso de: <span>{pacotes.nome}</span></h1>
-                        
                     </div>
                 ))}
+                <div className="flex gap-4 flex-wrap">
+                    {database.pages.map((value: any) => (
+                        <div key={value.id} className="button bg-[#020617] p-2 rounded-md cursor-pointer hover:scale-105 transition-all shadow-md">
+                            <Link href={value.url} className="text-white">
+                                <div className="text-center">
+                                    <FontAwesomeIcon icon={value.icon} className="text-white"></FontAwesomeIcon>
+                                </div>
+                                <div>
+                                    {value.name}
+                                </div>
+                            </Link>
+                        </div>
+                    ))}
+                </div>
             </div>
         </Header>
     );
