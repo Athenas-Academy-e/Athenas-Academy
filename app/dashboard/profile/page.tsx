@@ -12,7 +12,7 @@ export default async function Profile() {
     const escola = cookieStore.get('escola')
     const codigo_escola = String(escola?.value)
     const dataCurso = await getAlunoByCurso(String(session?.user?.id), codigo_escola)
-    const data = Object.values(dataCurso)
+    const data:any = Object.values(dataCurso)
     const dados = await getUserByUser(String(data[0].matricula), codigo_escola)
     if (!session) {
         redirect('/login')

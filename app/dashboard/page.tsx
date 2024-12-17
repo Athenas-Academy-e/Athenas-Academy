@@ -18,7 +18,7 @@ export default async function Dashboard() {
     return (
         <DrawerIcon sessionData={session.user}>
             <div className="text-white flex gap-4 flex-wrap transition-all">
-                {data.map((pacotes) => (
+                {data.map((pacotes:any) => (
                     <div key={pacotes.id_aluno_curso} className="grid grid-cols-1">
                         <ButtonCardCourse id_aluno_curso={pacotes.id_aluno_curso} id_aluno={pacotes.id_aluno} nome={pacotes.nome} id_pacote={pacotes.id_pacote} />
                     </div>

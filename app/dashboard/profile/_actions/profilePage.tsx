@@ -53,7 +53,7 @@ export default async function ProfilePage(data: any) {
               <th></th>
             </thead>
             <tbody className="text-black font-semibold">
-              {dataP.map((pacotes)=>(
+              {dataP.map((pacotes:any)=>(
                 <tr key={pacotes.id_pacote}>
                   <td>{pacotes.nome}</td>
                   <td>{pacotes.situacao}</td>

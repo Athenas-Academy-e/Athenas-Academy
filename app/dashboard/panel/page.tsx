@@ -20,7 +20,7 @@ export default async function Panel() {
     return (
         <Header sessionData={session.user}>
             <div className="text-black flex gap-4 flex-wrap transition-all">
-                {data.map((pacotes) => (
+                {data.map((pacotes:any) => (
                     <div key={pacotes.id_aluno_curso} className="grid grid-cols-1">
                         <h1 key={pacotes.id_pacote}>Você esta visualizando as informações do curso de: <span>{pacotes.nome}</span></h1>
                         

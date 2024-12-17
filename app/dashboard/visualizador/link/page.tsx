@@ -47,7 +47,7 @@ function LinkViewerContent() {
       setEscola(getCookie('escola') || '');
 
       try {
-        const arquivoData = await Getlink(searchA, searchM);
+        const arquivoData:any = await Getlink(searchA, searchM);
         if (!arquivoData) {
           throw new Error('No data returned from GetLink.');
         }

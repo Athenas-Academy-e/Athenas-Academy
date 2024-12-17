@@ -34,7 +34,7 @@ function VideoViewerContent() {
       }
 
       try {
-        const arquivoData = await Getvideo(searchA, searchM);
+        const arquivoData:any = await Getvideo(searchA, searchM);
         if (!arquivoData) {
           throw new Error("No data returned from GetVideo.");
         }

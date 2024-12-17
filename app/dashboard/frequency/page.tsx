@@ -62,7 +62,7 @@ export default async function frequency() {
               </tr>
             </thead>
             <tbody>
-              {resumo.map((value)=>(
+              {resumo.map((value:any)=>(
                 <tr key={value.id_presenca}>
                   <td>{new Date(value.data).toLocaleDateString()}</td>
                   <td>{value.descricao}</td>

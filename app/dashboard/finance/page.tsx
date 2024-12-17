@@ -20,7 +20,7 @@ export default async function Finance() {
   const dataCurso = await getAlunoBycurso(String(session.user?.id), codigo_escola, String(id_aluno_curso))
   const data = Object.values(dataCurso)
 
-  const dataFinancePromises = data.map(async (value) => {
+  const dataFinancePromises = data.map(async (value:any) => {
     const dataFinance = await getParcelas(id_aluno_curso, codigo_escola, value.id_aluno)
     return { ...value, dataFinance }
   })

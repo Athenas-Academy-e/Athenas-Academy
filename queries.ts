@@ -1,4 +1,4 @@
-import connection from "./connectionDatabase"; // Importe o método getPool
+import connection from "./connectionDatabase"; // Importe o método connection
 
 interface User {
   id: number;

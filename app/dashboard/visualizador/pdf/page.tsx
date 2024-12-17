@@ -35,7 +35,7 @@ function PDFViewerContent() {
       }
 
       try {
-        const arquivoData = await Getpdf(searchA, searchM);
+        const arquivoData:any = await Getpdf(searchA, searchM);
         if (!arquivoData) {
           throw new Error("No data returned from Getpdf.");
         }
