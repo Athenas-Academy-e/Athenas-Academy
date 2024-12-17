@@ -4,7 +4,11 @@ import { getAlunoBycurso,  getParcelas } from "@/queries";
 import { redirect } from "next/navigation";
 import ModalA from "./components/Modal";
 import { cookies } from "next/headers";
-
+import type { Metadata } from "next";
+export const metadata: Metadata = {
+  title: "Área do Aluno - Financia",
+  robots: "noindex, nofollow",
+};
 export default async function Finance() {
 
   const session = await auth()

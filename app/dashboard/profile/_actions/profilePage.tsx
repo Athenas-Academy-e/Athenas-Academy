@@ -20,17 +20,18 @@ export default async function ProfilePage(data: any) {
               className="border-none"
             >
               <Image
-                alt="Woman listing to music"
+                alt="profile-image"
                 className="object-cover"
                 height={255}
                 src={session?.user?.image ? session.user.image : '/default-photo.webp'}
                 width={255}
               />
-              <CardFooter className="justify-center before: overflow-hidden py-1 absolute before:rounded-xl rounded-large bottom-1 w-[calc(100%_-_8px)] shadow-small ml-1 z-10 hover:bg-black/10 transition-all cursor-pointer">
+              {/*TODO: Funcionalidade para alterar a foto de perfil */}
+              {/* <CardFooter className="justify-center before: overflow-hidden py-1 absolute before:rounded-xl rounded-large bottom-1 w-[calc(100%_-_8px)] shadow-small ml-1 z-10 hover:bg-black/10 transition-all cursor-pointer">
                 <Button className="text-tiny text-white w-full bg-transparent" variant="flat" color="default" radius="lg" size="sm">
                   Alterar Foto
                 </Button>
-              </CardFooter>
+              </CardFooter> */}
             </Card>
           </div>
           <div className="w-full bg-white rounded-lg flex text-black flex-col justify-center">

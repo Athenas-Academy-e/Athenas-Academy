@@ -6,8 +6,10 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Área do Aluno",
+  title: "Athenas Academy",
   robots: "index, follow",
+  description: "Bem-vindo à Área do Aluno, onde você pode acessar conteúdo exclusivo e gerenciar seu aprendizado.",
+  keywords: ["Área do Aluno", "Educação", "Aprendizado","Athenas Academy"],
 };
 
 export default function RootLayout({

@@ -3,10 +3,14 @@ import Header from "@/components/Header";
 import { database } from "@/database";
 import { getAlunoBycurso } from "@/queries";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import type { Metadata } from "next";
 import { cookies } from "next/headers";
 import Link from "next/link";
 import { redirect } from "next/navigation";
-
+export const metadata: Metadata = {
+    title: "Área do Aluno - Painel",
+    robots: "noindex, nofollow",
+};
 
 export default async function Panel() {
     const session = await auth()

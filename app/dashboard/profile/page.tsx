@@ -4,7 +4,11 @@ import { getAlunoByCurso, getUserByUser } from "@/queries";
 import { cookies } from "next/headers";
 import ProfilePage from "./_actions/profilePage";
 import { redirect } from "next/navigation";
-
+import type { Metadata } from "next";
+export const metadata: Metadata = {
+    title: "Área do Aluno - Perfil",
+    robots: "noindex, nofollow",
+};
 
 export default async function Profile() {
     const session = await auth()

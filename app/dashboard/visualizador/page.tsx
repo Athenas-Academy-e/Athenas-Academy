@@ -1,5 +1,6 @@
 'use client'
 import { Button } from "@nextui-org/react";
+import Head from "next/head";
 import { useRouter } from "next/navigation";
 
 export default function Visualizador(data: any) {
@@ -33,6 +34,9 @@ export default function Visualizador(data: any) {
     }
   }
   return (<>
+  <Head>
+    <title>Área Do Aluno - Visualizador</title>
+  </Head>
     <Button onPress={() => handleClick(data.arquivo.id_material, data.modulo, data.arquivo.tipo)}>Visualizar</Button>
   </>)
 }

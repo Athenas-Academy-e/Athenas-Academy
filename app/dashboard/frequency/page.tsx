@@ -5,7 +5,11 @@ import FrequencyData from "./_components/Frequency"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faBan, faChalkboard, faCircleCheck, faThumbsDown, faThumbsUp } from "@fortawesome/free-solid-svg-icons"
 import GetFrequency from "./_components/GetFrequency"
-
+import type { Metadata } from "next"
+export const metadata: Metadata = {
+  title: "Área do Aluno - Frequencia",
+  robots: "noindex, nofollow",
+};
 export default async function frequency() {
   const session = await auth()
   if (!session) {

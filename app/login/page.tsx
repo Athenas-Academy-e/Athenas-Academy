@@ -4,7 +4,13 @@ import Image from "next/image";
 import { getEmpresa } from "@/queries";
 import { auth } from "@/auth";
 import { redirect } from "next/navigation";
+import type { Metadata } from "next";
 
+export const metadata: Metadata = {
+  title: "Área do Aluno - Login", 
+  description: "Bem-vindo à área do aluno. Gerencie seu aprendizado e acesse conteúdos exclusivos.",
+  robots: "index, follow",
+};
 
 export default async function LoginPage() {
   const empresa = await getEmpresa()
