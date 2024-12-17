@@ -1,6 +1,6 @@
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
-  siteUrl: 'https://areaaluno.athenasacademy.com.br',
+  siteUrl: String(process.env.SITE_URL),
   generateRobotsTxt: true, // Gera o arquivo robots.txt
   exclude: [
     '/api/*',       // Exclui todas as páginas que começam com '/api'
@@ -11,7 +11,7 @@ module.exports = {
   sitemapSize: 7000,  // Limite de tamanho do sitemap (7000 URLs por arquivo)
   robotsTxtOptions: {
     additionalSitemaps: [
-      'https://areaaluno.athenasacademy.com.br/sitemap.xml', // Se você gerar múltiplos sitemaps
+      String(process.env.SITE_URL)+'/sitemap.xml', // Se você gerar múltiplos sitemaps
     ],
     policies: [
       {
