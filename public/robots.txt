@@ -7,7 +7,7 @@ Disallow: /api/
 Disallow: /dashboard/
 
 # Host
-Host: https://areaaluno.athenasacademy.com.br
+Host: https://aluno.athenasacademy.com.br
 
 # Sitemaps
-Sitemap: https://areaaluno.athenasacademy.com.br/sitemap.xml
+Sitemap: https://aluno.athenasacademy.com.br/sitemap.xml
