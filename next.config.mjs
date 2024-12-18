@@ -13,8 +13,8 @@ const nextConfig = {
     async rewrites() {
         return [
           {
-            source: '/:path*',
-            destination: `${process.env.MATERIAL_URL}/:path*`, // Substitua pelo domínio do servidor de origem
+            source: '/proxy/:path*',
+            destination: 'https://alunos.athenasacademy.com.br/:path*', // Substitua pelo domínio do servidor de origem
           },
         ];
       },

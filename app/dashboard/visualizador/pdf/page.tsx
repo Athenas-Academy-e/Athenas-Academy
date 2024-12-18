@@ -64,7 +64,7 @@ function PDFViewerContent() {
     return <div>No PDF available to display.</div>;
   }
   const urlArquivo = pdf.arquivo.split(' ')[1]
-  const url = `/material/${urlArquivo || pdf.arquivo}`;
+  const url = `/proxy/material/${urlArquivo || pdf.arquivo}`;
   return (
     <div>
       <PDFViewer fileUrl={url} />

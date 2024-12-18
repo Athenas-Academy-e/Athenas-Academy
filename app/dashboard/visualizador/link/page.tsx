@@ -68,7 +68,7 @@ function LinkViewerContent() {
       const linkSplit = link.arquivo.split(' ')[1] || link.arquivo;
 
       if (linkSplit.includes(escola)) {
-        setRedirect(`/material/${linkSplit}`);
+        setRedirect(`/proxy/material/${linkSplit}`);
       } else {
         setRedirect(linkSplit);
       }
