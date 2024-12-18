@@ -70,7 +70,7 @@ function VideoViewerContent() {
   return (
     <div>
       {/* Ensure VideoViewer is correctly handling the video URL */}
-      <VideoViewer fileUrl={videoUrl === 'www.youtube.com' ? video.arquivo : `/proxy/material/${video.arquivo}`} />
+      <VideoViewer fileUrl={videoUrl === 'www.youtube.com' ? video.arquivo : `/material/${video.arquivo}`} />
     </div>
   );
 }
