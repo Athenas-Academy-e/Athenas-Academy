@@ -3,6 +3,7 @@ import { faBookOpen, faBriefcase, faComputer, faFlagUsa, faHeartPulse, faMicroch
 export const Database = {
     /*Lista de configuracoes*/
     settings: [{
+        id:'01',
         companyname: 'Athenas Academy',
         logoDark: '/logo-dark.png',
         logoLight: '/logo-light.png',
@@ -101,13 +102,14 @@ export const Database = {
     ],
     /*Lista as paginas */
     pages: [
-        { name: 'Home', href: '/', ativo: "none" },
-        { name: 'Sobre a Athenas', href: '/sobre', ativo: "flex" },
-        { name: 'Contato', href: '/contato', ativo: "none" },
+        {id:'01', name: 'Home', href: '/', ativo: "none" },
+        {id:'02', name: 'Sobre a Athenas', href: '/sobre', ativo: "flex" },
+        {id:'03', name: 'Contato', href: '/contato', ativo: "none" },
     ],
     /*Cards home*/
     cardsHome: [
-        {
+        {   
+            id:'01',
             title: 'Área Da Estetica',
             subtitle: 'Propomos um ensino inovador, com metodologias ativas, onde o professor é capacitado na área e cria o próprio conteúdo, reinventando o sistema de ensino de uma forma prática.',
             icons: faSprayCanSparkles,
@@ -115,7 +117,8 @@ export const Database = {
             link: '1',
             iconsColor: '#dc06e6'
         },
-        {
+        {   
+            id:'02',
             title: 'Flexíveis',
             subtitle: 'Escolha entre os modos: Presencial, Semipresencial ou Online. Independente de qual for sua escolha, receba o suporte de nossa equipe de professores e técnicos quando quiser.',
             icons: faComputer,
@@ -123,7 +126,8 @@ export const Database = {
             link: '2',
             iconsColor: '#122753'
         },
-        {
+        {   
+            id:'03',
             title: 'Áreas Da Saúde',
             subtitle: 'Chega de estudar aquilo que você nunca irá colocar em prática, todos os cursos são adequados às novas técnicas, exigências e tecnologias empregadas pelas empresas.',
             icons: faHeartPulse,
@@ -131,7 +135,8 @@ export const Database = {
             link: '3',
             iconsColor: '#18E101'
         },
-        {
+        {   
+            id:'03',
             title: 'Idiomas',
             subtitle: 'Escolha qual módulo fazer, aqui você quem manda. Adapte seu pacote escolhendo apenas os conhecimentos específicos, conforme seu interesse e(ou) necessidade.',
             icons: faFlagUsa,
@@ -139,7 +144,8 @@ export const Database = {
             link: '4',
             iconsColor: '#dc2626'
         },
-        {
+        {   
+            id:'04',
             title: 'Tecnologia',
             subtitle: 'Escolha qual módulo fazer, aqui você quem manda. Adapte seu pacote escolhendo apenas os conhecimentos específicos, conforme seu interesse e(ou) necessidade.',
             icons: faMicrochip,

@@ -81,7 +81,7 @@ export default function Top() {
                     <h1>PREPARE-SE <span ref={el}></span></h1>
                     <div className='my-5 bg-hover rounded-md w-max p-2 text-center shadow-sm transition-all duration-100 hover:bg-icon hover:scale-105 cursor-pointer spp-sm:my-1'>
                         {Database.settings.map((settings) => (
-                            <Link href={settings.urlcadastro} >
+                            <Link href={settings.urlcadastro} key={settings.id}>
                                 <span>Quero garantir a minha vaga</span>
                             </Link>
                         ))}
@@ -132,7 +132,7 @@ export default function Top() {
                 {/*Button*/}
                 <div className='my-5 bg-hover rounded-md w-max p-2 text-center shadow-sm transition-all duration-100 hover:bg-icon hover:scale-105 cursor-pointer '>
                     {Database.settings.map((settings) => (
-                        <Link href={settings.urlcadastro} >
+                        <Link href={settings.urlcadastro} key={settings.id}>
                             <span>Quero garantir a minha vaga</span>
                         </Link>
                     ))}

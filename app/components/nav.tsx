@@ -150,7 +150,7 @@ export default function Nav() {
                                 <Link href='/'>
                                     <span className="sr-only">Athenas Academy</span>
                                     {Database.settings.map((settings) => (
-                                        <div>
+                                        <div key={settings.id}>
                                             <Image
                                                 src={settings.logoLight}
                                                 width={200}
@@ -243,7 +243,7 @@ export default function Nav() {
                                 {/* Login */}
                                 <div className="ml-4 flow-root lg:ml-6">
                                     {Database.settings.map((settings) => (
-                                        <Link href={settings.urlaluno} className='text-sm font-medium text-white hover:text-hover group -m-2 flex items-center p-2 dark:text-white text-center'>
+                                        <Link href={settings.urllogin} className='text-sm font-medium text-white hover:text-hover group -m-2 flex items-center p-2 dark:text-white text-center' key={settings.id}>
                                             <UserIcon className='h-6 w-6' />
                                             <span className='font-bold mx-2'>SOU ALUNO</span>
                                         </Link>
@@ -252,7 +252,7 @@ export default function Nav() {
                                 {/* Register */}
                                 <div className="ml-4 flow-root lg:ml-6">
                                     {Database.settings.map((settings) => (
-                                        <Link href={settings.urlcadastro} className='text-sm font-medium text-button transition duration-100 hover:text-white group -m-2 flex items-center p-2 dark:text-button bg-hover rounded-md shadow-md hover:scale-105 text-center'>
+                                        <Link href={settings.urlcadastro} className='text-sm font-medium text-button transition duration-100 hover:text-white group -m-2 flex items-center p-2 dark:text-button bg-hover rounded-md shadow-md hover:scale-105 text-center' key={settings.id}>
                                             {/* <UserIcon className='h-6 w-6' /> */}
                                             <span className='font-bold mx-2'>SEJA ALUNO</span>
                                         </Link>
