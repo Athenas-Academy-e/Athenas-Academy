@@ -14,7 +14,7 @@ export default function Visualizador(data: any) {
         if (fileExtension === 'pdf') {
           router.push(`visualizador/pdf?arquivo=${filePath}&modulo=${modulo}`)
         } else if (fileExtension === 'pptx') {
-          console.log('não e um pdf')
+          router.push(`visualizador/link?arquivo=${filePath}&modulo=${modulo}`)
         } else (
           router.push(`visualizador/link?arquivo=${filePath}&modulo=${modulo}`)
         )

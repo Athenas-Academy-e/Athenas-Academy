@@ -14,7 +14,7 @@ const nextConfig = {
         return [
           {
             source: '/proxy/:path*',
-            destination: 'https://alunos.athenasacademy.com.br/:path*', // Substitua pelo domínio do servidor de origem
+            destination: process.env.MATERIAL_URL + '/:path*', // Substitua pelo domínio do servidor de origem
           },
         ];
       },
