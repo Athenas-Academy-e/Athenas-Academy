@@ -18,18 +18,6 @@ export default function LoginForm(empresa: any) {
     const dadosempresa = Object(empresa)
     return (
         <>
-            <style jsx global>{`
-            input[type="number"]::-webkit-outer-spin-button,
-            input[type="number"]::-webkit-inner-spin-button {
-              -webkit-appearance: none;
-              margin: 0;
-            }
-          
-            input[type="number"] {
-              -moz-appearance: textfield;
-              appearance: none;
-            }
-          `}</style>
             <form action={login} className="space-y-6">
                 <div>
                     <div className="mt-2">
