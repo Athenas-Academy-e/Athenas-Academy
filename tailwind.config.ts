@@ -18,9 +18,16 @@ const config: Config = {
       colors: {
         primary: '#020617', // Azul (como no MUI)
         secondary: '#ff6b6b', // Vermelho (como no MUI)
+        button: "#004072",
+        hover: "#EDA92A",
+        background: "#142851",
+        topBack: "#E0E0E0",
+        // 'icon': "#122753",
+        icon: "#004072",
+        home: "#122753",
       },
       screens: {
-        'smartphone': {'max': '639px'},
+        'smartphone': { 'max': '639px' },
         // => @media (max-width: 639px) { ... }
         'tablet': '640px',
         // => @media (min-width: 640px) { ... }

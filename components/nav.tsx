@@ -46,7 +46,7 @@ export default function Nav() {
 
     return (
         // <div className="bg-white z-50 dark:bg-[#0F172A] fixed w-full ">
-        <div className="bg-[#090b7c] z-50 w-full transition duration-0 relative " id='header'>
+        <div className="bg-background z-50 w-full transition duration-0 relative " id='header'>
             {/* Mobile menu */}
             <Dialog open={open} onClose={setOpen} className="relative z-40 lg:hidden">
                 <DialogBackdrop
@@ -83,7 +83,7 @@ export default function Nav() {
                                                         <FontAwesomeIcon icon={section.icons} className='w-[30px] h-[30px] text-button dark:text-white' />
                                                     </div>
                                                     <div className='self-center'>
-                                                        <p id={`${category.id}-${section.id}-heading-mobile`} className="font-bold text-button  dark:text-button mx-3">
+                                                        <p id={`${category.id}-${section.id}-heading-mobile`} className="font-bold text-button  dark:text-white mx-3">
                                                             {section.name}
                                                         </p>
                                                     </div>
@@ -109,14 +109,14 @@ export default function Nav() {
                         </TabGroup>
                         <div className="relative space-y-6 border-t border-gray-200 px-4 py-6 ">
                             {database.pagesSite.map((page) => (
-                                <div key={page.name} className="flow-root -m-2 p-2 text-button hover:bg-hover dark:text-gray-100 hover:cursor-pointer">
+                                <div key={page.id} className="flow-root -m-2 p-2 text-button hover:bg-hover dark:text-gray-100 hover:cursor-pointer">
                                     <ul
                                         role="list"
                                         aria-labelledby={`${page.name}-heading-mobile`}
                                         className=" flex flex-col space-y-6"
                                     >
-                                        <li key={page.name} className="">
-                                            <Link href={page.href}>
+                                        <li key={page.id} className="">
+                                            <Link href={page.url}>
                                                 {page.name}
                                             </Link>
                                         </li>
@@ -148,11 +148,11 @@ export default function Nav() {
                             {/* Logo */}
                             <div className="ml-4 flex lg:ml-0 md:justify-center items-center">
                                 <Link href='/'>
-                                    <span className="sr-only">Athenas Academy</span>
                                     {database.settings.map((settings) => (
-                                        <div>
+                                        <div key={settings.id}>
+                                            <span className="sr-only">{settings.Companytitle}</span>
                                             <Image
-                                                src={settings.logoLight}
+                                                src={settings.logolight}
                                                 width={200}
                                                 height={30}
                                                 alt={settings.alt}
@@ -174,7 +174,7 @@ export default function Nav() {
                             <PopoverGroup className="hidden lg:ml-8 lg:block lg:self-stretch">
                                 <div className="flex h-full space-x-8">
                                     {database.categories.map((category) => (
-                                        <Popover key={category.name} className="flex">
+                                        <Popover key={category.id} className="flex">
                                             <div className="relative flex">
                                                 <PopoverButton className="relative z-10 -mb-px flex items-center border-b-2 border-transparent pt-px text-sm font-bold text-white transition-colors duration-200 ease-out hover:text-hover  data-[open]:border-hover data-[open]:text-hover dark:text-white">
                                                     {category.name}
@@ -186,13 +186,12 @@ export default function Nav() {
                                                 className="absolute inset-x-0 top-full text-sm text-white transition data-[closed]:opacity-0 data-[enter]:duration-200 data-[leave]:duration-150 data-[enter]:ease-out data-[leave]:ease-in dark:text-gray-100 font-medium "
                                             >
                                                 <div aria-hidden="true" className="absolute inset-0 top-1/2 bg-white shadow" />
-
-                                                <div className="relative bg-home">
+                                                <div className="relative bg-background">
                                                     <div className="mx-auto max-w-7xl px-8">
                                                         <div className="grid grid-cols-1 gap-x-8 gap-y-10 py-16">
                                                             <div className="row-start-1 grid grid-cols-3 gap-x-8 gap-y-10 text-sm">
                                                                 {category.sections.map((section) => (
-                                                                    <div key={section.name}>
+                                                                    <div key={section.id}>
                                                                         <div className='flex flex-row items-center border-b border-white'>
                                                                             <div>
                                                                                 <FontAwesomeIcon icon={section.icons} className='w-[30px] h-[30px] text-white' />
@@ -209,7 +208,7 @@ export default function Nav() {
                                                                             className="mt-6 space-y-6 sm:mt-4 sm:space-y-4"
                                                                         >
                                                                             {section.items.map((item) => (
-                                                                                <li key={item.name} className="flex text-gray-100 hover:text-hover">
+                                                                                <li key={item.id} className="flex text-gray-100 hover:text-hover">
                                                                                     <Link href={item.href}>
                                                                                         {item.name}
                                                                                     </Link>
@@ -229,7 +228,7 @@ export default function Nav() {
                                     {database.pagesSite.map((page) => (
                                         <Link
                                             href={page.url}
-                                            key={page.name}
+                                            key={page.id}
                                             style={{ display: page.ativo }}
                                             className='flex items-center text-sm font-bold text-white hover:text-hover dark:text-white active:border-b border-hover'
                                         >
@@ -243,7 +242,7 @@ export default function Nav() {
                                 {/* Login */}
                                 <div className="ml-4 flow-root lg:ml-6">
                                     {database.settings.map((settings) => (
-                                        <Link href={settings.urllogin} className='text-sm font-medium text-white hover:text-hover group -m-2 flex items-center p-2 dark:text-white text-center'>
+                                        <Link href={settings.urllogin} className='text-sm font-medium text-white hover:text-hover group -m-2 flex items-center p-2 dark:text-white text-center' key={settings.id}>
                                             <UserIcon className='h-6 w-6' />
                                             <span className='font-bold mx-2'>SOU ALUNO</span>
                                         </Link>
@@ -252,7 +251,7 @@ export default function Nav() {
                                 {/* Register */}
                                 <div className="ml-4 flow-root lg:ml-6">
                                     {database.settings.map((settings) => (
-                                        <Link href={settings.urlcadastro} className='text-sm font-medium text-button transition duration-100 hover:text-white group -m-2 flex items-center p-2 dark:text-button bg-hover rounded-md shadow-md hover:scale-105 text-center'>
+                                        <Link href={settings.urlcadastro} className='text-sm font-medium text-button transition duration-100 hover:text-white group -m-2 flex items-center p-2 dark:text-button bg-hover rounded-md shadow-md hover:scale-105 text-center' key={settings.id}>
                                             {/* <UserIcon className='h-6 w-6' /> */}
                                             <span className='font-bold mx-2'>SEJA ALUNO</span>
                                         </Link>
