@@ -41,11 +41,8 @@ export default function LoginForm(empresa: any) {
                     </div>
                 </div>
                 <div>
-                    <div className="mt-2 laptop:hidden desktop:hidden">
+                    <div className="mt-2">
                         <Input type='number' name='username' id='username' required autoComplete='username' label='Usuário' className='appearance-none -webkit-appearance-none -moz-appearance-none' />
-                    </div>
-                    <div className="mt-2 smartphone:hidden tablet:hidden laptop:block desktop:block">
-                        <Input type='text' name='username' id='username' required autoComplete='username' label='Usuário' className='appearance-none -webkit-appearance-none -moz-appearance-none' />
                     </div>
                 </div>
 
