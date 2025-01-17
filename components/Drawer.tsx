@@ -93,7 +93,7 @@ export default function DrawerIcon({ sessionData, children }: SidebarProps) {
     };
 
     return (
-        <Box sx={{ display: 'flex' }}>
+        <Box sx={{ display: 'flex', height: '100vh'}}  className='bg-white dark:bg-base-200'>
             {/* <AppBar position="fixed" open={open} color='primary' className='bg-slate-950'> */}
             <AppBar position="fixed" open={open} sx={{background: '#020617'}} >
                 <Toolbar className='flex justify-between py-1'>
