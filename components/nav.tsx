@@ -1,5 +1,4 @@
 'use client'
-
 import { Fragment, useEffect, useState } from 'react'
 import {
     Dialog,
@@ -128,17 +127,14 @@ export default function Nav() {
                 </div>
             </Dialog>
             {/*Desktop */}
-            {/* <header className="relative mt-5 bg-white dark:bg-black backdrop-blur-md"> */}
             <header className="relative  backdrop-blur-3xl rounded-b-md drop-shadow-md">
-                {/* <header className="relative bg-white dark:bg-transparent backdrop-blur-3xl rounded-b-md drop-shadow-md"> */}
                 <nav aria-label="Top" className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-                    {/* <div className="border rounded-md px-1 border-gray-200"> */}
                     <div className="">
                         <div className="flex h-16 items-center">
                             <button
                                 type="button"
                                 onClick={() => setOpen(true)}
-                                className="relative lg:hidden bg-transparent text-button hover:text-hover dark:text-button"
+                                className="relative lg:hidden bg-transparent text-button hover:text-hover dark:text-white"
                             >
                                 <span className="absolute -inset-0.5" />
                                 <span className="sr-only">Abrir menu</span>
@@ -252,7 +248,6 @@ export default function Nav() {
                                 <div className="ml-4 flow-root lg:ml-6">
                                     {database.settings.map((settings) => (
                                         <Link href={settings.urlcadastro} className='text-sm font-medium text-button transition duration-100 hover:text-white group -m-2 flex items-center p-2 dark:text-button bg-hover rounded-md shadow-md hover:scale-105 text-center' key={settings.id}>
-                                            {/* <UserIcon className='h-6 w-6' /> */}
                                             <span className='font-bold mx-2'>SEJA ALUNO</span>
                                         </Link>
                                     ))}

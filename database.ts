@@ -117,7 +117,8 @@ export const database = {
     ],
     /*Cards Inicio*/
     cardsHome: [
-        {
+        {   
+            id:0,
             title: 'Área Da Estetica',
             subtitle: 'Propomos um ensino inovador, com metodologias ativas, onde o professor é capacitado na área e cria o próprio conteúdo, reinventando o sistema de ensino de uma forma prática.',
             icons: faSprayCanSparkles,
@@ -125,7 +126,8 @@ export const database = {
             link: '1',
             iconsColor: '#dc06e6'
         },
-        {
+        {   
+            id:1,
             title: 'Flexíveis',
             subtitle: 'Escolha entre os modos: Presencial, Semipresencial ou Online. Independente de qual for sua escolha, receba o suporte de nossa equipe de professores e técnicos quando quiser.',
             icons: faComputer,
@@ -133,7 +135,8 @@ export const database = {
             link: '2',
             iconsColor: '#122753'
         },
-        {
+        {   
+            id:2,
             title: 'Áreas Da Saúde',
             subtitle: 'Chega de estudar aquilo que você nunca irá colocar em prática, todos os cursos são adequados às novas técnicas, exigências e tecnologias empregadas pelas empresas.',
             icons: faHeartPulse,
@@ -141,7 +144,8 @@ export const database = {
             link: '3',
             iconsColor: '#18E101'
         },
-        {
+        {   
+            id:3,
             title: 'Idiomas',
             subtitle: 'Escolha qual módulo fazer, aqui você quem manda. Adapte seu pacote escolhendo apenas os conhecimentos específicos, conforme seu interesse e(ou) necessidade.',
             icons: faFlagUsa,
@@ -149,7 +153,8 @@ export const database = {
             link: '4',
             iconsColor: '#dc2626'
         },
-        {
+        {   
+            id:4,
             title: 'Tecnologia',
             subtitle: 'Escolha qual módulo fazer, aqui você quem manda. Adapte seu pacote escolhendo apenas os conhecimentos específicos, conforme seu interesse e(ou) necessidade.',
             icons: faMicrochip,
