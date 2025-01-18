@@ -70,6 +70,7 @@ export default function Header({ sessionData, children }: SidebarProps) {
                 duration: theme.transitions.duration.enteringScreen,
             }),
         }),
+        background: '#020617',
     }));
 
     const DrawerHeader = styled('div')(({ theme }) => ({
@@ -93,13 +94,13 @@ export default function Header({ sessionData, children }: SidebarProps) {
     };
 
     return (
-        <Box sx={{ display: 'flex', height: '100vh'}}  className='bg-white dark:bg-base-200'>
-            <AppBar position="fixed" open={open} sx={{background:'#020617'}}>
-                <Toolbar className='flex justify-between py-1'>
-                    <div className='flex'>
+        <Box sx={{ display: 'flex', height: '100vh', maxWidth:'100%' }} className="bg-white dark:bg-base-200 overflow-hidden">
+            <AppBar position="fixed" open={open}>
+                <Toolbar className="flex justify-between py-1">
+                    <div className="flex items-center">
                         <IconButton
                             onClick={handleDrawerClose}
-                            className='text-white'
+                            className="text-white"
                             sx={[
                                 {
                                     mr: 2,
@@ -123,12 +124,14 @@ export default function Header({ sessionData, children }: SidebarProps) {
                         >
                             <MenuIcon />
                         </IconButton>
-                        {database.settings.map(data => (
-                            <div key={data.Companytitle} className="flex gap-4 items-center desktop:text-sm laptop:text-small tablet:text-[0.7em] smartphone:text-[0.6em]">
+                        {database.settings.map((data) => (
+                            <div key={data.Companytitle} className="flex gap-4 items-center text-[1em]">
                                 <div>
-                                    <Link href={'/dashboard'}><Image src={data.logolight} alt={data.alt} width={200} height={10} className='' priority/></Link>
+                                    <Link href="/dashboard">
+                                        <Image src={data.logolight} alt={data.alt} width={200} height={10} className="" priority />
+                                    </Link>
                                 </div>
-                                <div className="flex flex-col justify-end ">
+                                <div className="flex flex-col justify-end laptop:text-small tablet:text-[0.7em] smartphone:text-[0.6em]">
                                     <span className="text-white">Olá <span className="uppercase">{sessionData.name}</span>,</span>
                                     <span className="text-white capitalize">Seja bem vindo ao seu ambiente de estudo virtual.</span>
                                 </div>
@@ -139,14 +142,11 @@ export default function Header({ sessionData, children }: SidebarProps) {
                         <div className="dropdown dropdown-end">
                             <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
                                 <div className="w-10 rounded-full">
-                                    <Image src={sessionData.image ? sessionData.image : '/default-photo.webp'} alt={'Teste'} width={200} height={200} />
+                                    <Image src={sessionData.image ? sessionData.image : '/default-photo.webp'} alt="Teste" width={200} height={200} />
                                 </div>
                             </div>
-                            <ul
-                                tabIndex={0}
-                                className="menu menu-sm dropdown-content bg-slate-950 rounded-box z-[1] mt-3 w-52 p-2 shadow">
+                            <ul tabIndex={0} className="menu menu-sm dropdown-content bg-slate-950 rounded-box z-[1] mt-3 w-52 p-2 shadow">
                                 <li><Profile /></li>
-                                {/* <li><Settings /></li> */}
                                 <li><LogoutButton /></li>
                             </ul>
                         </div>
@@ -166,14 +166,14 @@ export default function Header({ sessionData, children }: SidebarProps) {
                 anchor="left"
                 open={open}
             >
-                <div className='bg-slate-950 h-screen relative'>
-                    <List className='text-white'>
-                        {database.pages.map((text, index) => (
+                <div className="bg-slate-950 h-screen relative">
+                    <List className="text-white">
+                        {database.pages.map((text) => (
                             <ListItem key={text.id}>
                                 <Link href={text.url}>
                                     <ListItemButton>
-                                        <ListItemIcon className='text-white'>
-                                            <FontAwesomeIcon icon={text.icon as IconDefinition} className='text-white'/>
+                                        <ListItemIcon className="text-white">
+                                            <FontAwesomeIcon icon={text.icon as IconDefinition} className="text-white" />
                                         </ListItemIcon>
                                         <ListItemText primary={text.name} />
                                     </ListItemButton>

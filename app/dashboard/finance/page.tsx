@@ -40,18 +40,18 @@ export default async function Finance() {
   return (
     <Header sessionData={session.user}>
       {dataFinanceResults.map((pacotes) => (
-        <div key={pacotes.id_aluno_curso} className="flex w-full flex-col flex-wrap overflow-hidden">
+        <div key={pacotes.id_aluno_curso} className="flex flex-col flex-wrap overflow-hidden">
           <div className="text-black flex flex-col gap-4 flex-wrap transition-all dark:text-white">
             <h1 className="mb-2">Você está visualizando as parcelas do curso: {pacotes.nome}</h1>
-            <div className="overflow-y-auto mt-4  ">
-              <table className="table bg-white text-black rounded-md dark:bg-base-100">
+            <div className="overflow-x-auto mt-4 max-h-96">
+              <table className="table bg-white text-black rounded-md dark:bg-base-100 w-full">
                 <thead className="text-black dark:text-white font-bold sticky top-0 bg-base-100 z-10">
                   <tr>
-                    <th>Parcelas</th>
-                    <th>Vencimento</th>
-                    <th>Valor</th>
-                    <th>Situação</th>
-                    <th>Opção</th>
+                    <th className="p-2">Parcelas</th>
+                    <th className="p-2">Vencimento</th>
+                    <th className="p-2">Valor</th>
+                    <th className="p-2">Situação</th>
+                    <th className="p-2">Opção</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -62,11 +62,11 @@ export default async function Finance() {
                   </tr>
                   {pacotes.dataFinance.map((parcela: any) => (
                     <tr key={parcela.numero_lancamento} className="text-black dark:text-white cursor-pointer">
-                      <td>{parcela.historico}</td>
-                      <td>{new Date(parcela.vencimento).toLocaleDateString()}</td>
-                      <td>R$ {parcela.valor}</td>
-                      <td>{parcela.quitado === "S" ? "Quitada" : "Aberta"}</td>
-                      <td>
+                      <td className="p-2">{parcela.historico}</td>
+                      <td className="p-2">{new Date(parcela.vencimento).toLocaleDateString()}</td>
+                      <td className="p-2">R$ {parcela.valor}</td>
+                      <td className="p-2">{parcela.quitado === "S" ? "Quitada" : "Aberta"}</td>
+                      <td className="p-2">
                         <ModalA
                           data={parcela}
                           numero_lancamento={parcela.numero_lancamento}
