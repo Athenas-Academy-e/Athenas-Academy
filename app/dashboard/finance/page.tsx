@@ -40,12 +40,12 @@ export default async function Finance() {
   return (
     <Header sessionData={session.user}>
       {dataFinanceResults.map((pacotes) => (
-        <div key={pacotes.id_aluno_curso} className="flex flex-col flex-wrap overflow-hidden">
+        <div key={pacotes.id_aluno_curso} className="flex flex-col flex-wrap">
           <div className="text-black flex flex-col gap-4 flex-wrap transition-all dark:text-white">
             <h1 className="mb-2">Você está visualizando as parcelas do curso: {pacotes.nome}</h1>
-            <div className="overflow-x-auto mt-4 max-h-96">
+            <div className="overflow-x-auto mt-4 max-h-[calc(100vh-200px)]">
               <table className="table bg-white text-black rounded-md dark:bg-base-100 w-full">
-                <thead className="text-black dark:text-white font-bold sticky top-0 bg-base-100 z-10">
+                <thead className="text-black dark:text-white font-bold sticky top-0 bg-base-100 z-10 text-center">
                   <tr>
                     <th className="p-2">Parcelas</th>
                     <th className="p-2">Vencimento</th>
@@ -54,7 +54,7 @@ export default async function Finance() {
                     <th className="p-2">Opção</th>
                   </tr>
                 </thead>
-                <tbody>
+                <tbody className="text-center">
                   <tr className={`${dataFinanceResults[0].dataFinance[0] ? "hidden" : "table-row"} text-black dark:text-white`}>
                     <td className={`${dataFinanceResults[0].dataFinance[0] ? "hidden" : "table-cell"} text-center text-black dark:text-white`} colSpan={5}>
                       Você não possui nenhuma parcelas
