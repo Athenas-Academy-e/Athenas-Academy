@@ -23,7 +23,7 @@ export default async function ProfilePage(data: any) {
                 alt="profile-image"
                 className="object-cover"
                 height={255}
-                src={session?.user?.image ? session.user.image : '/default-photo.webp'}
+                src={session?.user?.image ? session.user.image : '/default-photo.svg'}
                 width={255}
               />
               {/*TODO: Funcionalidade para alterar a foto de perfil */}

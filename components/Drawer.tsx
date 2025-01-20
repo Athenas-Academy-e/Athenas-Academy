@@ -139,8 +139,8 @@ export default function DrawerIcon({ sessionData, children }: SidebarProps) {
                     <div className="flex-none gap-4">
                         <div className="dropdown dropdown-end">
                             <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
-                                <div className="w-10 rounded-full">
-                                    <Image src={sessionData.image ? sessionData.image : '/default-photo.webp'} alt={'Teste'} width={200} height={200} />
+                                <div className="w-10 rounded-full bg-white">
+                                    <Image src={sessionData.image ? sessionData.image : '/default-photo.svg'} alt={'Usuario'} width={200} height={200} />
                                 </div>
                             </div>
                             <ul
