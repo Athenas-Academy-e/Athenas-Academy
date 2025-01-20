@@ -32,7 +32,7 @@ export default async function Panel() {
                         <h1 key={pacotes.id_pacote}>Você esta visualizando as informações do curso de: <span>{pacotes.nome}</span>.</h1>
                     </div>
                 ))}
-                <div className="flex gap-4 flex-wrap justify-center">
+                <div className="flex gap-4 flex-wrap justify-center transition-all">
                     {database.pages.map((value: any) => (
                         <div key={value.id} className="button bg-base-100 p-4 rounded-md cursor-pointer hover:scale-105 transition-all shadow-md">
                             <Link href={value.url} className="text-black dark:text-white">
