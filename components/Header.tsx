@@ -128,7 +128,7 @@ export default function Header({ sessionData, children }: SidebarProps) {
                             <div key={data.Companytitle} className="flex gap-4 items-center text-[1em]">
                                 <div>
                                     <Link href="/dashboard">
-                                        <Image src={data.logolight} alt={data.alt} width={200} height={10} className="" priority />
+                                        <Image src={data.logo} alt={data.alt} width={200} height={10} className="" priority />
                                     </Link>
                                 </div>
                                 <div className="flex flex-col justify-end laptop:text-small tablet:text-[0.7em] smartphone:text-[0.6em]">

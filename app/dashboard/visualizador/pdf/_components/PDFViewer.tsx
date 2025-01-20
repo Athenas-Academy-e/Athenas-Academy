@@ -1,3 +1,4 @@
+import React, { useRef } from 'react';
 import { ScrollMode, SpecialZoomLevel, Viewer, Worker } from '@react-pdf-viewer/core';
 import { defaultLayoutPlugin, SidebarTab, type ToolbarSlot } from '@react-pdf-viewer/default-layout';
 import { pageNavigationPlugin } from '@react-pdf-viewer/page-navigation';
@@ -15,7 +16,9 @@ interface PDFViewerProps {
 }
 
 const PDFViewer: React.FC<PDFViewerProps> = ({ fileUrl }) => {
-  const router = useRouter()
+  const router = useRouter();
+
+  // Plugin de layout
   const defaultLayoutPluginInstance = defaultLayoutPlugin({
     sidebarTabs: () => [],
     renderToolbar: (Toolbar) => (
@@ -29,25 +32,52 @@ const PDFViewer: React.FC<PDFViewerProps> = ({ fileUrl }) => {
             Zoom,
             ZoomIn,
             ZoomOut,
+            GoToNextPage,
+            GoToPreviousPage,
           } = props;
+
           return (
             <>
-              <div className='mx-1'>
-                <button type="button" className='text-black capitalize smartphone:hidden' onClick={()=>{router.push('/dashboard/materiais')}}>Voltar para os matérias</button>
-                <button type="button" className='text-black capitalize ml-2 smartphone:block tablet:hidden desktop:hidden' onClick={()=>{router.push('/dashboard/materiais')}}><FontAwesomeIcon icon={faArrowLeft} /></button>
+              <div className="mx-1 text-black dark:text-white">
+                <button
+                  type="button"
+                  className="capitalize smartphone:hidden"
+                  onClick={() => {
+                    router.push('/dashboard/materiais');
+                  }}
+                >
+                  Voltar para os materiais
+                </button>
+                <button
+                  type="button"
+                  className="capitalize ml-2 smartphone:block tablet:hidden desktop:hidden"
+                  onClick={() => {
+                    router.push('/dashboard/materiais');
+                  }}
+                >
+                  <FontAwesomeIcon icon={faArrowLeft} />
+                </button>
               </div>
-              <div className='flex text-black items-center smartphone:hidden'>
+
+              {/* Navegação de página */}
+              <div className="flex text-black items-center smartphone:hidden dark:text-white">
                 <CurrentPageInput /> / <NumberOfPages />
               </div>
-              <div className='flex items-center mx-auto'>
+
+              {/* Controle de Zoom */}
+              <div className="flex items-center mx-auto">
                 <ZoomOut />
                 <Zoom />
                 <ZoomIn />
               </div>
-              <div className='flex items-center'>
+
+              {/* Tela cheia */}
+              <div className="flex items-center smartphone:hidden">
                 <EnterFullScreen />
               </div>
-              <div className='flex items-center'>
+
+              {/* Impressão */}
+              <div className="flex items-center">
                 <Print />
               </div>
             </>
@@ -72,9 +102,14 @@ const PDFViewer: React.FC<PDFViewerProps> = ({ fileUrl }) => {
       },
     },
   });
+
   return (
-    <Worker workerUrl='https://unpkg.com/pdfjs-dist@3.4.120/build/pdf.worker.min.js'>
-      <Viewer fileUrl={fileUrl} plugins={[defaultLayoutPluginInstance]} />
+    <Worker workerUrl="https://unpkg.com/pdfjs-dist@3.4.120/build/pdf.worker.min.js">
+      <Viewer
+        fileUrl={fileUrl}
+        plugins={[defaultLayoutPluginInstance, pageNavigationPlugin()]}
+        theme={{ theme: 'dark' }}
+      />
     </Worker>
   );
 };

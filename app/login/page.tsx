@@ -20,11 +20,12 @@ export default async function LoginPage() {
   }
  
   return (
-  <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8 h-screen bg-gray-200 backdrop-blur-lg">
+  <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8 h-screen bg-gray-200 backdrop-blur-lg dark:bg-base-200 transition-all">
     <div className="sm:mx-auto sm:w-full sm:max-w-sm my-6">
       {database.settings.map(settings => (
         <div className="mx-auto h-10 w-50" key={settings.Companytitle}>
-          <Image src={settings.logo} width={300} height={286} alt={settings.alt} className="mx-auto" />
+          <Image src={settings.logolight} width={300} height={286} alt={settings.alt} className="mx-auto dark:hidden" />
+          <Image src={settings.logo} width={300} height={286} alt={settings.alt} className="mx-auto dark:block hidden" />
         </div>
       ))}
     </div>

@@ -21,7 +21,7 @@ export default function LoginForm(empresa: any) {
             <form action={login} className="space-y-6">
                 <div>
                     <div className="mt-2">
-                        <Select label='Selecione a sua escola' name='codigo_escola' id='codigo_escola' required>
+                        <Select label='Selecione a sua escola' name='codigo_escola' id='codigo_escola' required={true}>
                             {dadosempresa.empresa.map((item: any) => (
                                 <SelectItem className='text-black' key={item.codigo} value={item.codigo} textValue={`${item.cidade} - ${item.bairro}`}>{item.cidade} - {item.bairro}</SelectItem>
                             ))}
@@ -30,13 +30,13 @@ export default function LoginForm(empresa: any) {
                 </div>
                 <div>
                     <div className="mt-2">
-                        <Input type='number' name='username' id='username' required autoComplete='username' label='Usuário' className='appearance-none -webkit-appearance-none -moz-appearance-none' />
+                        <Input type='number' name='username' id='username' required={true} autoComplete='username' label='Usuário' className='appearance-none -webkit-appearance-none -moz-appearance-none' />
                     </div>
                 </div>
 
                 <div>
                     <div className="mt-2 ">
-                        <Input type={isVisible ? "number" : "password"} name='password' id='password' required autoComplete='password' label='Senha' endContent={
+                        <Input type={isVisible ? "number" : "password"} name='password' id='password' required={true} autoComplete='password' label='Senha' endContent={
                             <button className="focus:outline-none" type="button" onClick={toggleVisibility} aria-label="toggle password visibility">
                                 {isVisible ? (<FontAwesomeIcon icon={faEyeSlash} className="text-2xl text-default-400 pointer-events-none" />) : (<FontAwesomeIcon icon={faEye} className="text-2xl text-default-400 pointer-events-none" />)}
                             </button>
@@ -44,7 +44,7 @@ export default function LoginForm(empresa: any) {
                     </div>
                     <div className="flex items-center justify-end mt-2">
                         <div className="text-sm">
-                            <a href="#" className="font-semibold text-black hover:text-[#eba93b]">
+                            <a href="#" className="font-semibold text-black hover:text-[#eba93b] dark:text-white">
                                 Esqueceu a sua senha?
                             </a>
                         </div>
@@ -59,7 +59,7 @@ export default function LoginForm(empresa: any) {
                     </button>
                     {mensagem === 'CredentialsSignin' ? (
                         <Alert severity='error'>
-                            Seu usuário ou senha estão incorretos.
+                            Seu usuário ou senha estão incorretos ou unidade não selecionada.
                         </Alert>
                     ) : false}
                 </div>

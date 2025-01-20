@@ -1,8 +1,8 @@
 import {  faBookOpen, faFileLines, faGraduationCap, faHouse, faMoneyBill } from '@fortawesome/free-solid-svg-icons';
 export const database = {
     settings: [{
-        logo: '/logo-dark.png',
-        logolight: '/logo-light.png',
+        logolight: '/logo-dark.png',
+        logo: '/logo-light.png',
         alt: 'Athenas Academy Logo',
         url: 'https://athenasacademy.com.br/',
         color: '#007FE0',
