@@ -37,6 +37,10 @@ const config: Config = {
 
         'desktop': '1280px',
         // => @media (min-width: 1280px) { ... }
+
+        'sp-sm': { 'min': '500px', 'max': '640px' },
+        'spp-sm': { 'max': '500px' }
+
       }
     },
   },
