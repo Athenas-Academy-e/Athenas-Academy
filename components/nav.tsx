@@ -27,14 +27,10 @@ export default function Nav() {
         const handleScroll = () => {
             if (window.scrollY >= 1) {
                 header?.classList.add('fixed')
-                header?.classList.add('bg-transparent')
                 header?.classList.remove('relative')
-                header?.classList.remove('bg-[#090b7c]')
             } else {
                 header?.classList.remove('fixed')
-                header?.classList.remove('bg-transparent')
                 header?.classList.add('relative')
-                header?.classList.add('bg-[#090b7c]')
             }
         }
         window.addEventListener('scroll', handleScroll);
@@ -44,7 +40,6 @@ export default function Nav() {
     }, []);
 
     return (
-        // <div className="bg-white z-50 dark:bg-[#0F172A] fixed w-full ">
         <div className="bg-background z-50 w-full transition duration-0 relative " id='header'>
             {/* Mobile menu */}
             <Dialog open={open} onClose={setOpen} className="relative z-40 lg:hidden">
@@ -152,15 +147,15 @@ export default function Nav() {
                                                 width={200}
                                                 height={30}
                                                 alt={settings.alt}
-                                                className='spp-sm:hidden sp-sm:hidden sm:block md:block lg:block '
-                                            />
-                                            <Image
-                                                src={settings.logoSmallLight}
-                                                width={100}
-                                                height={100}
-                                                alt={settings.alt}
-                                                className='spp-sm:block sp-sm:block sm:hidden md:hidden lg:hidden '
-                                            />
+                                                className='smartphone:hidden tablet:block laptop:block desktop:block'
+                                                />
+                                                <Image
+                                                    src={settings.logoSmallLight}
+                                                    width={100}
+                                                    height={100}
+                                                    alt={settings.alt}
+                                                    className='smartphone:block tablet:hidden laptop:hidden desktop:hidden'
+                                                />
                                         </div>
                                     ))}
                                 </Link>
