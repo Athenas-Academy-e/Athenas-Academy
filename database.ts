@@ -25,7 +25,7 @@ export const database = {
     ],
     /*Lista De Paginas Do Site */
     pagesSite: [
-        { id: 0, name: 'Home', url: '/', ativo: "none" },
+        { id: 0, name: 'Inicio', url: '/', ativo: "none" },
         { id: 1, name: 'Sobre a Athenas', url: '/sobre', ativo: "flex" },
         { id: 2, name: 'Contato', url: '/contato', ativo: "none" },
     ],
@@ -36,7 +36,7 @@ export const database = {
             name: 'Cursos',
             sections: [
                 {
-                    id: 'areas-da-saude',
+                    id: 0,
                     name: 'Áreas Da Saúde',
                     icons: faUserNurse,
                     color: '',
@@ -47,7 +47,7 @@ export const database = {
                     ],
                 },
                 {
-                    id: 'arte-e-producao',
+                    id: 1,
                     name: 'Artes e Produção',
                     icons: faPalette,
                     color: '',
@@ -57,7 +57,7 @@ export const database = {
                     ],
                 },
                 {
-                    id: 'beleza-e-bem-estar',
+                    id: 2,
                     name: 'Beleza e Bem Estar',
                     icons: faSprayCanSparkles,
                     color: '',
@@ -71,7 +71,7 @@ export const database = {
                     ],
                 },
                 {
-                    id: 'idiomas',
+                    id: 3,
                     name: 'Idiomas',
                     icons: faFlagUsa,
                     color: '',
@@ -81,7 +81,7 @@ export const database = {
                     ],
                 },
                 {
-                    id: 'gestao-negocio',
+                    id: 4,
                     name: 'Gestão e Negócios',
                     icons: faBriefcase,
                     color: '',
@@ -92,7 +92,7 @@ export const database = {
                     ],
                 },
                 {
-                    id: 'tecnologia',
+                    id: 5,
                     name: 'Tecnologia',
                     icons: faMicrochip,
                     color: '',
@@ -104,7 +104,7 @@ export const database = {
                     ],
                 },
                 {
-                    id: 'pedagogia',
+                    id: 6,
                     name: 'Pedagogia',
                     icons: faBookOpen,
                     color: '',
@@ -119,11 +119,11 @@ export const database = {
     cardsHome: [
         {   
             id:0,
-            title: 'Área Da Estetica',
+            title: 'Área Da Estética',
             subtitle: 'Propomos um ensino inovador, com metodologias ativas, onde o professor é capacitado na área e cria o próprio conteúdo, reinventando o sistema de ensino de uma forma prática.',
             icons: faSprayCanSparkles,
             image: '/cardcurso/necropsia.jpg',
-            link: '1',
+            link: 'estetica',
             iconsColor: '#dc06e6'
         },
         {   
@@ -132,7 +132,7 @@ export const database = {
             subtitle: 'Escolha entre os modos: Presencial, Semipresencial ou Online. Independente de qual for sua escolha, receba o suporte de nossa equipe de professores e técnicos quando quiser.',
             icons: faComputer,
             image: '/cardcurso/aux-administrativo.jpg',
-            link: '2',
+            link: 'flexiveis',
             iconsColor: '#122753'
         },
         {   
@@ -141,7 +141,7 @@ export const database = {
             subtitle: 'Chega de estudar aquilo que você nunca irá colocar em prática, todos os cursos são adequados às novas técnicas, exigências e tecnologias empregadas pelas empresas.',
             icons: faHeartPulse,
             image: '/cardcurso/cuidador-de-idosos.png',
-            link: '3',
+            link: 'saude',
             iconsColor: '#18E101'
         },
         {   
@@ -150,7 +150,7 @@ export const database = {
             subtitle: 'Escolha qual módulo fazer, aqui você quem manda. Adapte seu pacote escolhendo apenas os conhecimentos específicos, conforme seu interesse e(ou) necessidade.',
             icons: faFlagUsa,
             image: '/cardcurso/idiomas.jpg',
-            link: '4',
+            link: 'idiomas',
             iconsColor: '#dc2626'
         },
         {   
@@ -159,7 +159,7 @@ export const database = {
             subtitle: 'Escolha qual módulo fazer, aqui você quem manda. Adapte seu pacote escolhendo apenas os conhecimentos específicos, conforme seu interesse e(ou) necessidade.',
             icons: faMicrochip,
             image: '/cardcurso/cuidador-de-idosos.png',
-            link: '5',
+            link: 'tecnologia',
             iconsColor: '#007FE0'
         },
     ]
