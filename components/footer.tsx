@@ -7,7 +7,7 @@ export default function Footer() {
     return (
         <footer className="bg-home shadow w-full">
             {/*Mobile */}
-            <div className="spp-sm:block sp-sm:block md:block lg:hidden">
+            <div className="smartphone:block tablet:block laptop:block desktop:hidden">
                 <div className="p-4 flex  flex-wrap md:items-center md:justify-between spp-sm:flex-col spp-sm:items-center border-t-2 rounded-md sp-sm:flex-col">
                     <div>
                         {database.settings.map((settings) => (
@@ -32,7 +32,7 @@ export default function Footer() {
             </div>
 
             {/*Desktop */}
-            <div className="spp-sm:hidden sp-sm:hidden md:hidden lg:block border-t-2 rounded-md">
+            <div className="smartphone:hidden tablet:hidden laptop:hidden desktop:block border-t-2 rounded-md">
                 <div className="md:flex md:justify-between mt-4">
                     <div className="mb-6 md:mb-0">
                         {database.settings.map((settings) => (
