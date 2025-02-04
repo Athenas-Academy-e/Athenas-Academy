@@ -27,13 +27,13 @@ export default function Top() {
     }, []);
 
     return (
-        <div className="bg-background min-h-screen flex items-center justify-between p-8">
+        <div className="bg-background min-h-screen flex flex-col md:flex-row items-center lg:justify-between md:justify-between p-6 md:p-8 space-y-6 md:space-y-0 md:space-x-6">
             {/* Text Section */}
-            <div className="text-white font-bold text-left space-y-4">
-                <h1 className="text-3xl">BEM-VINDO(A) AO</h1>
-                <h1 className="text-3xl">CURSO PROFISSIONALIZANTE</h1>
-                <h1 className="text-3xl">ATHENAS ACADEMY</h1>
-                <h1 className="text-3xl">PREPARE-SE <span ref={el}></span></h1>
+            <div className="text-white font-bold text-center md:text-left space-y-4 max-w-lg">
+                <h1 className="text-2xl md:text-3xl">BEM-VINDO(A) AO</h1>
+                <h1 className="text-2xl md:text-3xl">CURSO PROFISSIONALIZANTE</h1>
+                <h1 className="text-2xl md:text-3xl">ATHENAS ACADEMY</h1>
+                <h1 className="text-2xl md:text-3xl">PREPARE-SE <span ref={el}></span></h1>
                 <div className="mt-6">
                     <Link href="/cadastro">
                         <button className="bg-yellow-500 text-white font-bold px-6 py-2 rounded-md shadow-md transition-transform transform hover:scale-105">
@@ -44,7 +44,7 @@ export default function Top() {
             </div>
 
             {/* Carousel Section */}
-            <div className="w-1/3 h-[300px]">
+            <div className="w-full md:w-1/3 h-[250px] md:h-[300px]">
                 <Swiper
                     modules={[Pagination, Autoplay]}
                     pagination={{ clickable: true }}
