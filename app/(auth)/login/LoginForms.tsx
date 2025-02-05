@@ -6,15 +6,15 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { useSearchParams } from 'next/navigation';
 import { Alert } from '@mui/material';
+import { useRouter } from 'next/navigation';
 
 export default function LoginForm(empresa: any) {
+    const router = useRouter();
     const [isVisible, setIsVisible] = useState(false);
     const toggleVisibility = () => setIsVisible(!isVisible);
     const searchParams = useSearchParams();
     const mensagem = searchParams.get('msg');
-    const formRef = useRef<HTMLFormElement>(null);
-
-   
+  
     const dadosempresa = Object(empresa)
     return (
         <>
@@ -57,13 +57,22 @@ export default function LoginForm(empresa: any) {
                     >
                         Entrar
                     </button>
-                    {mensagem === 'CredentialsSignin' ? (
-                        <Alert severity='error'>
-                            Seu usuário ou senha estão incorretos ou unidade não selecionada.
-                        </Alert>
-                    ) : false}
                 </div>
-            </form>
+                <div>
+                    <button
+                        type="button"
+                        onClick={()=>{router.push('/')}}
+                        className="flex w-full justify-center rounded-md bg-[#142851] px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-[#eba93b] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#eba93b]"
+                    >
+                        Voltar a Pagina Inicial
+                    </button>
+                </div>
+                {mensagem === 'CredentialsSignin' ? (
+                    <Alert severity='error'>
+                        Seu usuário ou senha estão incorretos ou unidade não selecionada.
+                    </Alert>
+                ) : false}
+            </form >
         </>
     )
 }
