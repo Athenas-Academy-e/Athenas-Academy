@@ -42,7 +42,7 @@ export default function ModalA({ data, numero_lancamento, idac }: ModalAProps) {
 
   return (
     <>
-      <Button onPress={onOpen} className="btn bg-transparent outline-none text-black hover:text-white hover:bg-black border-none">Pagar</Button>
+      <Button onPress={onOpen} className="btn bg-transparent outline-none text-black dark:text-white hover:text-white hover:bg-black border-none">Pagar</Button>
       <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
         <ModalContent>
           {(onClose) => (

@@ -1,6 +1,6 @@
 import { auth } from "@/auth";
 import { redirect } from "next/navigation";
-import Header from "@/components/Header";
+import Header from "@/components/alunos/Header";
 import CardsNota from "./_components/cards";
 import GetModulos from "./_components/getmodulos";
 import type { Metadata } from "next";

@@ -20,19 +20,19 @@ export default function ModalNotas(modulo: any) {
         <ModalContent>
           {(onclose) => (
             <>
-              <ModalHeader className="flex flex-col gap-1 text-black text-center">
+              <ModalHeader className="flex flex-col gap-1 text-black text-center dark:text-white bg-white dark:bg-base-100">
                 Registro de Notas
               </ModalHeader>
-              <ModalBody>
+              <ModalBody className="bg-white dark:bg-base-100">
                 <table className="table">
-                  <thead className="table-header-group text-black text-center">
+                  <thead className="table-header-group text-black text-center dark:text-white ">
                     <tr className="table-row">
                       <th>Avaliação</th>
                       <th>Nota</th>
                       <th>Situação</th>
                     </tr>
                   </thead>
-                  <tbody className="text-black text-center">
+                  <tbody className="text-black text-center dark:text-white">
                     {provas.map((prova:any)=>(
                       <tr key={prova.id_prova} className="table-row">
                         <td className="table-cell">{prova.prova_nome}</td>

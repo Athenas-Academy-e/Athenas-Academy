@@ -93,7 +93,7 @@ export default function DrawerIcon({ sessionData, children }: SidebarProps) {
     };
 
     return (
-        <Box sx={{ display: 'flex' }}>
+        <Box sx={{ display: 'flex', height: '100vh'}}  className='bg-white dark:bg-base-200'>
             {/* <AppBar position="fixed" open={open} color='primary' className='bg-slate-950'> */}
             <AppBar position="fixed" open={open} sx={{background: '#020617'}} >
                 <Toolbar className='flex justify-between py-1'>
@@ -127,7 +127,7 @@ export default function DrawerIcon({ sessionData, children }: SidebarProps) {
                         {database.settings.map(data => (
                             <div key={data.Companytitle} className="flex gap-4 items-center desktop:text-sm laptop:text-small tablet:text-[0.7em] smartphone:text-[0.6em]">
                                 <div>
-                                    <Link href={'/dashboard'}><Image src={data.logolight} alt={data.alt} width={200} height={10} /></Link>
+                                    <Link href={'/dashboard'}><Image src={data.logo} alt={data.alt} width={200} height={10} /></Link>
                                 </div>
                                 <div className="flex flex-col justify-end ">
                                     <span className="text-white">Olá <span className="uppercase">{sessionData.name}</span>,</span>
@@ -139,8 +139,8 @@ export default function DrawerIcon({ sessionData, children }: SidebarProps) {
                     <div className="flex-none gap-4">
                         <div className="dropdown dropdown-end">
                             <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
-                                <div className="w-10 rounded-full">
-                                    <Image src={sessionData.image ? sessionData.image : '/default-photo.webp'} alt={'Teste'} width={200} height={200} />
+                                <div className="w-10 rounded-full bg-white">
+                                    <Image src={sessionData.image ? sessionData.image : '/default-photo.svg'} alt={'Usuario'} width={200} height={200} />
                                 </div>
                             </div>
                             <ul

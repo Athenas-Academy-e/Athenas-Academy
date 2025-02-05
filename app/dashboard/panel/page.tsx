@@ -1,5 +1,5 @@
 import { auth } from "@/auth";
-import Header from "@/components/Header";
+import Header from "@/components/alunos/Header";
 import { database } from "@/database";
 import { getAlunoBycurso } from "@/queries";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -26,18 +26,18 @@ export default async function Panel() {
     const data = Object.values(dataCurso)
     return (
         <Header sessionData={session.user}>
-            <div className="text-black flex flex-col gap-4 flex-wrap transition-all">
+            <div className="text-black dark:text-white flex flex-col gap-4 flex-wrap transition-all">
                 {data.map((pacotes: any) => (
                     <div key={pacotes.id_aluno_curso} className="grid grid-cols-1">
-                        <h1 key={pacotes.id_pacote}>Você esta visualizando as informações do curso de: <span>{pacotes.nome}</span></h1>
+                        <h1 key={pacotes.id_pacote}>Você esta visualizando as informações do curso de: <span>{pacotes.nome}</span>.</h1>
                     </div>
                 ))}
-                <div className="flex gap-4 flex-wrap">
+                <div className="flex gap-4 flex-wrap justify-center transition-all">
                     {database.pages.map((value: any) => (
-                        <div key={value.id} className="button bg-[#020617] p-2 rounded-md cursor-pointer hover:scale-105 transition-all shadow-md">
-                            <Link href={value.url} className="text-white">
+                        <div key={value.id} className="button bg-base-100 p-4 rounded-md cursor-pointer hover:scale-105 transition-all shadow-md">
+                            <Link href={value.url} className="text-black dark:text-white">
                                 <div className="text-center">
-                                    <FontAwesomeIcon icon={value.icon} className="text-white"></FontAwesomeIcon>
+                                    <FontAwesomeIcon icon={value.icon} className="text-black dark:text-white text-[2em]"></FontAwesomeIcon>
                                 </div>
                                 <div>
                                     {value.name}

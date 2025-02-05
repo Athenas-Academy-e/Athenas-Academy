@@ -6,13 +6,17 @@ import Getpdf from "./_components/getPdf";
 import { Suspense, useEffect, useState } from "react";
 
 interface ArquivoData {
-  arquivo: string;
+  arquivo: any;
+  data: any;
+  descricao: string;
+  tipo: string;
+  titulo: string;
 }
 
 export default function PDFViewerPage() {
-  return(
+  return (
     <Suspense fallback={<div>Loading...</div>}>
-      <PDFViewerContent/>
+      <PDFViewerContent />
     </Suspense>
   )
 }
@@ -21,10 +25,9 @@ function PDFViewerContent() {
   const searchA = searchParams.get("arquivo");
   const searchM = searchParams.get("modulo");
   const router = useRouter();
-  const [pdf, setPdf] = useState<ArquivoData | null>(null);
+  const [pdf, setPdf] = useState<ArquivoData | any>(null);
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
-
   useEffect(() => {
     const handleFetchPdf = async () => {
       if (!searchA || !searchM) {
@@ -35,7 +38,7 @@ function PDFViewerContent() {
       }
 
       try {
-        const arquivoData:any = await Getpdf(searchA, searchM);
+        const arquivoData: any = await Getpdf(searchA, searchM);
         if (!arquivoData) {
           throw new Error("No data returned from Getpdf.");
         }
@@ -52,16 +55,16 @@ function PDFViewerContent() {
   }, [searchA, searchM, router]);
 
   if (isLoading) {
-    return <div>Loading PDF...</div>;
+    return <div className="hidden">Loading PDF...</div>;
   }
 
   if (error) {
     console.error(error)
-    return <div>Error Ao Abrir o PDF</div>
+    return <div className="text-black dark:text-white">Error Ao Abrir o PDF</div>
   }
 
   if (!pdf) {
-    return <div>No PDF available to display.</div>;
+    console.error('No PDF available to display.');
   }
   const urlArquivo = pdf.arquivo.split(' ')[1]
   const url = `/proxy/material/${urlArquivo || pdf.arquivo}`;

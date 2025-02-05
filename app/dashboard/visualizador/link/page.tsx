@@ -6,7 +6,7 @@ import Getlink from './_components/getLink';
 import { Button } from '@nextui-org/react';
 
 interface ArquivoData {
-  arquivo:string,
+  arquivo: string,
 }
 
 export default function LinkViewerPage() {
@@ -47,7 +47,7 @@ function LinkViewerContent() {
       setEscola(getCookie('escola') || '');
 
       try {
-        const arquivoData:any = await Getlink(searchA, searchM);
+        const arquivoData: any = await Getlink(searchA, searchM);
         if (!arquivoData) {
           throw new Error('No data returned from GetLink.');
         }
@@ -109,21 +109,20 @@ function LinkViewerContent() {
   }
 
   return (
-    <div className="flex items-center justify-center h-screen bg-gray-100">
-      <div className="bg-white p-10 rounded-xl shadow-lg flex flex-col items-center justify-center">
+    <div className="flex items-center justify-center h-screen bg-gray-100 dark:bg-base-200">
+      <div className="bg-white p-10 rounded-xl shadow-lg flex flex-col items-center justify-center dark:bg-base-100 text-black mb-4 dark:text-white">
         <h3>Por favor, aguarde</h3>
-        <h1 className="text-6xl font-semibold text-primary mb-4">{countdown}</h1>
-        <h1>Seu processo está sendo finalizado...</h1>
+        <h1 className="text-6xl font-semibold ">{countdown}</h1>
         {countdown === 0 && (
           <div className="flex flex-col gap-1">
             <Button color="primary" className="mt-4" onPress={handleRedirect}>
               Redirecionar
             </Button>
-            <Button color="primary" className="mt-4" onPress={handleReturn}>
-              Voltar aos materiais
-            </Button>
           </div>
         )}
+        <Button color="primary" className="mt-4" onPress={handleReturn}>
+          Voltar aos materiais
+        </Button>
       </div>
     </div>
   );

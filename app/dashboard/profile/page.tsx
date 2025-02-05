@@ -1,5 +1,5 @@
 import { auth } from "@/auth";
-import Header from "@/components/Header";
+import Header from "@/components/alunos/Header";
 import { getAlunoByCurso, getUserByUser } from "@/queries";
 import { cookies } from "next/headers";
 import ProfilePage from "./_actions/profilePage";

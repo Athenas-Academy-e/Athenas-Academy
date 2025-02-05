@@ -23,7 +23,7 @@ export default async function ProfilePage(data: any) {
                 alt="profile-image"
                 className="object-cover"
                 height={255}
-                src={session?.user?.image ? session.user.image : '/default-photo.webp'}
+                src={session?.user?.image ? session.user.image : '/default-photo.svg'}
                 width={255}
               />
               {/*TODO: Funcionalidade para alterar a foto de perfil */}
@@ -51,7 +51,6 @@ export default async function ProfilePage(data: any) {
             <thead className="font-bold text-black text-medium">
               <th>Curso</th>
               <th>Situação</th>
-              <th></th>
             </thead>
             <tbody className="text-black font-semibold">
               {dataP.map((pacotes:any)=>(
