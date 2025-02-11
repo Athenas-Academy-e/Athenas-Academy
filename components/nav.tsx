@@ -23,16 +23,22 @@ import Category from '@/components/[_componets]/getcategoria'
 import { faBookOpen, faBriefcase, faComputer, faFileLines, faFlagUsa, faHeartPulse, faHelmetSafety, faHouse, faMicrochip, faMoneyBill, faPalette, faSprayCanSparkles, faUserNurse } from '@fortawesome/free-solid-svg-icons';
 import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
 
+// Define a estrutura dos dados dos cursos
 interface Course {
+    id_categoria: number;
     id_pacote: number;
     nome: string;
     categoria: string;
     icone: string;
+    descricao: string;
 }
 
+// Definindo a estrutura do objeto de categoria
 interface CategorizedCourses {
+    id_categoria: number;
     nome: string;
     icone: string;
+    descricao: string;
     cursos: Course[];
 }
 export default function Nav() {
@@ -110,14 +116,14 @@ export default function Nav() {
                             <TabPanels as={Fragment}>
                                     <TabPanel className="space-y-10 px-4 pb-8 pt-8  dark:text-white">
                                         {groupedCourses.map((categoria) => (
-                                            <div key={categoria.nome}>
+                                            <div key={categoria.id_categoria}>
                                                 <div className='flex border-b'>
                                                     <div>
                                                         <FontAwesomeIcon icon={iconMapping[categoria.icone]} className='w-[30px] h-[30px] text-white' />
                                                     </div>
                                                     <div className='self-center'>
-                                                        <p id={`${categoria.nome}-heading-mobile`} className="font-bold text-button  dark:text-white mx-3">
-                                                            {categoria.nome}
+                                                        <p id={`${categoria.nome}-heading-mobile`} className="font-bold text-button  dark:text-white mx-3 capitalize">
+                                                            {categoria.nome.toLowerCase()}
                                                         </p>
                                                     </div>
                                                 </div>
@@ -127,9 +133,9 @@ export default function Nav() {
                                                     className="mt-6 flex flex-col space-y-6"
                                                 >
                                                     {categoria.cursos.map((item) => (
-                                                        <li key={item.id_pacote} className="flow-root -m-2 p-2 text-button hover:bg-hover dark:text-gray-100 hover:cursor-pointer">
-                                                            <Link href={String(item.id_pacote)}>
-                                                                {item.nome}
+                                                        <li key={item.id_pacote} className="flow-root -m-2 p-2 text-button hover:bg-hover dark:text-gray-100 hover:cursor-pointer capitalize">
+                                                            <Link href={String('curso/'+item.id_pacote)}>
+                                                                {item.nome.toLowerCase()}
                                                             </Link>
                                                         </li>
                                                     ))}
@@ -214,19 +220,19 @@ export default function Nav() {
                                             className="absolute inset-x-0 top-full text-sm text-white transition data-[closed]:opacity-0 data-[enter]:duration-200 data-[leave]:duration-150 data-[enter]:ease-out data-[leave]:ease-in dark:text-gray-100 font-medium "
                                         >
                                             <div aria-hidden="true" className="absolute inset-0 top-1/2 bg-white shadow" />
-                                            <div className="relative bg-background">
+                                            <div className="relative bg-background h-full">
                                                 <div className="mx-auto max-w-7xl px-8">
                                                     <div className="grid grid-cols-1 gap-x-8 gap-y-10 py-16">
                                                         <div className="row-start-1 grid grid-cols-3 gap-x-8 gap-y-10 text-sm">
                                                             {groupedCourses.map((categoria) => (
-                                                                <div key={categoria.nome}>
+                                                                <div key={categoria.id_categoria}>
                                                                     <div className='flex flex-row items-center border-b border-white'>
                                                                         <div>
                                                                             <FontAwesomeIcon icon={iconMapping[categoria.icone]} className='w-[30px] h-[30px] text-white' />
                                                                         </div>
                                                                         <div className='mx-4'>
-                                                                            <p id={`${categoria.nome}-heading`} className="font-bold text-white  dark:text-white">
-                                                                                {categoria.nome}
+                                                                            <p id={`${categoria.nome}-heading`} className="font-bold text-white  dark:text-white capitalize">
+                                                                                {categoria.nome.toLowerCase()}
                                                                             </p>
                                                                         </div>
                                                                     </div>
@@ -236,9 +242,9 @@ export default function Nav() {
                                                                         className="mt-6 space-y-6 sm:mt-4 sm:space-y-4"
                                                                     >
                                                                         {categoria.cursos.map((item) => (
-                                                                            <li key={item.id_pacote} className="flex text-gray-100 hover:text-hover">
-                                                                                <Link href={String(item.id_pacote)}>
-                                                                                    {item.nome}
+                                                                            <li key={item.id_pacote} className="flex text-gray-100 hover:text-hover capitalize">
+                                                                                <Link href={String('curso/'+item.id_pacote)}>
+                                                                                    {item.nome.toLowerCase()}
                                                                                 </Link>
                                                                             </li>
                                                                         ))}

@@ -8,6 +8,7 @@ interface Course {
   nome: string;
   categoria: string;
   icone: string;
+  descricao: string;
 }
 
 // Definindo a estrutura do objeto de categoria
@@ -15,6 +16,7 @@ interface CategorizedCourses {
   id_categoria: number;
   nome: string;
   icone: string;
+  descricao: string;
   cursos: Course[];
 }
 
@@ -29,6 +31,7 @@ export default async function Category() {
         id_categoria: course.id_categoria,
         nome: course.categoria,
         icone: course.icone, // Assumindo que o ícone é o mesmo para todos os cursos da categoria
+        descricao: course.descricao,
         cursos: []
       };
     }
