@@ -1,4 +1,4 @@
-import { faBookOpen, faBriefcase, faComputer, faFileLines, faFlagUsa, faGraduationCap, faHeartPulse, faHouse, faMicrochip, faMoneyBill, faPalette, faSprayCanSparkles, faUserNurse } from '@fortawesome/free-solid-svg-icons';
+import { faBookOpen, faBriefcase, faComputer, faFileLines, faFlagUsa, faHeartPulse, faHouse, faMicrochip, faMoneyBill, faPalette, faSprayCanSparkles, faUserNurse } from '@fortawesome/free-solid-svg-icons';
 export const database = {
     settings: [{
         id:0,
@@ -29,92 +29,7 @@ export const database = {
         { id: 1, name: 'Sobre a Athenas', url: '/sobre', ativo: "flex" },
         { id: 2, name: 'Contato', url: '/contato', ativo: "none" },
     ],
-    /*Lista os cursos */
-    categories: [
-        {
-            id: 'cursos',
-            name: 'Cursos',
-            sections: [
-                {
-                    id: 0,
-                    name: 'Áreas Da Saúde',
-                    icons: faUserNurse,
-                    color: '',
-                    items: [
-                        { id:0, name: 'Auxiliar De Necropsia', href: '#', rating: 5.1, image: '/cardcurso/necropsia.jpg', description: 'Testes' },
-                        { id:1, name: 'Cuidador De Idoso', href: '#', rating: 5, image: '/cardcurso/', description: 'Testes' },
-                        { id:2, name: 'Atendente De Farmacia', href: '#', rating: 5, image: '/cardcurso/', description: 'Testes' },
-                    ],
-                },
-                {
-                    id: 1,
-                    name: 'Artes e Produção',
-                    icons: faPalette,
-                    color: '',
-                    items: [
-                        { id:0, name: 'Editor De Video Profissional', href: '#', rating: 5, image: '/cardcurso/', description: 'Testes' },
-                        { id:1, name: 'Designer Grafico', href: '#', rating: 5, image: '/cardcurso/', description: 'Testes' },
-                    ],
-                },
-                {
-                    id: 2,
-                    name: 'Beleza e Bem Estar',
-                    icons: faSprayCanSparkles,
-                    color: '',
-                    items: [
-                        { id:0, name: 'Extensão De Cílios', href: '#', rating: 5, image: '/cardcurso/', description: 'Testes' },
-                        { id:1, name: 'Designer De Sobrancelha', href: '#', rating: 5, image: '/cardcurso/', description: 'Testes' },
-                        { id:2, name: 'Maquiagem', href: '#', rating: 5, image: '/cardcurso/', description: 'Testes' },
-                        { id:3, name: 'Designer De Unhas', href: '#', rating: 5, image: '/cardcurso/', description: 'Testes' },
-                        { id:4, name: 'Massoterapia', href: '#', rating: 5, image: '/cardcurso/', description: 'Testes' },
-                        { id:5, name: 'Massoterapia Avançada', href: '#', rating: 5, image: '/cardcurso/', description: 'Testes' },
-                    ],
-                },
-                {
-                    id: 3,
-                    name: 'Idiomas',
-                    icons: faFlagUsa,
-                    color: '',
-                    items: [
-                        { id:0, name: 'Inglês Do Zero Ão Avançado', href: '#', rating: 5, image: '/cardcurso/', description: 'Testes' },
-                        { id:1, name: 'Inglês Kids', href: '#', rating: 5, image: '/cardcurso/', description: 'Testes' },
-                    ],
-                },
-                {
-                    id: 4,
-                    name: 'Gestão e Negócios',
-                    icons: faBriefcase,
-                    color: '',
-                    items: [
-                        { id:0, name: 'Auxiliar Administrativo', href: '#', rating: 5, image: '/cardcurso/', description: 'Testes' },
-                        { id:1, name: 'Marketing Digital', href: '#', rating: 5, image: '/cardcurso/', description: 'Testes' },
-                        { id:2, name: 'Telemarketing', href: '#', rating: 5, image: '/cardcurso/', description: 'Testes' },
-                    ],
-                },
-                {
-                    id: 5,
-                    name: 'Tecnologia',
-                    icons: faMicrochip,
-                    color: '',
-                    items: [
-                        { id:0, name: 'Informatica Profissional', href: '#', rating: 5, image: '/cardcurso/', description: 'Testes' },
-                        { id:1, name: 'Desenvolvedor De Games', href: '#', rating: 5, image: '/cardcurso/', description: 'Testes' },
-                        { id:2, name: 'Desenvolvedor De Software', href: '#', rating: 5, image: '/cardcurso/', description: 'Testes' },
-                        { id:3, name: 'Técnico Em Hardware', href: '#', rating: 5, image: '/cardcurso/', description: 'Testes' },
-                    ],
-                },
-                {
-                    id: 6,
-                    name: 'Pedagogia',
-                    icons: faBookOpen,
-                    color: '',
-                    items: [
-                        { id:0, name: 'Auxiliar De Creche', href: '#', rating: 5, image: '/cardcurso/', description: 'Testes' },
-                    ],
-                },
-            ],
-        }
-    ],
+    
     /*Cards Inicio*/
     cardsHome: [
         {   

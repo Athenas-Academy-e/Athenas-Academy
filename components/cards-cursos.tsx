@@ -14,7 +14,7 @@ export default function CardsCursos() {
                                     <div key={item.name}>
                                         <div className="relative flex w-full max-w-[26rem] flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-lg backdrop-blur-3xl drop-shadow-md" >
                                             <div className="relative mx-4 mt-4 overflow-hidden text-white shadow-lg rounded-xl bg-blue-gray-500 bg-clip-border shadow-blue-gray-500/40">
-                                                <Image src={item.image} alt={item.name} />
+                                                <Image src={item.image} alt={item.name} width={1280} height={720}/>
                                                 <div
                                                     className="absolute inset-0 w-full h-full to-bg-black-10 bg-gradient-to-tr from-transparent via-transparent to-black/60">
                                                 </div>

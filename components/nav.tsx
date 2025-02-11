@@ -19,8 +19,33 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { database } from '@/database'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import Category from '@/components/[_componets]/getcategoria'
+import { faBookOpen, faBriefcase, faComputer, faFileLines, faFlagUsa, faHeartPulse, faHelmetSafety, faHouse, faMicrochip, faMoneyBill, faPalette, faSprayCanSparkles, faUserNurse } from '@fortawesome/free-solid-svg-icons';
+import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
+
+interface Course {
+    id_pacote: number;
+    nome: string;
+    categoria: string;
+    icone: string;
+}
+
+interface CategorizedCourses {
+    nome: string;
+    icone: string;
+    cursos: Course[];
+}
 export default function Nav() {
     const [open, setOpen] = useState(false)
+    const [groupedCourses, setGroupedCourses] = useState<CategorizedCourses[]>([]);
+    useEffect(() => {
+        const fetchCategories = async () => {
+            const grouped = await Category(); // Assumindo que a função Category retorna as categorias
+            setGroupedCourses(grouped);
+        };
+
+        fetchCategories();
+    }, []);
 
     useEffect(() => {
         const header = document.querySelector('#header');
@@ -38,7 +63,22 @@ export default function Nav() {
             window.removeEventListener('scroll', handleScroll);
         }
     }, []);
-
+  
+    const iconMapping: { [key: string]: IconDefinition } = {
+        'faBookOpen': faBookOpen,
+        'faBriefcase': faBriefcase,
+        'faComputer': faComputer,
+        'faFileLines': faFileLines,
+        'faFlagUsa': faFlagUsa,
+        'faHeartPulse': faHeartPulse,
+        'faHouse': faHouse,
+        'faMicrochip': faMicrochip,
+        'faMoneyBill': faMoneyBill,
+        'faPalette': faPalette,
+        'faSprayCanSparkles': faSprayCanSparkles,
+        'faUserNurse': faUserNurse,
+        'faHelmetSafety': faHelmetSafety
+    };
     return (
         <div className="bg-background z-50 w-full transition duration-0 relative " id='header'>
             {/* Mobile menu */}
@@ -68,29 +108,28 @@ export default function Nav() {
                         {/* Mobile Links */}
                         <TabGroup className="mt-2">
                             <TabPanels as={Fragment}>
-                                {database.categories.map((category) => (
-                                    <TabPanel key={category.name} className="space-y-10 px-4 pb-8 pt-8  dark:text-white">
-                                        {category.sections.map((section) => (
-                                            <div key={section.name}>
+                                    <TabPanel className="space-y-10 px-4 pb-8 pt-8  dark:text-white">
+                                        {groupedCourses.map((categoria) => (
+                                            <div key={categoria.nome}>
                                                 <div className='flex border-b'>
                                                     <div>
-                                                        <FontAwesomeIcon icon={section.icons} className='w-[30px] h-[30px] text-button dark:text-white' />
+                                                        <FontAwesomeIcon icon={iconMapping[categoria.icone]} className='w-[30px] h-[30px] text-white' />
                                                     </div>
                                                     <div className='self-center'>
-                                                        <p id={`${category.id}-${section.id}-heading-mobile`} className="font-bold text-button  dark:text-white mx-3">
-                                                            {section.name}
+                                                        <p id={`${categoria.nome}-heading-mobile`} className="font-bold text-button  dark:text-white mx-3">
+                                                            {categoria.nome}
                                                         </p>
                                                     </div>
                                                 </div>
                                                 <ul
                                                     role="list"
-                                                    aria-labelledby={`${category.id}-${section.id}-heading-mobile`}
+                                                    aria-labelledby={`${categoria.nome}-heading-mobile`}
                                                     className="mt-6 flex flex-col space-y-6"
                                                 >
-                                                    {section.items.map((item) => (
-                                                        <li key={item.name} className="flow-root -m-2 p-2 text-button hover:bg-hover dark:text-gray-100 hover:cursor-pointer">
-                                                            <Link href={item.href}>
-                                                                {item.name}
+                                                    {categoria.cursos.map((item) => (
+                                                        <li key={item.id_pacote} className="flow-root -m-2 p-2 text-button hover:bg-hover dark:text-gray-100 hover:cursor-pointer">
+                                                            <Link href={String(item.id_pacote)}>
+                                                                {item.nome}
                                                             </Link>
                                                         </li>
                                                     ))}
@@ -98,7 +137,6 @@ export default function Nav() {
                                             </div>
                                         ))}
                                     </TabPanel>
-                                ))}
                             </TabPanels>
                         </TabGroup>
                         <div className="relative space-y-6 border-t border-gray-200 px-4 py-6 ">
@@ -143,19 +181,19 @@ export default function Nav() {
                                         <div key={settings.id}>
                                             <span className="sr-only">{settings.Companytitle}</span>
                                             <Image
-                                                src={settings.logolight}
+                                                src={settings.logo}
                                                 width={200}
                                                 height={30}
                                                 alt={settings.alt}
                                                 className='smartphone:hidden tablet:block laptop:block desktop:block'
-                                                />
-                                                <Image
-                                                    src={settings.logoSmallLight}
-                                                    width={100}
-                                                    height={100}
-                                                    alt={settings.alt}
-                                                    className='smartphone:block tablet:hidden laptop:hidden desktop:hidden'
-                                                />
+                                            />
+                                            <Image
+                                                src={settings.logoSmallLight}
+                                                width={100}
+                                                height={100}
+                                                alt={settings.alt}
+                                                className='smartphone:block tablet:hidden laptop:hidden desktop:hidden'
+                                            />
                                         </div>
                                     ))}
                                 </Link>
@@ -164,57 +202,55 @@ export default function Nav() {
                             {/* Flyout menus */}
                             <PopoverGroup className="hidden lg:ml-8 lg:block lg:self-stretch">
                                 <div className="flex h-full space-x-8">
-                                    {database.categories.map((category) => (
-                                        <Popover key={category.id} className="flex">
-                                            <div className="relative flex">
-                                                <PopoverButton className="relative z-10 -mb-px flex items-center border-b-2 border-transparent pt-px text-sm font-bold text-white transition-colors duration-200 ease-out hover:text-hover  data-[open]:border-hover data-[open]:text-hover dark:text-white">
-                                                    {category.name}
-                                                </PopoverButton>
-                                            </div>
+                                    <Popover className="flex">
+                                        <div className="relative flex">
+                                            <PopoverButton className="relative z-10 -mb-px flex items-center border-b-2 border-transparent pt-px text-sm font-bold text-white transition-colors duration-200 ease-out hover:text-hover  data-[open]:border-hover data-[open]:text-hover dark:text-white">
+                                                Cursos
+                                            </PopoverButton>
+                                        </div>
 
-                                            <PopoverPanel
-                                                transition
-                                                className="absolute inset-x-0 top-full text-sm text-white transition data-[closed]:opacity-0 data-[enter]:duration-200 data-[leave]:duration-150 data-[enter]:ease-out data-[leave]:ease-in dark:text-gray-100 font-medium "
-                                            >
-                                                <div aria-hidden="true" className="absolute inset-0 top-1/2 bg-white shadow" />
-                                                <div className="relative bg-background">
-                                                    <div className="mx-auto max-w-7xl px-8">
-                                                        <div className="grid grid-cols-1 gap-x-8 gap-y-10 py-16">
-                                                            <div className="row-start-1 grid grid-cols-3 gap-x-8 gap-y-10 text-sm">
-                                                                {category.sections.map((section) => (
-                                                                    <div key={section.id}>
-                                                                        <div className='flex flex-row items-center border-b border-white'>
-                                                                            <div>
-                                                                                <FontAwesomeIcon icon={section.icons} className='w-[30px] h-[30px] text-white' />
-                                                                            </div>
-                                                                            <div className='mx-4'>
-                                                                                <p id={`${section.name}-heading`} className="font-bold text-white  dark:text-white">
-                                                                                    {section.name}
-                                                                                </p>
-                                                                            </div>
+                                        <PopoverPanel
+                                            transition
+                                            className="absolute inset-x-0 top-full text-sm text-white transition data-[closed]:opacity-0 data-[enter]:duration-200 data-[leave]:duration-150 data-[enter]:ease-out data-[leave]:ease-in dark:text-gray-100 font-medium "
+                                        >
+                                            <div aria-hidden="true" className="absolute inset-0 top-1/2 bg-white shadow" />
+                                            <div className="relative bg-background">
+                                                <div className="mx-auto max-w-7xl px-8">
+                                                    <div className="grid grid-cols-1 gap-x-8 gap-y-10 py-16">
+                                                        <div className="row-start-1 grid grid-cols-3 gap-x-8 gap-y-10 text-sm">
+                                                            {groupedCourses.map((categoria) => (
+                                                                <div key={categoria.nome}>
+                                                                    <div className='flex flex-row items-center border-b border-white'>
+                                                                        <div>
+                                                                            <FontAwesomeIcon icon={iconMapping[categoria.icone]} className='w-[30px] h-[30px] text-white' />
                                                                         </div>
-                                                                        <ul
-                                                                            role="list"
-                                                                            aria-labelledby={`${section.name}-heading`}
-                                                                            className="mt-6 space-y-6 sm:mt-4 sm:space-y-4"
-                                                                        >
-                                                                            {section.items.map((item) => (
-                                                                                <li key={item.id} className="flex text-gray-100 hover:text-hover">
-                                                                                    <Link href={item.href}>
-                                                                                        {item.name}
-                                                                                    </Link>
-                                                                                </li>
-                                                                            ))}
-                                                                        </ul>
+                                                                        <div className='mx-4'>
+                                                                            <p id={`${categoria.nome}-heading`} className="font-bold text-white  dark:text-white">
+                                                                                {categoria.nome}
+                                                                            </p>
+                                                                        </div>
                                                                     </div>
-                                                                ))}
-                                                            </div>
+                                                                    <ul
+                                                                        role="list"
+                                                                        aria-labelledby={`${categoria.nome}-heading`}
+                                                                        className="mt-6 space-y-6 sm:mt-4 sm:space-y-4"
+                                                                    >
+                                                                        {categoria.cursos.map((item) => (
+                                                                            <li key={item.id_pacote} className="flex text-gray-100 hover:text-hover">
+                                                                                <Link href={String(item.id_pacote)}>
+                                                                                    {item.nome}
+                                                                                </Link>
+                                                                            </li>
+                                                                        ))}
+                                                                    </ul>
+                                                                </div>
+                                                            ))}
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </PopoverPanel>
-                                        </Popover>
-                                    ))}
+                                            </div>
+                                        </PopoverPanel>
+                                    </Popover>
 
                                     {database.pagesSite.map((page) => (
                                         <Link
