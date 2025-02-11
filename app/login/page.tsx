@@ -11,7 +11,6 @@ export const metadata: Metadata = {
   description: "Bem-vindo à área do aluno. Gerencie seu aprendizado e acesse conteúdos exclusivos.",
   robots: "index, follow",
 };
-
 export default async function LoginPage() {
   const empresa = await getEmpresa()
   const Session = await auth()
