@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { useSearchParams } from 'next/navigation';
 import { Alert } from '@mui/material';
+import router from 'next/router';
 
 export default function LoginForm(empresa: any) {
     const [isVisible, setIsVisible] = useState(false);
@@ -57,12 +58,21 @@ export default function LoginForm(empresa: any) {
                     >
                         Entrar
                     </button>
-                    {mensagem === 'CredentialsSignin' ? (
-                        <Alert severity='error'>
-                            Seu usuário ou senha estão incorretos ou unidade não selecionada.
-                        </Alert>
-                    ) : false}
                 </div>
+                <div>
+                    <button
+                        type="button"
+                        onClick={()=>{router.push('https://athenasacademy.com.br')}}
+                        className="flex w-full justify-center rounded-md bg-[#142851] px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-[#eba93b] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#eba93b]"
+                    >
+                        Voltar a Pagina Inicial
+                    </button>
+                </div>
+                {mensagem === 'CredentialsSignin' ? (
+                    <Alert severity='error'>
+                        Seu usuário ou senha estão incorretos ou unidade não selecionada.
+                    </Alert>
+                ) : false}
             </form>
         </>
     )
