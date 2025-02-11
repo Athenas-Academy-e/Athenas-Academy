@@ -123,7 +123,7 @@ async function getEmpresa() {
   return rows;
 }
 async function getCategorias(codigo_escola: string) {
-  const query = 'SELECT pacotes.id_pacote, pacotes.codigo_escola, pacotes.nome, pacotes.contrato, pacotes.situacao, pacotes.id_contrato, pacotes.cadint, categoria_pacotes.id_categoria, categoria_pacotes.categoria, categoria_pacotes.icone FROM pacotes LEFT JOIN categoria_pacotes ON pacotes.id_categoria = categoria_pacotes.id_categoria WHERE pacotes.situacao="A" and pacotes.cadint=1 and pacotes.codigo_escola= ? ORDER BY categoria_pacotes.id_categoria ';
+  const query = 'SELECT pacotes.id_pacote, pacotes.codigo_escola, pacotes.nome, pacotes.contrato, pacotes.situacao, pacotes.id_contrato, pacotes.cadint, categoria_pacotes.id_categoria, categoria_pacotes.categoria, categoria_pacotes.icone, categoria_pacotes.descricao FROM pacotes LEFT JOIN categoria_pacotes ON pacotes.id_categoria = categoria_pacotes.id_categoria WHERE pacotes.situacao="A" and pacotes.cadint=1 and pacotes.codigo_escola= ? ORDER BY categoria_pacotes.id_categoria ';
   const [rows] = await connection().execute(query, [codigo_escola]);
   return rows;
 }
