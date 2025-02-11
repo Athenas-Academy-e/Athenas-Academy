@@ -1,5 +1,5 @@
 import { auth } from "@/auth";
-import Header from "@/components/Header";
+import Header from "@/components/alunos/Header";
 import { redirect } from "next/navigation";
 import FrequencyData from "./_components/Frequency";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
