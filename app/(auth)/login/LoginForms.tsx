@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { useSearchParams } from 'next/navigation';
 import { Alert } from '@mui/material';
-import router from 'next/router';
+import {useRouter} from 'next/navigation';
 
 export default function LoginForm(empresa: any) {
     const [isVisible, setIsVisible] = useState(false);
@@ -14,9 +14,8 @@ export default function LoginForm(empresa: any) {
     const searchParams = useSearchParams();
     const mensagem = searchParams.get('msg');
     const formRef = useRef<HTMLFormElement>(null);
-
-   
-    const dadosempresa = Object(empresa)
+    const dadosempresa = Object(empresa);
+    const router = useRouter();
     return (
         <>
             <form action={login} className="space-y-6">
