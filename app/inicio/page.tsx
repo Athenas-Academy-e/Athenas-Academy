@@ -10,6 +10,7 @@ export default function Inicio(){
       <Top />
       <Cards />
       <Footer />
+      
     </>
   )
 }
