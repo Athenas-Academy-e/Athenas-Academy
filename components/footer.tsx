@@ -5,10 +5,10 @@ import Link from "next/link";
 export default function Footer() {
     const date: Date = new Date();
     return (
-        <footer className="bg-home shadow w-full">
+        <footer className="shadow w-full">
             {/*Mobile */}
             <div className="smartphone:block tablet:block laptop:block desktop:hidden">
-                <div className="p-4 flex  flex-wrap md:items-center md:justify-between spp-sm:flex-col spp-sm:items-center border-t-2 rounded-md sp-sm:flex-col">
+                <div className="p-4 flex  flex-wrap md:items-center md:justify-between spp-sm:flex-col spp-sm:items-center rounded-md sp-sm:flex-col">
                     <div>
                         {database.settings.map((settings) => (
                             <span className="text-sm text-white sm:text-center " key={settings.Companytitle}>© {date.getFullYear()} <Link href={'/'} className="hover:underline">
@@ -32,7 +32,7 @@ export default function Footer() {
             </div>
 
             {/*Desktop */}
-            <div className="smartphone:hidden tablet:hidden laptop:hidden desktop:block border-t-2 rounded-md">
+            <div className="smartphone:hidden tablet:hidden laptop:hidden desktop:block  rounded-md">
                 <div className="md:flex md:justify-between mt-4">
                     <div className="mb-6 md:mb-0">
                         {database.settings.map((settings) => (

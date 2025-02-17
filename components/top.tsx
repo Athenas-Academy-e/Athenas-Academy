@@ -8,6 +8,7 @@ import 'swiper/css/pagination';
 import { Pagination, Autoplay } from 'swiper/modules';
 import { database } from '@/database';
 import Image from 'next/image';
+import Nav from './nav';
 
 export default function Top() {
     const el = useRef<HTMLSpanElement>(null);
@@ -27,37 +28,40 @@ export default function Top() {
     }, []);
 
     return (
-        <div className="bg-background min-h-screen flex flex-col md:flex-row items-center lg:justify-between md:justify-between p-6 md:p-8 space-y-6 md:space-y-0 md:space-x-6">
-            {/* Text Section */}
-            <div className="text-white font-bold text-center md:text-left space-y-4 max-w-lg">
-                <h1 className="text-2xl md:text-3xl">BEM-VINDO(A) AO</h1>
-                <h1 className="text-2xl md:text-3xl">CURSO PROFISSIONALIZANTE</h1>
-                <h1 className="text-2xl md:text-3xl">ATHENAS ACADEMY</h1>
-                <h1 className="text-2xl md:text-3xl">PREPARE-SE <span ref={el}></span></h1>
-                <div className="mt-6">
-                    <Link href="/cadastro">
-                        <button className="bg-yellow-500 text-white font-bold px-6 py-2 rounded-md shadow-md transition-transform transform hover:scale-105">
-                            Quero garantir a minha vaga
-                        </button>
-                    </Link>
+        <div className=' min-h-56'>
+            <Nav />
+            <div className=" flex flex-col md:flex-row items-center lg:justify-between md:justify-between p-6 md:p-8 space-y-6 md:space-y-0 md:space-x-6">
+                {/* Text Section */}
+                <div className="text-white font-bold text-center md:text-left space-y-4 max-w-lg">
+                    <h1 className="text-2xl md:text-3xl">BEM-VINDO(A) AO</h1>
+                    <h1 className="text-2xl md:text-3xl">CURSO PROFISSIONALIZANTE</h1>
+                    <h1 className="text-2xl md:text-3xl">ATHENAS ACADEMY</h1>
+                    <h1 className="text-2xl md:text-3xl">PREPARE-SE <span ref={el}></span></h1>
+                    <div className="mt-6">
+                        <Link href="/cadastro">
+                            <button className="bg-yellow-500 text-white font-bold px-6 py-2 rounded-md shadow-md transition-transform transform hover:scale-105">
+                                Quero garantir a minha vaga
+                            </button>
+                        </Link>
+                    </div>
                 </div>
-            </div>
 
-            {/* Carousel Section */}
-            <div className="w-full md:w-1/3 h-[250px] md:h-[300px]">
-                <Swiper
-                    modules={[Pagination, Autoplay]}
-                    pagination={{ clickable: true }}
-                    autoplay={{ delay: 3000, disableOnInteraction: false }}
-                    loop={true}
-                    className="h-full"
-                >
-                    {database.cardsHome.map((src) => (
-                        <SwiperSlide key={src.id}>
-                            <Image src={src.image} alt={src.title} className='w-full h-full object-cover rounded-md' width={1280} height={720} />
-                        </SwiperSlide>
-                    ))}
-                </Swiper>
+                {/* Carousel Section */}
+                <div className="w-full md:w-1/3 h-[250px] md:h-[300px]">
+                    <Swiper
+                        modules={[Pagination, Autoplay]}
+                        pagination={{ clickable: true }}
+                        autoplay={{ delay: 3000, disableOnInteraction: false }}
+                        loop={true}
+                        className="h-full"
+                    >
+                        {database.cardsHome.map((src) => (
+                            <SwiperSlide key={src.id}>
+                                <Image src={src.image} alt={src.title} className='w-full h-full object-cover rounded-md' width={1280} height={720} />
+                            </SwiperSlide>
+                        ))}
+                    </Swiper>
+                </div>
             </div>
         </div>
     );

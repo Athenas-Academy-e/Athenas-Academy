@@ -5,7 +5,8 @@
 :root {
   --foreground-rgb: 0, 0, 0;
   /* --background-rgb: #122753; */
-  --background-rgb: #FFF;
+  --background-rgb: #1a225f;
+  --background-rgb2: #2B4875;
   background-color: var(--background-rgb);
 }
 
@@ -17,7 +18,7 @@
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: var(--background-rgb);
+  background-image: linear-gradient(to top right,var(--background-rgb), var(--background-rgb2));
 }
 
 @layer utilities {
