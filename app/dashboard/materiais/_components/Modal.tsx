@@ -47,8 +47,8 @@ export default function ModalMaterial(modulo: any) {
                 <thead className="text-center text-black dark:text-white bg-white dark:bg-base-100 table-header-group">
                   <tr className="table-row">
                     <th>Nome do Arquivo</th>
-                    <th>Data da publicação</th>
-                    <th>Tipo</th>
+                    <th className="smartphone:hidden">Data da publicação</th>
+                    <th className="smartphone:hidden">Tipo</th>
                     <th>Ação</th>
                   </tr>
                 </thead>
@@ -56,8 +56,8 @@ export default function ModalMaterial(modulo: any) {
                   {materias.map((value: any) => (
                     <tr key={value.id_material} className="table-row">
                       <td className="table-cell capitalize">{tituloLow(String(value.titulo))}</td>
-                      <td className="table-cell">{new Date(value.data).toLocaleDateString()}</td>
-                      <td className="table-cell capitalize">{tipoArquivo(value.tipo)}</td>
+                      <td className="table-cell smartphone:hidden">{new Date(value.data).toLocaleDateString()}</td>
+                      <td className="table-cell capitalize smartphone:hidden">{tipoArquivo(value.tipo)}</td>
                       <td className="table-cell"><Visualizador arquivo={value} modulo={modulo.modulo} /></td>
                     </tr>
                   ))}
