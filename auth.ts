@@ -58,4 +58,8 @@ export const {
       return '/dashboard'
     },
   },
+  session: {
+    maxAge: 7200, // 2 hora (expiração do cookie da sessão)
+    // maxAge: 60 * 60 * 24 * 7, // 7 dias (expiração do cookie da sessão)
+  },
 });

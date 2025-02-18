@@ -7,16 +7,17 @@ interface PacotesProps {
   id_pacote?: string
 }
 export default function ButtonCardCourse({ id_aluno_curso, id_aluno, nome, id_pacote }: PacotesProps) {
-  function setCookie(name: string, value: string) {
-    document.cookie = `${name}=${value}; Session; path=/`;
+  function setCookie(name: string, value: string, maxAge: number) {
+    const expires = new Date(Date.now() + maxAge * 1000).toUTCString(); // maxAge em segundos
+    document.cookie = `${name}=${value}; expires=${expires}; path=/`;
   }
 
   // Função chamada quando o botão é clicado
   function handleButton(values: PacotesProps) {
     const aluno_curso = values.id_aluno_curso
     const aluno = values.id_aluno
-    setCookie('iacurso', aluno_curso);
-    setCookie('ia', aluno);
+    setCookie('iacurso', aluno_curso, 7200);
+    setCookie('ia', aluno, 7200);
     document.location.href = '/dashboard/panel'
   }
 
