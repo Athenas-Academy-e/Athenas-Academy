@@ -28,9 +28,9 @@ export default function Top() {
     }, []);
 
     return (
-        <div className=' min-h-56'>
+        <div className='min-h-56'>
             <Nav />
-            <div className=" flex flex-col md:flex-row items-center lg:justify-between md:justify-between p-6 md:p-8 space-y-6 md:space-y-0 md:space-x-6">
+            <div className="h-screen flex flex-col justify-center md:flex-row items-center lg:justify-between md:justify-between p-6 md:p-8 space-y-6 md:space-y-0 md:space-x-6">
                 {/* Text Section */}
                 <div className="text-white font-bold text-center md:text-left space-y-4 max-w-lg">
                     <h1 className="text-2xl md:text-3xl">BEM-VINDO(A) AO</h1>
