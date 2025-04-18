@@ -20,7 +20,8 @@ const config: Config = {
         secondary: '#ff6b6b', // Vermelho (como no MUI)
         button: "#004072",
         hover: "#EDA92A",
-        background: "#142851",
+        // background: "#142851",
+        background: "#2B4875",
         topBack: "#E0E0E0",
         // 'icon': "#122753",
         icon: "#004072",

@@ -143,7 +143,7 @@ export default function Nav() {
                                             >
                                                 {categoria.cursos.map((item) => (
                                                     <li key={item.id_pacote} className="flow-root -m-2 p-2 transition-all duration-200 ease-in-out hover:bg-hover hover:cursor-pointer capitalize">
-                                                        <Link href={String('curso/' + item.id_pacote)}>
+                                                        <Link href={String('cursos/' + item.id_pacote)}>
                                                             {item.nome.toLowerCase()}
                                                         </Link>
                                                     </li>
@@ -261,7 +261,7 @@ export default function Nav() {
                                                                 >
                                                                     {categoria.cursos.map((item) => (
                                                                         <li key={item.id_pacote} className="flex text-gray-100 hover:text-hover capitalize">
-                                                                            <Link href={String('curso/' + item.id_pacote)}>
+                                                                            <Link href={String('cursos/' + item.id_pacote)}>
                                                                                 {item.nome.toLowerCase()}
                                                                             </Link>
                                                                         </li>
